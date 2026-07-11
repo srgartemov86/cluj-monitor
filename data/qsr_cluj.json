@@ -1,0 +1,160 @@
+{
+  "fetched_at": "2026-07-10T19:36:43.209861Z",
+  "source": "OpenStreetMap via Overpass",
+  "brands": {
+    "mcdonalds": {
+      "name": "McDonald's",
+      "logo": "brands/mcdonalds.svg",
+      "source": "OSM/Overpass",
+      "count": 6,
+      "points": [
+        {
+          "lat": 46.7741492,
+          "lon": 23.5927655,
+          "name": "McDonald's",
+          "address": "Piața Mihai Viteazu"
+        },
+        {
+          "lat": 46.7487766,
+          "lon": 23.5314592,
+          "name": "McDonald's",
+          "address": ""
+        },
+        {
+          "lat": 46.7731437,
+          "lon": 23.6298753,
+          "name": "McDonald's",
+          "address": ""
+        },
+        {
+          "lat": 46.746505,
+          "lon": 23.4508195,
+          "name": "McDonald's PlayPlace",
+          "address": ""
+        },
+        {
+          "lat": 46.7539836,
+          "lon": 23.554066,
+          "name": "McDonald's",
+          "address": "Strada Primăverii"
+        },
+        {
+          "lat": 46.7466374,
+          "lon": 23.4502315,
+          "name": "McDonald's",
+          "address": ""
+        }
+      ]
+    },
+    "kfc": {
+      "name": "KFC",
+      "logo": "brands/kfc.png",
+      "source": "OSM/Overpass",
+      "count": 4,
+      "points": [
+        {
+          "lat": 46.7702351,
+          "lon": 23.5905329,
+          "name": "KFC",
+          "address": "Strada Iuliu Maniu 1"
+        },
+        {
+          "lat": 46.7701994,
+          "lon": 23.5904094,
+          "name": "Parcare de biciclete KFC",
+          "address": ""
+        },
+        {
+          "lat": 46.7488726,
+          "lon": 23.5318013,
+          "name": "KFC",
+          "address": ""
+        },
+        {
+          "lat": 46.7729251,
+          "lon": 23.6295105,
+          "name": "KFC",
+          "address": ""
+        }
+      ]
+    },
+    "burgerking": {
+      "name": "Burger King",
+      "logo": "brands/burgerking.svg",
+      "source": "OSM/Overpass",
+      "count": 3,
+      "points": [
+        {
+          "lat": 46.7492481,
+          "lon": 23.5312127,
+          "name": "Burger King",
+          "address": ""
+        },
+        {
+          "lat": 46.7562904,
+          "lon": 23.5950423,
+          "name": "Burger King",
+          "address": ""
+        },
+        {
+          "lat": 46.7464263,
+          "lon": 23.4507727,
+          "name": "Burger King",
+          "address": ""
+        }
+      ]
+    },
+    "trenta": {
+      "name": "Trenta Pizza",
+      "logo": "brands/trenta.png",
+      "source": "OSM/Overpass",
+      "count": 0,
+      "points": [],
+      "icon_type": "letter",
+      "letter": "T"
+    },
+    "dominos": {
+      "name": "Domino's",
+      "logo": "brands/dominos.svg",
+      "source": "OSM/Overpass",
+      "count": 1,
+      "points": [
+        {
+          "lat": 46.7643218,
+          "lon": 23.6074084,
+          "name": "Domino",
+          "address": ""
+        }
+      ]
+    },
+    "pizzahut": {
+      "name": "Pizza Hut",
+      "logo": "brands/pizzahut.svg",
+      "source": "OSM/Overpass",
+      "count": 2,
+      "points": [
+        {
+          "lat": 46.7493775,
+          "lon": 23.5310808,
+          "name": "Pizza Hut",
+          "address": ""
+        },
+        {
+          "lat": 46.7717822,
+          "lon": 23.6258221,
+          "name": "Pizza Hut",
+          "address": ""
+        }
+      ]
+    },
+    "jerrys": {
+      "name": "Jerry's Pizza",
+      "logo": "brands/jerrys.png",
+      "source": "official site (manual)",
+      "count": 0,
+      "points": [],
+      "icon_type": "letter",
+      "letter": "J"
+    }
+  }
+}

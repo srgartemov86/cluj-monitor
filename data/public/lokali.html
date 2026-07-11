@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cluj-Napoca locations — Dodo monitor</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+  body, html, #map { margin:0; padding:0; height:100%; font-family:-apple-system,BlinkMacSystemFont,sans-serif; }
+  #map { width:100%; height:100vh; }
+  .leaflet-popup-content { font-size:13px; line-height:1.45; max-width:320px; }
+  .lok-popup h3 { margin:0 0 6px 0; font-size:14px; }
+  .lok-popup .meta { color:#374151; margin-bottom:8px; }
+  .lok-popup .meta strong { color:#111; }
+  .lok-popup .desc { color:#1f2937; margin:8px 0; white-space:pre-wrap; }
+  .lok-popup .score-box { background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:7px 9px; margin:8px 0; }
+  .lok-popup .score-hd { font-size:13px; color:#0f172a; margin-bottom:3px; }
+  .lok-popup .score-rows { font-size:11.5px; color:#334155; line-height:1.5; }
+  .lok-popup .score-warn { font-size:11px; color:#b45309; margin-top:4px; }
+  .lok-popup .actions a { display:inline-block; padding:5px 10px; border-radius:6px; background:#2563eb; color:#fff; text-decoration:none; font-size:12px; margin-right:6px; }
+  .lok-popup .actions a.secondary { background:#e5e7eb; color:#111; }
+  .lok-popup .flags { font-size:11px; color:#b45309; margin-top:4px; }
+  .lok-popup .photo-wrap { position:relative; margin:2px 0 8px; user-select:none; }
+  .lok-popup .photo-wrap img { width:100%; height:175px; object-fit:cover; border-radius:8px;
+                                display:block; background:#e5e7eb; cursor:pointer; }
+  .lok-popup .photo-nav { position:absolute; top:50%; transform:translateY(-50%); width:40px; height:56px;
+                           display:flex; align-items:center; justify-content:center; cursor:pointer;
+                           background:rgba(0,0,0,0.6); color:#fff; font-size:30px; font-weight:700; border:none;
+                           border-radius:8px; box-shadow:0 1px 6px rgba(0,0,0,0.4); line-height:1; padding-bottom:4px; }
+  .lok-popup .photo-nav:hover { background:rgba(0,0,0,0.85); }
+  .lok-popup .photo-nav.prev { left:6px; }
+  .lok-popup .photo-nav.next { right:6px; }
+  .lok-popup .photo-count { position:absolute; right:8px; bottom:8px; background:rgba(0,0,0,0.55);
+                             color:#fff; font-size:11px; padding:2px 7px; border-radius:10px; }
+  .lok-popup .status-btns { display:flex; flex-wrap:wrap; gap:6px; margin:8px 0 2px; }
+  .lok-popup .status-btns button { border:1px solid #d1d5db; background:#f9fafb; color:#111;
+                                    border-radius:6px; padding:4px 9px; font-size:12px; cursor:pointer; }
+  .lok-popup .status-btns button:disabled { opacity:0.45; cursor:wait; }
+  .lok-popup .status-btns button.active.st-review { background:#2563eb; border-color:#2563eb; color:#fff; }
+  .lok-popup .status-btns button.active.st-progress { background:#dc2626; border-color:#dc2626; color:#fff; }
+  .lok-popup .status-btns button.active.st-no { background:#6b7280; border-color:#6b7280; color:#fff; }
+  #toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); z-index:2000;
+            background:#111827; color:#fff; padding:9px 16px; border-radius:8px; font-size:13px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.3); opacity:0; transition:opacity .25s; pointer-events:none; }
+  #toast.show { opacity:1; }
+  .lok-popup .footer { font-size:11px; color:#6b7280; margin-top:6px; }
+  .legend { position:absolute; bottom:18px; left:18px; z-index:1000; background:white; padding:10px 14px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.15); font-size:12px; }
+  .legend .row { display:flex; align-items:center; margin:3px 0; }
+  .legend .dot { width:12px; height:12px; border-radius:50%; margin-right:8px; border:2px solid #fff; box-shadow:0 0 0 1px #9ca3af; }
+  .legend .dodo { width:18px; height:18px; margin-right:6px; margin-left:-3px; }
+  .dodo-marker { width:34px; height:34px; border-radius:50%; background:white; box-shadow:0 0 0 2px #ff6900, 0 2px 6px rgba(0,0,0,0.3); padding:2px; box-sizing:border-box; }
+  .dodo-marker img { width:100%; height:100%; border-radius:50%; }
+  .qsr-marker { width:18px; height:18px; border-radius:50%; background:white; box-shadow:0 0 0 1.5px rgba(0,0,0,0.35), 0 1px 3px rgba(0,0,0,0.25); padding:1px; box-sizing:border-box; }
+  .qsr-marker img { width:100%; height:100%; border-radius:50%; object-fit:cover; }
+  .qsr-letter { width:20px; height:20px; border-radius:50%; background:white; box-shadow:0 0 0 1.5px #111, 0 1px 3px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12px; color:#111; font-family:-apple-system,BlinkMacSystemFont,sans-serif; }
+  .star-marker { font-size:28px; line-height:1; color:#dc2626; -webkit-text-stroke:1px #fff;
+                  text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff,
+                               -2px 0 0 #fff, 2px 0 0 #fff, 0 -2px 0 #fff, 0 2px 0 #fff,
+                               0 2px 4px rgba(0,0,0,0.45); }
+  .star-marker.blue { color:#2563eb; }
+  .legend .star { display:inline-block; width:14px; font-size:15px; line-height:1; color:#dc2626;
+                   -webkit-text-stroke:0.5px #fff;
+                   text-shadow:-1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+                   margin-right:8px; }
+  .legend .star.blue { color:#2563eb; }
+  .stats { position:absolute; top:12px; right:12px; z-index:1000; background:white; padding:8px 12px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.15); font-size:12px; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div class="legend">
+  <div class="row"><img class="dodo" src="dodo-logo.png" alt="">Dodo Pizza</div>
+  <div class="row"><input type="checkbox" id="t-to_review" checked style="margin-right:6px"><span class="star blue">★</span>to review (<span id="c-to_review">0</span>)</div>
+  <div class="row"><input type="checkbox" id="t-in_progress" checked style="margin-right:6px"><span class="star">★</span>in progress (<span id="c-in_progress">0</span>)</div>
+  <div class="row"><input type="checkbox" id="t-fresh"  checked style="margin-right:6px"><span class="dot" style="background:#22c55e"></span>listed ≤ 2 days ago (<span id="c-fresh">0</span>)</div>
+  <div class="row"><input type="checkbox" id="t-recent" checked style="margin-right:6px"><span class="dot" style="background:#f59e0b"></span>3–15 days (<span id="c-recent">0</span>)</div>
+  <div class="row"><input type="checkbox" id="t-old"    checked style="margin-right:6px"><span class="dot" style="background:#9ca3af"></span>16+ days (<span id="c-old">0</span>)</div>
+  <div class="row"><input type="checkbox" id="t-not_suitable" style="margin-right:6px"><span class="dot" style="background:#dc2626"></span>not suitable (<span id="c-not_suitable">0</span>)</div>
+  <div class="row" style="border-top:1px solid #e5e7eb; margin-top:6px; padding-top:6px;"><input type="checkbox" id="t-top20" style="margin-right:6px"><span class="dot" style="background:transparent;border:3px solid #a855f7;width:11px;height:11px;box-sizing:border-box"></span>🏆 top 20% by score (<span id="c-top20">0</span>)</div>
+  <div id="qsr-legend" style="border-top:1px solid #e5e7eb; margin-top:6px; padding-top:6px;"></div>
+  <div class="row" style="border-top:1px solid #e5e7eb; margin-top:6px; padding-top:6px;"><input type="checkbox" id="t-clear-all" style="margin-right:6px"><span style="color:#6b7280;cursor:pointer">Clear selection</span></div>
+  <div class="row" style="border-top:1px solid #e5e7eb; margin-top:6px; padding-top:6px;"><a href="naselje_score.html" style="color:#2563eb; text-decoration:none;">🔥 Scoring heatmap →</a></div>
+</div>
+<div class="stats">Listings: <strong>12</strong> · updated 2026-07-11 09:59</div>
+<div id="toast"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const FEATURES = [{"id": "imobiliare_271877321", "lat": 46.7554185, "lon": 23.5565892, "district": "Mănăștur", "address": "", "area": 100, "price": 1815, "floor": "", "ceiling": null, "uncertain_ceiling": false, "url": "https://www.imobiliare.ro/oferta/spatiu-comercial-de-inchiriat-cluj-napoca-manastur-100mp-271877321", "source": "imobiliare.ro", "title": "", "description": "Corner unit, 100 m², in Mănăștur (Big area — Cluj's most populous residential district) with ~18 m of display windows on two façades, maximum visibility. Good price/traffic combination.", "date_posted": "2026-07-10", "date_updated": "", "days_since": 1, "color": "#22c55e", "bucket": "fresh", "fresh_bucket": "fresh", "fresh_color": "#22c55e", "status": "", "score": 83, "score_data": {"score": 83, "residents_500": 15870, "residents_1000": 43064, "transit_300": 7, "shops_300": 126, "food_400": 18, "offices_500": 4, "edu_500": 7, "competitors_200": 4, "nearest_dodo_km": null, "breakdown": {"catchment": 1.0, "secondary": 1.0, "transit": 1.0, "retail": 1.0, "food": 0.9, "daytime": 0.8, "comp_penalty": 0.5, "cannib_penalty": 0.0}, "pop_source": "hybrid", "residents_500_kontur": null, "residents_500_osm_raw": 15870, "geo_source": "nominatim"}, "removal_date": "", "sheet_row": 8, "sheet_url": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit?gid=498788918&range=A8", "gmaps": "https://www.google.com/maps/?q=46.7554185,23.5565892", "yandex": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=46.7554185%2C23.5565892", "manual_coord": false, "photos": ["https://i.roamcdn.net/prop/imo/og-image-full-1200w-630h/-9dwa0RhLyN65aScsVslZw/-_1qwZnHqNaAA/_1I8pjhgYGxuaGFuaGAA/88a1caf2-a274-496c-bced-349b538cea2a.jpg"]}, {"id": "olx_294112200", "lat": 46.780728, "lon": 23.613839, "district": "Mărăști", "address": "", "area": 100, "price": 2500, "floor": "parter", "ceiling": null, "uncertain_ceiling": false, "url": "https://www.olx.ro/d/oferta/spatiu-comercial-versatil-in-marasti-IDjU41a.html", "source": "olx.ro", "title": "", "description": "Commercial space in Mărăști on Fabricii St, high-traffic area next to Kaufland. Ground floor, 12 m street-front display window, 4 m ceiling. Versatile use, suits retail/food service.", "date_posted": "2026-07-09", "date_updated": "", "days_since": 2, "color": "#22c55e", "bucket": "fresh", "fresh_bucket": "fresh", "fresh_color": "#22c55e", "status": "", "score": 73, "score_data": {"score": 73, "residents_500": 11477, "residents_1000": 34017, "transit_300": 4, "shops_300": 84, "food_400": 9, "offices_500": 17, "edu_500": 3, "competitors_200": 1, "nearest_dodo_km": null, "breakdown": {"catchment": 1.0, "secondary": 0.85, "transit": 0.67, "retail": 1.0, "food": 0.45, "daytime": 0.72, "comp_penalty": 0.12, "cannib_penalty": 0.0}, "pop_source": "hybrid", "residents_500_kontur": null, "residents_500_osm_raw": 11477, "geo_source": "detail"}, "removal_date": "", "sheet_row": 13, "sheet_url": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit?gid=498788918&range=A13", "gmaps": "https://www.google.com/maps/?q=46.780728,23.613839", "yandex": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=46.780728%2C23.613839", "manual_coord": false, "photos": ["https://frankfurt.apollo.olxcdn.com:443/v1/files/5kfllwn0q3km3-RO/image;s=959x720", "https://frankfurt.apollo.olxcdn.com:443/v1/files/5kfllwn0q3km3-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/of2ewjco9ulp-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/0ajvjzp0gswu2-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/9zl6shm86lhi2-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/lawweqqmjkb63-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/5kfllwn0q3km3-RO/image;s=389x272", "https://frankfurt.apollo.olxcdn.com:443/v1/files/5kfllwn0q3km3-RO/image;s=516x361", "https://frankfurt.apollo.olxcdn.com:443/v1/files/5kfllwn0q3km3-RO/image;s=1000x700", "https://frankfurt.apollo.olxcdn.com:443/v1/files/of2ewjco9ulp-RO/image;s=959x720"]}, {"id": "storia_10440180", "lat": 46.779293, "lon": 23.643047, "district": "Între Lacuri", "address": "Strada Jiului", "area": 102, "price": 2000, "floor": "parter", "ceiling": null, "uncertain_ceiling": false, "url": "https://www.storia.ro/ro/oferta/clinica-stomatologica-complet-echipata-102-mp-zona-intre-lacuri-IDHNY0", "source": "storia.ro", "title": "", "description": "Operating dental clinic, 102 m², ground floor of a 2023 building, premium clinic fit-out. Passes filters formally, but would need full conversion for a pizzeria — likely a pass.", "date_posted": "2026-07-09", "date_updated": "", "days_since": 2, "color": "#dc2626", "bucket": "not_suitable", "fresh_bucket": "fresh", "fresh_color": "#22c55e", "status": "Not suitable", "score": 12, "score_data": {"score": 12, "residents_500": 2393, "residents_1000": 10688, "transit_300": 1, "shops_300": 1, "food_400": 1, "offices_500": 1, "edu_500": 0, "competitors_200": 1, "nearest_dodo_km": null, "breakdown": {"catchment": 0.24, "secondary": 0.27, "transit": 0.17, "retail": 0.03, "food": 0.05, "daytime": 0.03, "comp_penalty": 0.12, "cannib_penalty": 0.0}, "pop_source": "hybrid", "residents_500_kontur": null, "residents_500_osm_raw": 2393, "geo_source": "detail"}, "removal_date": "", "sheet_row": 9, "sheet_url": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit?gid=498788918&range=A9", "gmaps": "https://www.google.com/maps/?q=46.779293,23.643047", "yandex": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=46.779293%2C23.643047", "manual_coord": false, "photos": ["https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Imx2azQ0MDk4NnZ2ZTItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.Hv-TeTGyOYC-sUA6TaiFuqu6a_8DhF22PP6NPnU9vJY/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Im8xdWQ5bGR3NmZ5bzItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.RahSg8fgR6kTHKle3GLymPDYntivdSmebqYUtRUgflI/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjNwNXFmY3BoaDFzcjEtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.SNVUIxcxvDfFK-pSqr68xOuBvv4G5bpd713Qoqi6YRo/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImxvNXJyd3dpbHkzNjMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.SCmuXQ3eHyz8g6fWx29HENb3ei3RKaMF1v49nqWOgXs/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InhqcWVsNWJob25yYzMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.y0NZmdpB0LCn_k1mgxqY4y9g7ijNNDAcZF_A-IBc5NE/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjNuMGt4c3J0emNwYjItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.L7zj0Hs-0IkXVmjlSY9A4lwpMNEDnI88RSh1r0Ds7iA/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InZ6NnpodXg3MHQ2NDMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.lCFpveifUTeEpXj_xF64CDdhgjn0LHANnx9-hew0OGU/image;s=2048x1536;q=80"]}, {"id": "storia_10446850", "lat": 46.788853, "lon": 23.614721, "district": "Bulgaria", "address": "Strada Campina", "area": 120, "price": 1260, "floor": "", "ceiling": null, "uncertain_ceiling": false, "url": "https://www.storia.ro/ro/oferta/spatiu-comercial-de-inchiriat-120mp-sau-240mp-bloc-nou-marasti-fabrici-IDHPHA", "source": "storia.ro", "title": "", "description": "120 m² on the ground floor of a new residential complex in Mărăști/Fabricii, expandable to 240 m². Agency highlights excellent foot traffic (vad comercial). Cheapest in this batch: €10.5/m².", "date_posted": "2026-07-08", "date_updated": "", "days_since": 3, "color": "#f59e0b", "bucket": "recent", "fresh_bucket": "recent", "fresh_color": "#f59e0b", "status": "", "score": 26, "score_data": {"score": 26, "residents_500": 3798, "residents_1000": 22894, "transit_300": 2, "shops_300": 6, "food_400": 4, "offices_500": 3, "edu_500": 0, "competitors_200": 1, "nearest_dodo_km": null, "breakdown": {"catchment": 0.38, "secondary": 0.57, "transit": 0.33, "retail": 0.15, "food": 0.2, "daytime": 0.07, "comp_penalty": 0.12, "cannib_penalty": 0.0}, "pop_source": "hybrid", "residents_500_kontur": null, "residents_500_osm_raw": 3798, "geo_source": "detail"}, "removal_date": "", "sheet_row": 11, "sheet_url": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit?gid=498788918&range=A11", "gmaps": "https://www.google.com/maps/?q=46.788853,23.614721", "yandex": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=46.788853%2C23.614721", "manual_coord": false, "photos": ["https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImczM3N0bzdzNWtvZzEtQVJPIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.rbwkx3ThxAYCY6CKM81p0xKSzvngRWNbwzBUMWGWz7U/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InlkZndoa2ZrY2J2MTEtQVJPIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.Hxse9MSsj5vSF0pKUSFml1ZkGjpd4EM51_czXYVHZtw/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Im1kdDFvMnZmZ3M4ZS1BUk8iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.97m4Zw8z5nwujKUGZhtZ90xcsjau9H4lDErBHqUzaa0/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImdyNHozbGxzZXZ4dzEtQVJPIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.WSDLRHw-aTwy9jSvInIzMYjq0FKc2-95_s5XuQufwtc/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InB6ZGF5NjQzY3loNjItQVJPIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.oeyrEGUHt5VxyTuXgKjCtsWBL2vM18aYmyjtGdjzPaw/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjFoY2x5c3hhNjV1bC1BUk8iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.WLOFcJMCyJhalMyvhrpJJzUV7o0HwJR3PFt_f9Ta1z8/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjZmdW5rZjU3c2R2azMtQVJPIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.jLVjlL3dzD0K928api681hsLIK5diKNxYSpsGMJYYK0/image;s=2048x1536;q=80"]}, {"id": "storia_10445720", "lat": 46.76745, "lon": 23.602238, "district": "Gheorgheni", "address": "Bulevardul Nicolae Titulescu", "area": 135, "price": 3700, "floor": "parter", "ceiling": null, "uncertain_ceiling": false, "url": "https://www.storia.ro/ro/oferta/spatiu-comercial-zona-centrala-alimentatie-publica-vad-pietonal-IDHPpm", "source": "storia.ro", "title": "", "description": "Space with food-service (alimentație publică) designation on Bd. Titulescu: ground floor of a modern building, pedestrian traffic, marketed for restaurant/café/delivery. Key plus — food-service permit already in place.", "date_posted": "2026-07-08", "date_updated": "", "days_since": 3, "color": "#f59e0b", "bucket": "recent", "fresh_bucket": "recent", "fresh_color": "#f59e0b", "status": "", "score": 56, "score_data": {"score": 56, "residents_500": 6279, "residents_1000": 21543, "transit_300": 3, "shops_300": 37, "food_400": 13, "offices_500": 56, "edu_500": 9, "competitors_200": 6, "nearest_dodo_km": null, "breakdown": {"catchment": 0.63, "secondary": 0.54, "transit": 0.5, "retail": 0.93, "food": 0.65, "daytime": 1.0, "comp_penalty": 0.75, "cannib_penalty": 0.0}, "pop_source": "hybrid", "residents_500_kontur": null, "residents_500_osm_raw": 6279, "geo_source": "detail"}, "removal_date": "", "sheet_row": 10, "sheet_url": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit?gid=498788918&range=A10", "gmaps": "https://www.google.com/maps/?q=46.76745,23.602238", "yandex": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=46.76745%2C23.602238", "manual_coord": false, "photos": ["https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Im96ZjA1MzM3YmV5ZTItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.VyGmUWve92e8Mjh6uH522YWLRvQS_z8DZTuVQEVQFdw/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjNxampocXY0a3phMTMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.FVYVzj3jCmLo-49i74cXBOhlXbsRFiY_ERASSjRW1Gw/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IndxM3ViaXY5eGN2dzItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.AiMBsV4iwAMxOwO--nbt4FL55T6x-eFr4t7toZXwhMM/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Imw1OXVjbDkyM2I1MjMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.wyJgIOcdL8fMgSrl9O1wdSnV_P-6IcoAPBGrFQeqyAk/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImRrdG1kZDh5M3V5NzItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.JNZTAaLFQtRGorE5md_URdE2-0wJ-ac90nM2KcnALgQ/image;s=2048x1536;q=80"]}, {"id": "olx_300455326", "lat": 46.780329, "lon": 23.587429, "district": "Gruia", "address": "", "area": 128, "price": 1900, "floor": "", "ceiling": null, "uncertain_ceiling": false, "url": "https://www.olx.ro/d/oferta/inchiriere-spatiu-comercial-127-mp-semicentral-cluj-IDkkG9E.html", "source": "olx.ro", "title": "", "description": "Commercial space, ideal for retail, a shop or a café, near the Faculty of Letters in semi-central Cluj-Napoca. 1 min from the bus stop, 5 min from Piața Mihai Viteazu. Usable area 128 m².", "date_posted": "2026-07-07", "date_updated": "", "days_since": 4, "color": "#f59e0b", "bucket": "recent", "fresh_bucket": "recent", "fresh_color": "#f59e0b", "status": "", "score": 63, "score_data": {"score": 63, "residents_500": 6047, "residents_1000": 18880, "transit_300": 5, "shops_300": 33, "food_400": 18, "offices_500": 39, "edu_500": 3, "competitors_200": 5, "nearest_dodo_km": null, "breakdown": {"catchment": 0.6, "secondary": 0.47, "transit": 0.83, "retail": 0.82, "food": 0.9, "daytime": 1.0, "comp_penalty": 0.62, "cannib_penalty": 0.0}, "pop_source": "hybrid", "residents_500_kontur": null, "residents_500_osm_raw": 6047, "geo_source": "detail"}, "removal_date": "", "sheet_row": 5, "sheet_url": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit?gid=498788918&range=A5", "gmaps": "https://www.google.com/maps/?q=46.780329,23.587429", "yandex": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=46.780329%2C23.587429", "manual_coord": false, "photos": ["https://frankfurt.apollo.olxcdn.com:443/v1/files/4zfy15rupxl32-RO/image;s=959x720", "https://frankfurt.apollo.olxcdn.com:443/v1/files/4zfy15rupxl32-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/eevfy1r99zxh2-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/ea1685bfpoel-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/a2i50ayeoium1-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/b5rx770qj7a43-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/4zfy15rupxl32-RO/image;s=389x272", "https://frankfurt.apollo.olxcdn.com:443/v1/files/4zfy15rupxl32-RO/image;s=516x361", "https://frankfurt.apollo.olxcdn.com:443/v1/files/4zfy15rupxl32-RO/image;s=1000x700", "https://frankfurt.apollo.olxcdn.com:443/v1/files/eevfy1r99zxh2-RO/image;s=959x720"]}, {"id": "olx_284154039", "lat": 46.756599, "lon": 23.608205, "district": "Andrei Mureșanu", "address": "", "area": 120, "price": 1500, "floor": "", "ceiling": null, "uncertain_ceiling": false, "url": "https://www.olx.ro/d/oferta/inch-spatiu-comercial-120-mp-andrei-muresanu-1500-eur-IDjehrF.html", "source": "olx.ro", "title": "", "description": "120 m² commercial space in Andrei Mureșanu, located in the semi-basement (demisol) of a house, near the line-21 bus stop. Partitioned and partly fitted out, pitched mainly for physiotherapy / medical use. Note: it is a semi-basement, verify the actual floor before viewing.", "date_posted": "2026-07-07", "date_updated": "", "days_since": 4, "color": "#f59e0b", "bucket": "recent", "fresh_bucket": "recent", "fresh_color": "#f59e0b", "status": "", "score": 25, "score_data": {"score": 25, "residents_500": 4255, "residents_1000": 20222, "transit_300": 2, "shops_300": 2, "food_400": 0, "offices_500": 7, "edu_500": 0, "competitors_200": 0, "nearest_dodo_km": null, "breakdown": {"catchment": 0.43, "secondary": 0.51, "transit": 0.33, "retail": 0.05, "food": 0.0, "daytime": 0.17, "comp_penalty": 0.0, "cannib_penalty": 0.0}, "pop_source": "hybrid", "residents_500_kontur": null, "residents_500_osm_raw": 4255, "geo_source": "detail"}, "removal_date": "", "sheet_row": 4, "sheet_url": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit?gid=498788918&range=A4", "gmaps": "https://www.google.com/maps/?q=46.756599,23.608205", "yandex": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=46.756599%2C23.608205", "manual_coord": false, "photos": ["https://frankfurt.apollo.olxcdn.com:443/v1/files/84yskln807s72-RO/image;s=959x720", "https://frankfurt.apollo.olxcdn.com:443/v1/files/84yskln807s72-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/xscfl0nw5d53-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/6yx2mbc4jkqp2-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/o4mmalipe8fu-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/vvsblr3cinpk3-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/84yskln807s72-RO/image;s=389x272", "https://frankfurt.apollo.olxcdn.com:443/v1/files/84yskln807s72-RO/image;s=516x361", "https://frankfurt.apollo.olxcdn.com:443/v1/files/84yskln807s72-RO/image;s=1000x700", "https://frankfurt.apollo.olxcdn.com:443/v1/files/xscfl0nw5d53-RO/image;s=959x720"]}, {"id": "olx_301361439", "lat": 46.769379, "lon": 23.589954, "district": "Centru", "address": "", "area": 109, "price": 2000, "floor": "", "ceiling": null, "uncertain_ceiling": false, "url": "https://www.olx.ro/d/oferta/inchiriez-spatiu-comercial-alimentatie-publica-zona-gara-cluj-nap-IDkotSn.html", "source": "olx.ro", "title": "", "description": "Commercial space for rent near the Railway Station (Gara), an area with heavy foot traffic and easy access to public transport. 109 m² built / 85 m² usable. Explicitly zoned for food service (fast-food, café, etc.); laid out with two service/dining rooms.", "date_posted": "2026-07-07", "date_updated": "", "days_since": 4, "color": "#f59e0b", "bucket": "recent", "fresh_bucket": "recent", "fresh_color": "#f59e0b", "status": "", "score": 60, "score_data": {"score": 60, "residents_500": 7010, "residents_1000": 18720, "transit_300": 3, "shops_300": 176, "food_400": 167, "offices_500": 91, "edu_500": 24, "competitors_200": 55, "nearest_dodo_km": null, "breakdown": {"catchment": 0.7, "secondary": 0.47, "transit": 0.5, "retail": 1.0, "food": 1.0, "daytime": 1.0, "comp_penalty": 1.0, "cannib_penalty": 0.0}, "pop_source": "hybrid", "residents_500_kontur": null, "residents_500_osm_raw": 7010, "geo_source": "detail"}, "removal_date": "", "sheet_row": 2, "sheet_url": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit?gid=498788918&range=A2", "gmaps": "https://www.google.com/maps/?q=46.769379,23.589954", "yandex": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=46.769379%2C23.589954", "manual_coord": false, "photos": ["https://frankfurt.apollo.olxcdn.com:443/v1/files/wvzm0vw4xeni-RO/image;s=1271x962", "https://frankfurt.apollo.olxcdn.com:443/v1/files/wvzm0vw4xeni-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/aine2oivpz512-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/tu0u7k8bh04g3-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/oriqm1szpphg-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/4dg2n5qaimst1-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/wvzm0vw4xeni-RO/image;s=389x272", "https://frankfurt.apollo.olxcdn.com:443/v1/files/wvzm0vw4xeni-RO/image;s=516x361", "https://frankfurt.apollo.olxcdn.com:443/v1/files/wvzm0vw4xeni-RO/image;s=1000x700", "https://frankfurt.apollo.olxcdn.com:443/v1/files/aine2oivpz512-RO/image;s=1280x960"]}, {"id": "storia_10429774", "lat": 46.76878, "lon": 23.593191, "district": "Centru", "address": "Strada Hermann Oberth", "area": 170, "price": 2150, "floor": "parter", "ceiling": null, "uncertain_ceiling": false, "url": "https://www.storia.ro/ro/oferta/spatiu-comercial-de-inchiriat-su-170-mp-piata-cipariu-IDHLga", "source": "storia.ro", "title": "", "description": "170 m² near Piața Cipariu with a generous ~4 m ceiling — open-space feel, flexible layout. Fully renovated incl. plumbing and wiring, new windows. Central location at €12.6/m². Dense food-service cluster around (25 places in 200 m) — high traffic, high competition.", "date_posted": "2026-07-03", "date_updated": "", "days_since": 8, "color": "#f59e0b", "bucket": "recent", "fresh_bucket": "recent", "fresh_color": "#f59e0b", "status": "", "score": 49, "score_data": {"score": 49, "residents_500": 5769, "residents_1000": 20478, "transit_300": 0, "shops_300": 106, "food_400": 86, "offices_500": 66, "edu_500": 27, "competitors_200": 25, "nearest_dodo_km": null, "breakdown": {"catchment": 0.58, "secondary": 0.51, "transit": 0.0, "retail": 1.0, "food": 1.0, "daytime": 1.0, "comp_penalty": 1.0, "cannib_penalty": 0.0}, "pop_source": "hybrid", "residents_500_kontur": null, "residents_500_osm_raw": 5769, "geo_source": "detail"}, "removal_date": "", "sheet_row": 7, "sheet_url": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit?gid=498788918&range=A7", "gmaps": "https://www.google.com/maps/?q=46.76878,23.593191", "yandex": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=46.76878%2C23.593191", "manual_coord": false, "photos": ["https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Im8wODFiMHJxM2Jzei1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.Xpll_eUpxVJr2cdQ1fPn9lBAMbIxG09159fGarOnZ-Y/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImE2NGhpb244bHY4MS1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ._C2Qdg0QjARzycht3KWC3xnFurNLh46QzpXnkDM3jYQ/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Im5md2JleXV5dDc3czItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.F3AaFnD_wsulQaiV9EOHGTGsMlVeVK979P89nG_evfA/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Im9ha2FpZjZ2dTk3aC1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.co5SvZScKkLkNIXYd_Y9Pd-PrcGeWjJcOzB-tV-OcaE/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjdwenhnaDhieDRzNzEtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.bKsWBBzLfyCXOYsE84lrPiTdEYn1zu3CuyiDwkCEFzc/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InYya2JiY280dmFjdDMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.DMg18Nb_wEvnTDO01n-Fj9QC0gwChYXt1xG0a3k0xO0/image;s=2048x1536;q=80"]}, {"id": "storia_10425687", "lat": 46.77866, "lon": 23.59796, "district": "Mărăști", "address": "Strada Somesului", "area": 124, "price": 2100, "floor": "parter", "ceiling": null, "uncertain_ceiling": false, "url": "https://www.storia.ro/ro/oferta/spatiu-comercial-cu-vitrina-si-vizibilitate-maxima-124-mp-marasti-IDHKcf", "source": "storia.ro", "title": "", "description": "124 m² commercial space in Mărăști (BLITZ agency) with display window and maximum visibility. Marketed for showroom/retail/salon/café — food service viable. €16.9/m².", "date_posted": "2026-07-01", "date_updated": "", "days_since": 10, "color": "#f59e0b", "bucket": "recent", "fresh_bucket": "recent", "fresh_color": "#f59e0b", "status": "", "score": 54, "score_data": {"score": 54, "residents_500": 7066, "residents_1000": 24112, "transit_300": 3, "shops_300": 10, "food_400": 11, "offices_500": 40, "edu_500": 4, "competitors_200": 3, "nearest_dodo_km": null, "breakdown": {"catchment": 0.71, "secondary": 0.6, "transit": 0.5, "retail": 0.25, "food": 0.55, "daytime": 1.0, "comp_penalty": 0.38, "cannib_penalty": 0.0}, "pop_source": "hybrid", "residents_500_kontur": null, "residents_500_osm_raw": 7066, "geo_source": "detail"}, "removal_date": "", "sheet_row": 6, "sheet_url": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit?gid=498788918&range=A6", "gmaps": "https://www.google.com/maps/?q=46.77866,23.59796", "yandex": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=46.77866%2C23.59796", "manual_coord": false, "photos": ["https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InppZ2Z0cnlxc3hoZTItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.WNN7iCb0jUkAkCReWeWiShJJuX22NeQKivj_o_yehAM/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Imdja2JwaXN5d3J0YjMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.CUNUY8kHxbyFtvNAMr8WKErBa07CY_Ma6zb3CxmUwq0/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InQ0aGRibHZvbnhsbjEtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.LTv7yWfmCHDR1bBI1ZEnPyO9QvCVx24wIQg13caz7n4/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjF3YzcyYm0xMG14Zy1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.NRY1YrZ0nQRDVGhAu82g_pB0sgzxhOCdSwmaK3ucLFk/image;s=2048x1536;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjZ4OHZtcG1kM3RhaTMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.J21574MN017bNofYQgxuHRQRbUSaWTTWpQRR6aiFpzQ/image;s=2048x1536;q=80"]}, {"id": "storia_10407435", "lat": 46.781063, "lon": 23.608063, "district": "Mărăști", "address": "Strada Bucuresti", "area": 100, "price": 2300, "floor": "parter", "ceiling": null, "uncertain_ceiling": false, "url": "https://www.storia.ro/ro/oferta/spatiu-comercial-100-mp-cheltuieli-incluse-zona-marasti-kaufland-IDHFrR", "source": "storia.ro", "title": "", "description": "100 m² commercial space on the ground floor of a 4-storey building in Mărăști, Kaufland area, one of the busiest and most sought-after zones in Cluj. Delivered fully fitted out and ready to operate, reception stays installed. Utilities included in the rent.", "date_posted": "2026-06-29", "date_updated": "", "days_since": 12, "color": "#f59e0b", "bucket": "recent", "fresh_bucket": "recent", "fresh_color": "#f59e0b", "status": "", "score": 59, "score_data": {"score": 59, "residents_500": 9942, "residents_1000": 30341, "transit_300": 3, "shops_300": 19, "food_400": 12, "offices_500": 18, "edu_500": 1, "competitors_200": 4, "nearest_dodo_km": null, "breakdown": {"catchment": 0.99, "secondary": 0.76, "transit": 0.5, "retail": 0.47, "food": 0.6, "daytime": 0.55, "comp_penalty": 0.5, "cannib_penalty": 0.0}, "pop_source": "hybrid", "residents_500_kontur": null, "residents_500_osm_raw": 9942, "geo_source": "detail"}, "removal_date": "", "sheet_row": 3, "sheet_url": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit?gid=498788918&range=A3", "gmaps": "https://www.google.com/maps/?q=46.781063,23.608063", "yandex": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=46.781063%2C23.608063", "manual_coord": false, "photos": ["https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InhpbmNwZGo5Yjl2MzItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.TjsWBE9dbg3Py_a-BPdPpptzpt-cMfOq_vWMIwkhU-A/image;s=655x491;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InFueDc4bnZsZW9reDEtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.YZ1IIVUZl34yEQT_oZ6Rhdp_fAv76AOwkNWWwiOg-6U/image;s=655x491;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjV1M2pybDV0bWZmdDItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.5QBZtHtRoJ0EY7rYuXNtiDlWvdA2LY4op2zSrkfBb7E/image;s=655x491;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Im1rM3RjNmkyYjZmdTMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.n5eJorVbw7DBb-w5BLjee04hPB00f4s7pPg63gn4TcI/image;s=655x491;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InRscG5uazBveXFtbjEtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.wt7A_2T2Uakp8Jxz4A6E5me3dk5LMO88nkbp_1zWf54/image;s=655x491;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjVsNG1seHo3eG5iMzEtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.qd1jwe66mybeQwBhjFWKZl4i34oT3QHBRapzaF-1VMk/image;s=655x491;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjR5Mm10anU4eG9zMjItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.jsJpUHzDgz_bS35Uoy-oFLx6Nl2KqZmMV9LavnUY_bg/image;s=655x491;q=80", "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InQyeWVxaWlxeDkwNzEtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.qUcnk4Dkct__WcgNTNk8-J8nLNIlye0iRu92sKeINno/image;s=655x491;q=80"]}, {"id": "olx_300899249", "lat": 46.78143, "lon": 23.59783, "district": "Bulgaria", "address": "", "area": 130, "price": 2600, "floor": "", "ceiling": null, "uncertain_ceiling": false, "url": "https://www.olx.ro/d/oferta/spatii-comerciale-de-inchiriat-IDkmxDH.html", "source": "olx.ro", "title": "", "description": "Owner (no commission) rents 2 adjacent units at Bună Ziua 39: no.3 — 73 m² + 136 m² terrace in front and underground garage (€1500/mo); no.4 — remainder up to 130 m². New-build district in the south. Cross-posted on storia — same premises.", "date_posted": "2026-06-25", "date_updated": "", "days_since": 16, "color": "#9ca3af", "bucket": "old", "fresh_bucket": "old", "fresh_color": "#9ca3af", "status": "", "score": 42, "score_data": {"score": 42, "residents_500": 6174, "residents_1000": 21751, "transit_300": 3, "shops_300": 2, "food_400": 5, "offices_500": 18, "edu_500": 2, "competitors_200": 1, "nearest_dodo_km": null, "breakdown": {"catchment": 0.62, "secondary": 0.54, "transit": 0.5, "retail": 0.05, "food": 0.25, "daytime": 0.65, "comp_penalty": 0.12, "cannib_penalty": 0.0}, "pop_source": "hybrid", "residents_500_kontur": null, "residents_500_osm_raw": 6174, "geo_source": "detail"}, "removal_date": "", "sheet_row": 12, "sheet_url": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit?gid=498788918&range=A12", "gmaps": "https://www.google.com/maps/?q=46.78143,23.59783", "yandex": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=46.78143%2C23.59783", "manual_coord": false, "photos": ["https://frankfurt.apollo.olxcdn.com:443/v1/files/yeuf9rsjjafh1-RO/image;s=2000x1126", "https://frankfurt.apollo.olxcdn.com:443/v1/files/yeuf9rsjjafh1-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/rux77hn4uj311-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/hgfumv2lx4yl-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/duibm9d4izod-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/loif5jovapyw1-RO/image", "https://frankfurt.apollo.olxcdn.com:443/v1/files/yeuf9rsjjafh1-RO/image;s=389x272", "https://frankfurt.apollo.olxcdn.com:443/v1/files/yeuf9rsjjafh1-RO/image;s=516x361", "https://frankfurt.apollo.olxcdn.com:443/v1/files/yeuf9rsjjafh1-RO/image;s=1000x700", "https://frankfurt.apollo.olxcdn.com:443/v1/files/rux77hn4uj311-RO/image;s=2000x1126"]}];
+const DODO = [];
+const QSR = {"mcdonalds": {"name": "McDonald's", "logo": "brands/mcdonalds.svg", "source": "OSM/Overpass", "count": 6, "points": [{"lat": 46.7741492, "lon": 23.5927655, "name": "McDonald's", "address": "Piața Mihai Viteazu"}, {"lat": 46.7487766, "lon": 23.5314592, "name": "McDonald's", "address": ""}, {"lat": 46.7731437, "lon": 23.6298753, "name": "McDonald's", "address": ""}, {"lat": 46.746505, "lon": 23.4508195, "name": "McDonald's PlayPlace", "address": ""}, {"lat": 46.7539836, "lon": 23.554066, "name": "McDonald's", "address": "Strada Primăverii"}, {"lat": 46.7466374, "lon": 23.4502315, "name": "McDonald's", "address": ""}]}, "kfc": {"name": "KFC", "logo": "brands/kfc.png", "source": "OSM/Overpass", "count": 4, "points": [{"lat": 46.7702351, "lon": 23.5905329, "name": "KFC", "address": "Strada Iuliu Maniu 1"}, {"lat": 46.7701994, "lon": 23.5904094, "name": "Parcare de biciclete KFC", "address": ""}, {"lat": 46.7488726, "lon": 23.5318013, "name": "KFC", "address": ""}, {"lat": 46.7729251, "lon": 23.6295105, "name": "KFC", "address": ""}]}, "burgerking": {"name": "Burger King", "logo": "brands/burgerking.svg", "source": "OSM/Overpass", "count": 3, "points": [{"lat": 46.7492481, "lon": 23.5312127, "name": "Burger King", "address": ""}, {"lat": 46.7562904, "lon": 23.5950423, "name": "Burger King", "address": ""}, {"lat": 46.7464263, "lon": 23.4507727, "name": "Burger King", "address": ""}]}, "trenta": {"name": "Trenta Pizza", "logo": "brands/trenta.png", "source": "OSM/Overpass", "count": 0, "points": [], "icon_type": "letter", "letter": "T"}, "dominos": {"name": "Domino's", "logo": "brands/dominos.svg", "source": "OSM/Overpass", "count": 1, "points": [{"lat": 46.7643218, "lon": 23.6074084, "name": "Domino", "address": ""}]}, "pizzahut": {"name": "Pizza Hut", "logo": "brands/pizzahut.svg", "source": "OSM/Overpass", "count": 2, "points": [{"lat": 46.7493775, "lon": 23.5310808, "name": "Pizza Hut", "address": ""}, {"lat": 46.7717822, "lon": 23.6258221, "name": "Pizza Hut", "address": ""}]}, "jerrys": {"name": "Jerry's Pizza", "logo": "brands/jerrys.png", "source": "official site (manual)", "count": 0, "points": [], "icon_type": "letter", "letter": "J"}};
+const map = L.map('map', {zoomControl: true}).setView([46.770, 23.590], 13);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19, attribution: '© OpenStreetMap'
+}).addTo(map);
+
+function esc(s) { return String(s||'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]); }
+
+const dodoIcon = L.divIcon({
+  className: 'dodo-icon-wrap',
+  html: '<div class="dodo-marker"><img src="dodo-logo.png" alt="Dodo"></div>',
+  iconSize: [34, 34],
+  iconAnchor: [17, 17],
+  popupAnchor: [0, -16],
+});
+for (const d of DODO) {
+  const m = L.marker([d.lat, d.lon], {icon: dodoIcon, zIndexOffset: 1000});
+  m.bindPopup(`<div class="lok-popup"><h3>🍕 ${esc(d.name)}</h3><div class="actions"><a href="${esc(d.gmaps)}" target="_blank">Open in Maps</a></div></div>`);
+  m.addTo(map);
+}
+
+// QSR-конкуренты — отдельный слой на бренд, можно тоглить через легенду.
+const qsrLegend = document.getElementById('qsr-legend');
+const qsrLayers = {};
+for (const [slug, brand] of Object.entries(QSR)) {
+  if (!brand.points || !brand.points.length) continue;
+  // Бренды с icon_type='letter' рисуются буквой на белом круге — для тех, у кого
+  // оригинальный логотип выглядит как map-pin / точка (Saints) и мешает на карте.
+  const useLetter = brand.icon_type === 'letter' && brand.letter;
+  const icon = L.divIcon({
+    className: 'qsr-icon-wrap',
+    html: useLetter
+      ? `<div class="qsr-letter">${esc(brand.letter)}</div>`
+      : `<div class="qsr-marker"><img src="${esc(brand.logo)}" alt="${esc(brand.name)}"></div>`,
+    iconSize: useLetter ? [20, 20] : [18, 18],
+    iconAnchor: useLetter ? [10, 10] : [9, 9],
+    popupAnchor: [0, -10],
+  });
+  const layer = L.layerGroup();
+  for (const p of brand.points) {
+    const mk = L.marker([p.lat, p.lon], {icon, zIndexOffset: 500});
+    const gmaps = `https://www.google.com/maps/?q=${p.lat},${p.lon}`;
+    mk.bindPopup(`<div class="lok-popup"><h3>${esc(brand.name)}</h3>${p.address ? `<div class="meta" style="font-size:12px;color:#6b7280;">📍 ${esc(p.address)}</div>` : ''}<div class="actions"><a href="${esc(gmaps)}" target="_blank">Open in Maps</a></div></div>`);
+    layer.addLayer(mk);
+  }
+  layer.addTo(map);
+  qsrLayers[slug] = layer;
+  // legend row with toggle checkbox
+  const row = document.createElement('div');
+  row.className = 'row';
+  const legendIcon = useLetter
+    ? `<span class="qsr-letter" style="width:14px;height:14px;font-size:9px;margin-right:6px;display:inline-flex;vertical-align:middle;">${esc(brand.letter)}</span>`
+    : `<img class="dodo" src="${esc(brand.logo)}" alt="">`;
+  row.innerHTML = `<input type="checkbox" id="t-${slug}" checked style="margin-right:6px">${legendIcon}${esc(brand.name)} (${brand.count})`;
+  qsrLegend.appendChild(row);
+  row.querySelector('input').addEventListener('change', (e) => {
+    if (e.target.checked) layer.addTo(map);
+    else map.removeLayer(layer);
+  });
+}
+
+// Слои лотов: по свежести + отдельный "не подходит".
+// "не подходит" — выключен по умолчанию (не добавляем в карту сразу).
+const lokLayers = {
+  fresh:         L.layerGroup().addTo(map),
+  recent:        L.layerGroup().addTo(map),
+  old:           L.layerGroup().addTo(map),
+  not_suitable:  L.layerGroup(),
+  in_progress:   L.layerGroup().addTo(map),
+  to_review:     L.layerGroup().addTo(map),
+};
+const lokCounts = {fresh: 0, recent: 0, old: 0, not_suitable: 0, in_progress: 0, to_review: 0};
+const starIcon = L.divIcon({
+  className: 'star-icon-wrap',
+  html: '<div class="star-marker">★</div>',
+  iconSize: [26, 26],
+  iconAnchor: [13, 13],
+  popupAnchor: [0, -12],
+});
+const starIconBlue = L.divIcon({
+  className: 'star-icon-wrap',
+  html: '<div class="star-marker blue">★</div>',
+  iconSize: [26, 26],
+  iconAnchor: [13, 13],
+  popupAnchor: [0, -12],
+});
+// --- Смена статуса прямо из карточки → Sheets кол. K через Apps Script webhook ---
+const WEBHOOK = 'https://script.google.com/macros/s/AKfycbyliXATQKxywDQ24IhbTukqf2yC0z2ccpXh_VK8y9FA2tq6JUrGpUuuvu3D3s2mTduq/exec';
+const WEBHOOK_SECRET = 'cluj-lokali-99afd68796afbe97-2026';
+const STATUS_BTNS = [
+  {value: 'To review', label: '★ To review', cls: 'st-review'},
+  {value: 'In progress', label: '★ In progress', cls: 'st-progress'},
+  {value: 'Not suitable', label: '🚫 Not suitable', cls: 'st-no'},
+];
+// Реплика python-бакетизации статусов (gen_map.build_features)
+const ST_REVIEW = new Set(['ок двигаем на обсуждение','ok двигаем на обсуждение','двигаем на обсуждение','на обсуждение','на обсуждении','обсуждаем','to review','review','discuss','for discussion']);
+const ST_PROGRESS = new Set(['в работе','в процессе','wip','in progress','working','двигаем','звонок назначен','смотрю','смотрим','переговоры','избранное','favorite','starred']);
+const ST_NO = new Set(['не подходит','отклонено','отказ','reject','nope','no','not suitable','rejected','pass']);
+
+function toast(msg, ms) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), ms || 2600);
+}
+
+function bucketOf(f) {
+  const s = (f.status || '').toLowerCase().replace(/\./g, ' ').replace(/\s+/g, ' ').trim();
+  if (ST_REVIEW.has(s)) return 'to_review';
+  if (ST_PROGRESS.has(s)) return 'in_progress';
+  if (ST_NO.has(s)) return 'not_suitable';
+  return f.fresh_bucket || 'old';
+}
+
+function updateCounts() {
+  for (const b of ['to_review','in_progress','fresh','recent','old','not_suitable']) {
+    document.getElementById('c-' + b).textContent = lokCounts[b] || 0;
+  }
+}
+
+// Свежий url→row из rows.json (деплоится вместе с картой каждый цикл) —
+// защита от сдвига строк, если вкладка с картой открыта дольше часа.
+async function fetchRow(f) {
+  try {
+    const rj = await fetch('rows.json?ts=' + Date.now(), {cache: 'no-store'}).then(r => r.json());
+    if (rj.rows && rj.rows[f.url]) return rj.rows[f.url];
+  } catch (e) {}
+  return f.sheet_row || null;
+}
+
+// Локальный кэш статусов: вебхук пишет в Sheets, но FEATURES в lokali.html
+// перегенерируются раз в час, поэтому reload до следующего цикла показывал бы
+// старый (зелёный) статус. localStorage хранит последний клик пользователя и
+// накладывается на FEATURES при загрузке; самоочищается, когда вшитые данные
+// догонят (baked.status === stored).
+const LS_KEY = 'lokStatus_v1';
+function loadLocalStatus() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); } catch (e) { return {}; }
+}
+function saveLocalStatus(url, value) {
+  if (!url) return;
+  const m = loadLocalStatus();
+  m[url] = value;  // '' = явный сброс, тоже храним
+  try { localStorage.setItem(LS_KEY, JSON.stringify(m)); } catch (e) {}
+}
+
+async function setStatus(f, value, box) {
+  box.querySelectorAll('button').forEach(b => b.disabled = true);
+  try {
+    const row = await fetchRow(f);
+    if (!row) throw new Error('row not found in the sheet');
+    // Content-Type не ставим (text/plain) — иначе CORS preflight, который Apps Script не умеет
+    const resp = await fetch(WEBHOOK, {
+      method: 'POST',
+      body: JSON.stringify({secret: WEBHOOK_SECRET, op: 'update_cells',
+                             cells: [{row: row, col: 11, value: value}]}),
+    }).then(r => r.json());
+    if (resp && resp.error) throw new Error(resp.error);
+    if (!resp || resp.ok === false) throw new Error('webhook did not confirm the write');
+    f.status = value;
+    f.sheet_row = row;
+    saveLocalStatus(f.url, value);
+    map.closePopup();
+    renderFeature(f);
+    updateCounts();
+    if (typeof buildTopLayer === 'function' && map.hasLayer(topLayer)) buildTopLayer();
+    toast(value ? '✓ Status: ' + value : '✓ Status cleared');
+  } catch (e) {
+    toast('⚠️ Failed to update status: ' + e.message, 4200);
+    box.querySelectorAll('button').forEach(b => b.disabled = false);
+  }
+}
+
+const fmtNum = (n) => (n == null ? '—' : String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '));
+const scoreEmoji = (s) => (s == null ? '❔' : s >= 70 ? '🟢' : s >= 50 ? '🟡' : s >= 30 ? '🟠' : '🔴');
+function scoreBlock(f) {
+  const sc = f.score_data;
+  if (f.score == null || !sc) return '';
+  const dodo = sc.nearest_dodo_km != null ? ` · 🍕 Dodo ${sc.nearest_dodo_km} km` : '';
+  const approx = (sc.geo_source && sc.geo_source !== 'detail' && sc.geo_source !== 'manual')
+    ? `<div class="score-warn">⚠️ approximate coordinates — score is indicative</div>` : '';
+  return `<div class="score-box">
+    <div class="score-hd">${scoreEmoji(f.score)} Location score: <b>${f.score}/100</b></div>
+    <div class="score-rows">
+      👥 <b>~${fmtNum(sc.residents_500)}</b> residents within 500 m · ${fmtNum(sc.residents_1000)} within 1 km <span style="color:#94a3b8">(${sc.pop_source === 'kontur' ? 'Kontur' : 'estimate'})</span><br>
+      🚏 ${sc.transit_300} transit stops · 🛍 ${sc.shops_300} shops · 🍽 ${sc.food_400} food places<br>
+      🏢 ${sc.offices_500} offices · 🎓 ${sc.edu_500} education · ⚔️ ${sc.competitors_200} competitors${dodo}
+    </div>${approx}
+  </div>`;
+}
+
+function popupNode(f) {
+  const bucket = bucketOf(f);
+  const ceiling = f.ceiling ? (f.ceiling.toFixed ? f.ceiling.toFixed(1) : f.ceiling) + ' m' : (f.uncertain_ceiling ? '⚠️ no data' : '—');
+  const statusColor = bucket === 'to_review' ? '#2563eb' : '#dc2626';
+  const statusIcon = (bucket === 'in_progress' || bucket === 'to_review') ? '★' : '🚫';
+  const statusLine = f.status ? `<div class="meta" style="font-size:12px;color:${statusColor};font-weight:600;">${statusIcon} status: ${esc(f.status)}${f.removal_date ? ` · ${esc(f.removal_date)}` : ''}</div>` : '';
+  const sheetLink = f.sheet_url
+    ? `<a class="secondary" href="${esc(f.sheet_url)}" target="_blank">Sheet · row ${f.sheet_row}</a>`
+    : `<a class="secondary" href="https://docs.google.com/spreadsheets/d/1jL7junHZDJCqG2EDp6olOPmPoOCConXR7xKz-QM-qAo/edit?gid=0" target="_blank">Sheet</a>`;
+  const manualLine = f.manual_coord ? `<div class="meta" style="font-size:11px;color:#059669;">📌 location pinned manually (Sheets col. L)</div>` : '';
+  const titleText = (f.district && f.district !== 'Unknown') ? f.district : (f.title || f.address || 'Listing');
+  const el = document.createElement('div');
+  el.className = 'lok-popup';
+  el.innerHTML = `
+      <h3>${esc(titleText)}</h3>
+      ${f.address ? `<div class="meta" style="font-size:12px; color:#6b7280;">📍 ${esc(f.address)}</div>` : ''}
+      <div class="photo-slot"></div>
+      ${manualLine}
+      ${statusLine}
+      <div class="meta">
+        💶 <strong>${f.price ? f.price + ' €/mo' : '—'}</strong> · 📐 <strong>${f.area ? f.area + ' m²' : '—'}</strong><br>
+        🏢 ${esc(f.floor || '—')} · ceiling ${ceiling}
+      </div>
+      ${scoreBlock(f)}
+      <div class="desc">${esc(f.description || '—')}</div>
+      <div class="status-btns"></div>
+      <div class="actions">
+        <a href="${esc(f.url)}" target="_blank">Listing</a>
+        <a class="secondary" href="${esc(f.gmaps)}" target="_blank">Maps</a>
+        ${f.yandex ? `<a class="secondary" href="${esc(f.yandex)}" target="_blank">Street View</a>` : ''}
+        ${sheetLink}
+      </div>
+      <div class="footer">
+        ${f.date_posted ? `📅 posted: <strong>${esc(f.date_posted)}</strong>` : ''}
+        ${f.date_updated ? `<br>🔄 updated: <strong>${esc(f.date_updated)}</strong>` : ''}
+        <br>${esc(f.source)} · ${f.days_since} days ago
+      </div>
+  `;
+  // Фотогалерея: hotlink с CDN источников; битые → выкидываем на лету
+  const slot = el.querySelector('.photo-slot');
+  const photos = (f.photos || []).slice();
+  if (photos.length) {
+    const wrap = document.createElement('div');
+    wrap.className = 'photo-wrap';
+    const img = document.createElement('img');
+    img.referrerPolicy = 'no-referrer';
+    img.alt = '';
+    const count = document.createElement('span');
+    count.className = 'photo-count';
+    let idx = 0;
+    // CDN-даунсайз: полноразмер (2000px+) грузится секундами. OLX поддерживает
+    // ;s=WxH — просим 1000px; попапу больше не нужно.
+    const shrink = (u) => u.replace(/;s=\d+x\d+/, ';s=1000x700');
+    // Ленивая предзагрузка: только соседи текущего (все 10 сразу душат канал
+    // и первое фото грузится дольше).
+    const warmed = new Set();
+    const warm = (i) => {
+      const u = shrink(photos[(i + photos.length) % photos.length]);
+      if (warmed.has(u)) return;
+      warmed.add(u);
+      const p = new Image(); p.referrerPolicy = 'no-referrer'; p.decoding = 'async'; p.src = u;
+    };
+    const show = () => {
+      img.src = shrink(photos[idx]);
+      count.textContent = (idx + 1) + ' / ' + photos.length;
+      count.style.display = photos.length > 1 ? '' : 'none';
+      if (photos.length > 1) { warm(idx + 1); warm(idx - 1); }
+    };
+    img.addEventListener('error', () => {
+      photos.splice(idx, 1);
+      if (!photos.length) { wrap.remove(); return; }
+      if (idx >= photos.length) idx = 0;
+      show();
+    });
+    img.style.cursor = f.url ? 'pointer' : 'default';
+    img.title = f.url ? 'Open the listing in a new tab' : '';
+    img.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (f.url) window.open(f.url, '_blank', 'noopener');
+    });
+    wrap.appendChild(img);
+    wrap.appendChild(count);
+    if (photos.length > 1) {
+      for (const [cls, d] of [['prev', -1], ['next', 1]]) {
+        const b = document.createElement('button');
+        b.className = 'photo-nav ' + cls;
+        b.textContent = cls === 'prev' ? '‹' : '›';
+        b.addEventListener('click', (e) => {
+          e.stopPropagation();
+          idx = (idx + d + photos.length) % photos.length;
+          show();
+        });
+        wrap.appendChild(b);
+      }
+    }
+    show();
+    slot.replaceWith(wrap);
+  } else {
+    slot.remove();
+  }
+
+  const box = el.querySelector('.status-btns');
+  if (!WEBHOOK) { box.style.display = 'none'; }
+  for (const sb of STATUS_BTNS) {
+    const btn = document.createElement('button');
+    btn.textContent = sb.label;
+    btn.className = sb.cls + (f.status === sb.value ? ' active' : '');
+    btn.title = f.status === sb.value ? 'Click again to clear the status' : 'Write to Sheets col. K';
+    // повторный клик по активному статусу = сброс (пустая K)
+    btn.addEventListener('click', () => setStatus(f, f.status === sb.value ? '' : sb.value, box));
+    box.appendChild(btn);
+  }
+  return el;
+}
+
+function renderFeature(f) {
+  if (f._marker && f._bucket) {
+    lokLayers[f._bucket].removeLayer(f._marker);
+    lokCounts[f._bucket] = (lokCounts[f._bucket] || 1) - 1;
+  }
+  const bucket = bucketOf(f);
+  const marker = bucket === 'to_review'
+    ? L.marker([f.lat, f.lon], {icon: starIconBlue, zIndexOffset: 850})
+    : bucket === 'in_progress'
+    ? L.marker([f.lat, f.lon], {icon: starIcon, zIndexOffset: 800})
+    : L.circleMarker([f.lat, f.lon], {
+        radius: 9, fillColor: bucket === 'not_suitable' ? '#dc2626' : f.fresh_color,
+        color: '#fff', weight: 2, opacity: 1, fillOpacity: 0.95
+      });
+  marker.bindPopup(() => popupNode(f), {maxWidth: 340});
+  marker.addTo(lokLayers[bucket]);
+  f._marker = marker;
+  f._bucket = bucket;
+  lokCounts[bucket] = (lokCounts[bucket] || 0) + 1;
+}
+
+// Наложить локально сохранённые статусы поверх вшитых FEATURES (см. setStatus).
+// Если вшитый статус уже совпал с сохранённым — запись из кэша убираем (самоочистка).
+(() => {
+  const ls = loadLocalStatus();
+  let changed = false;
+  for (const f of FEATURES) {
+    if (!Object.prototype.hasOwnProperty.call(ls, f.url)) continue;
+    if ((f.status || '') === (ls[f.url] || '')) { delete ls[f.url]; changed = true; }
+    else f.status = ls[f.url];
+  }
+  if (changed) { try { localStorage.setItem(LS_KEY, JSON.stringify(ls)); } catch (e) {} }
+})();
+
+for (const f of FEATURES) renderFeature(f);
+updateCounts();
+
+// --- Слой-подсветка «топ 20% по скорингу» (исключая «не подходит») ---
+// Кольцо-ореол поверх обычного маркера. Порог пересчитывается динамически:
+// 20% лучших по score среди оценённых и не отбракованных лотов.
+const topLayer = L.layerGroup();
+function buildTopLayer() {
+  topLayer.clearLayers();
+  const elig = FEATURES.filter(f => f.score != null && bucketOf(f) !== 'not_suitable');
+  elig.sort((a, b) => b.score - a.score);
+  const n = elig.length ? Math.max(1, Math.ceil(elig.length * 0.2)) : 0;
+  const cut = n ? elig[n - 1].score : null;   // включаем все с таким же score (ничьи на границе)
+  const top = cut == null ? [] : elig.filter(f => f.score >= cut);
+  for (const f of top) {
+    L.circleMarker([f.lat, f.lon], {
+      radius: 15, color: '#a855f7', weight: 3, opacity: 0.95,
+      fill: false, interactive: false
+    }).addTo(topLayer);
+  }
+  const el = document.getElementById('c-top20');
+  if (el) el.textContent = top.length;
+}
+buildTopLayer();
+if (document.getElementById('t-top20').checked) topLayer.addTo(map);
+document.getElementById('t-top20').addEventListener('change', (e) => {
+  if (e.target.checked) { buildTopLayer(); topLayer.addTo(map); }
+  else map.removeLayer(topLayer);
+});
+
+// Тоглы — каждый чекбокс управляет своим слоем; «не подходит» стартует выкл.
+for (const b of ['to_review', 'in_progress', 'fresh', 'recent', 'old', 'not_suitable']) {
+  document.getElementById('t-' + b).addEventListener('change', (e) => {
+    if (e.target.checked) lokLayers[b].addTo(map);
+    else map.removeLayer(lokLayers[b]);
+  });
+}
+
+// «Сбросить выбор» — снимает все галочки слоёв (лоты + QSR), убирая их с карты.
+document.getElementById('t-clear-all').addEventListener('change', (e) => {
+  if (!e.target.checked) return;
+  for (const cb of document.querySelectorAll('input[id^="t-"]')) {
+    if (cb.id === 't-clear-all') continue;
+    if (cb.checked) { cb.checked = false; cb.dispatchEvent(new Event('change')); }
+  }
+  e.target.checked = false;  // работает как кнопка-сброс, сам остаётся пустым
+});
+
+// Auto-fit to features
+if (FEATURES.length) {
+  const bounds = L.latLngBounds(FEATURES.map(f => [f.lat, f.lon]));
+  map.fitBounds(bounds, {padding: [40, 40]});
+}
+</script>
+</body>
+</html>
