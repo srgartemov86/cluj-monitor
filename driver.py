@@ -49,6 +49,56 @@ def glossary_en(text):
     return text
 
 
+# Модели по убыванию качества; alias-имена (-latest) не протухают при ротации версий.
+GEMINI_MODELS = ('gemini-flash-latest', 'gemini-flash-lite-latest')
+
+
+def gemini_summary(desc_ro):
+    """Румынское описание → английская выжимка 2–4 строки (Gemini, free tier).
+    None при любой ошибке — вызывающий откатывается на глоссарий."""
+    key = os.environ.get('GEMINI_API_KEY')
+    if not key or not (desc_ro or '').strip():
+        return None
+    import requests
+    prompt = ("You are helping a pizza chain scout rental locations. Translate this Romanian "
+              "commercial-property listing into English and compress to 2-4 short lines with only "
+              "what matters for a restaurant tenant: space type/condition, street frontage/windows, "
+              "utilities (ventilation, power, HVAC), terms (deposit, availability). "
+              "Plain text, no intro, no bullets, no markdown.\n\n" + desc_ro[:2000])
+    body = {'contents': [{'parts': [{'text': prompt}]}],
+            # думающие flash-модели тратят токены на reasoning ДО ответа —
+            # 500 обрезало перевод на полуслове, нужен запас
+            'generationConfig': {'temperature': 0.2, 'maxOutputTokens': 3000}}
+    for model in GEMINI_MODELS:
+        try:
+            r = requests.post(
+                f'https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}',
+                json=body, timeout=40)
+            data = r.json()
+            text = data['candidates'][0]['content']['parts'][0]['text'].strip()
+            if len(text) > 20:
+                return text
+        except Exception as e:
+            print(f'  gemini {model} failed: {e}', file=sys.stderr)
+    return None
+
+
+def english_summary(pass_rec):
+    """Английский Summary для caption/таблицы/карты: Gemini → глоссарий-fallback."""
+    state_path = os.path.join(os.environ.get('CLUJ_DATA', '.'), 'state.json')
+    desc = ''
+    try:
+        with open(state_path, encoding='utf-8') as f:
+            desc = (json.load(f).get('listings', {})
+                    .get(pass_rec['listing_key'], {}).get('description') or '')
+    except Exception:
+        pass
+    if not desc:  # в state нет — берём snippet из caption
+        m = re.search(r'📝 Summary:\s*(.+)', pass_rec.get('caption') or '', re.DOTALL)
+        desc = m.group(1).strip() if m else ''
+    return gemini_summary(desc) or glossary_en(desc)
+
+
 def run_json(args, timeout):
     """Запуск python-скрипта, JSON — последняя непустая строка stdout."""
     r = subprocess.run([sys.executable] + args, capture_output=True, text=True,
@@ -105,7 +155,14 @@ def main():
             sent = len(passes)
     else:
         for p in passes:
-            caption = glossary_en(p.get('caption') or '')[:1024]
+            caption = p.get('caption') or ''
+            summary = english_summary(p)[:900]
+            # переклеиваем блок Summary на английский (cycle.py кладёт румынский snippet)
+            if '📝 Summary:' in caption:
+                caption = caption[:caption.index('📝 Summary:')] + f'📝 Summary: {summary}\n'
+            elif summary:
+                caption += f'\n📝 Summary: {summary}\n'
+            caption = caption[:1024]
             photos = [ph for ph in (p.get('photo_paths') or []) if os.path.exists(ph)]
             try:
                 if photos:
@@ -115,8 +172,6 @@ def main():
                     mid = 0 if send_text(caption) else None
                 if mid is None:
                     raise RuntimeError('send failed')
-                m = re.search(r'📝 Summary:\s*(.+)', caption, re.DOTALL)
-                summary = (m.group(1).strip() if m else caption)[:900]
                 subprocess.run([sys.executable, 'cycle.py', '--mark-sent',
                                 p['listing_key'], str(mid), '--desc-ru', summary],
                                capture_output=True, cwd=HERE, timeout=120)

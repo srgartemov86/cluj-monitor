@@ -53,6 +53,7 @@ jobs:
           TG_API_HASH: ${{ secrets.TG_API_HASH }}
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           PIZZA_QUIET: '1'
 
       - name: Commit state back
