@@ -60,7 +60,9 @@ jobs:
         run: |
           git config user.name "cluj-monitor-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add data/state.json data/runs.log data/unaddressed.log data/public 2>/dev/null || true
+          # -A data: git add с явным списком атомарно падает, если какого-то файла
+          # ещё нет (unaddressed.log) — и тогда state молча не коммитится (баг 1-го прогона)
+          git add -A data
           git diff --cached --quiet || git commit -m "cycle $(date -u +%Y-%m-%dT%H:%MZ)"
           git pull --rebase origin main || true
           git push || true
