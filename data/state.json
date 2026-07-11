@@ -4561,66 +4561,6 @@
       "telegram_message_id": 3,
       "sent_at": "2026-07-11T07:30:58.325287+00:00"
     },
-    "olx_303591096": {
-      "source": "olx.ro",
-      "id": "303591096",
-      "url": "https://www.olx.ro/d/oferta/spatiu-comercial-de-inchiriat-IDkxPUA.html",
-      "area_m2": 177,
-      "price_eur": 5000,
-      "floor": null,
-      "address": "",
-      "district": "Semicentral",
-      "subdistrict": null,
-      "first_seen_at": "2026-07-11T05:45:32.995280+00:00",
-      "last_seen_at": "2026-07-11T11:25:28.654744+00:00",
-      "in_sheet": false,
-      "alerted": false,
-      "flags": [
-        "ceiling=2.7m",
-        "uncertain_floor"
-      ],
-      "description": "Vă prezentăm spre închiriere un spațiu comercial amplasat într-o zonă extrem de populată și intens circulată pietonal și rutier din cartierul Gheorgheni, ideal pentru afaceri care au nevoie de vizibilitate și acces facil pentru clienți. Spațiul dispune de o suprafață utilă de 177 mp, cu posibilitatea extinderii cu încă 7 mp, fiind compartimentat eficient și pregătit pentru multiple tipuri de activități comerciale. Caracteristici principale: -trafic pietonal și auto foarte bun -două intrări, inclusiv acces pentru persoane cu dizabilități -q treia iesire in spatele cladirii cu rampa pentru optimizarea logisticii -zonă separată pentru aprovizionare, prevăzută cu rampă -înălțime interioară de 2,7 m -curent trifazic -două grupuri sanitare (femei/bărbați) -zonă de vestiar -spațiu dedicat pentru bucătărie/bufet -două aparate de aer condiționat -stare foarte bună -disponibil imediat Datorită poziționării și configurării, spațiul se pretează excelent pentru: -restaurant sau cafenea -panificație / patiserie -showroom -magazin de prezentare -bancă -servicii comerciale sau retail Sună acum pentru o vizionare și descoperă locația potrivită pentru următorul tău business!",
-      "geo_lat": 46.7692951,
-      "geo_lon": 23.60974508,
-      "geo_source": "detail",
-      "refreshed_at": "2026-07-06T20:23:22+03:00",
-      "photo_url": "https://frankfurt.apollo.olxcdn.com:443/v1/files/esx9z19xrirt3-RO/image;s=1280x720",
-      "photo_urls": [
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/esx9z19xrirt3-RO/image;s=1280x720",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/lobasa3b5tv6-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/bimw6toz1g3f2-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/669tqcp9txtw2-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/78i4zh29x3732-RO/image"
-      ],
-      "rejected": true,
-      "score": 43,
-      "score_data": {
-        "score": 43,
-        "residents_500": 7023,
-        "residents_1000": 26655,
-        "transit_300": 2,
-        "shops_300": 7,
-        "food_400": 6,
-        "offices_500": 19,
-        "edu_500": 2,
-        "competitors_200": 3,
-        "nearest_dodo_km": null,
-        "breakdown": {
-          "catchment": 0.7,
-          "secondary": 0.67,
-          "transit": 0.33,
-          "retail": 0.17,
-          "food": 0.3,
-          "daytime": 0.68,
-          "comp_penalty": 0.38,
-          "cannib_penalty": 0.0
-        },
-        "pop_source": "hybrid",
-        "residents_500_kontur": null,
-        "residents_500_osm_raw": 7023
-      },
-      "scored_at": "2026-07-11T05:45:45.658528+00:00"
-    },
     "storia_10394455": {
       "source": "storia.ro",
       "id": "10394455",

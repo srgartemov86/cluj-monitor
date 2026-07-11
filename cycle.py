@@ -584,11 +584,8 @@ def apply_filters(cand, detail, skip_price=False):
             and not any(re.search(m, haystack) for m in COMMERCIAL_KEEP)):
         return False, flags, 'apartment'
 
-    ceil = detail.get('ceiling')
-    if ceil is not None and ceil < CEILING_MIN:
-        return False, flags, f'ceiling={ceil}m'
-    if ceil is None:
-        flags.append('uncertain_ceiling')
+    # фильтр по потолку убран 2026-07-11 по решению Сергея;
+    # высота, если указана, по-прежнему показывается в caption (✅ ceiling X m)
 
     if 'lat' in detail and 'lon' in detail:
         d = haversine_km(detail['lat'], detail['lon'], TRG_LAT, TRG_LON)
