@@ -6628,7 +6628,16 @@
       "scored_at": "2026-07-11T16:16:25.949617+00:00"
     }
   },
-  "pending_candidates": [],
+  "pending_candidates": [
+    {
+      "id": "303591096",
+      "source": "olx.ro",
+      "url": "https://www.olx.ro/d/oferta/spatiu-comercial-de-inchiriat-IDkxPUA.html",
+      "area": 177,
+      "price": 5000,
+      "floor": null
+    }
+  ],
   "source_health": {},
   "district_blacklist": [],
   "last_cycle_at": "2026-07-11T18:43:47.240025+00:00",
