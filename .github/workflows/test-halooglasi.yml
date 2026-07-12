@@ -1,0 +1,26 @@
+name: test-halooglasi
+on:
+  workflow_dispatch: {}
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install curl_cffi telethon
+      - name: Probe halooglasi from DC-IP
+        run: |
+          python test_halooglasi.py > result.txt 2> probe.log || true
+          echo "----- probe.log -----"
+          cat probe.log
+          echo "----- result.txt -----"
+          cat result.txt
+      - name: Report to Telegram
+        run: cat result.txt | python send_text.py 5131688215 -
+        env:
+          TG_SESSION: ${{ secrets.TG_SESSION }}
+          TG_API_ID: ${{ secrets.TG_API_ID }}
+          TG_API_HASH: ${{ secrets.TG_API_HASH }}
