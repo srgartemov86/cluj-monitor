@@ -28,6 +28,39 @@ RON_PER_EUR = 5.0
 STATE_PATH = os.path.join(os.environ.get('CLUJ_DATA', '/Users/dodo/cluj-location-monitor'), 'state.json')
 _KEY_PREFIXES = ('olx_', 'storia_', 'imobiliare_')
 
+# --- imobiliare.ro через резидентный прокси -------------------------------
+# DataDome банит DC-IP GitHub; с резидентных румынских IP пробивается ~50%
+# (замер 13.07.2026) → ретраи ×4 ≈ 94%/стр. Секрет HALO_PROXY общий с
+# белградским монитором (DataImpulse), таргетинг подменяем __cr.rs → __cr.ro.
+_RES_PROXY = os.environ.get('HALO_PROXY', '').replace('__cr.rs', '__cr.ro')
+_imo_sid = [1]  # sticky-sid: инкремент при неудаче = новый exit-IP
+_IMO_IMPS = ('chrome124', 'chrome131', 'chrome120', 'safari17_0')
+
+
+def imo_get(url, timeout=30, attempts=4):
+    """GET imobiliare.ro: ретраи с ротацией exit-IP через прокси (если задан).
+    Возвращает Response со status 200, либо последний Response/None."""
+    from curl_cffi import requests as cffi
+    last = None
+    for i in range(attempts if _RES_PROXY else 1):
+        imp = _IMO_IMPS[i % len(_IMO_IMPS)]
+        proxies = None
+        if _RES_PROXY:
+            pr = re.sub(r'^(https?://[^:]+)', rf'\1__sid.imo{_imo_sid[0]}',
+                        _RES_PROXY, count=1)
+            proxies = {'http': pr, 'https': pr}
+        try:
+            r = cffi.get(url, impersonate=imp, timeout=timeout, proxies=proxies,
+                         allow_redirects=True,
+                         headers={'Accept-Language': 'ro-RO,ro;q=0.9'})
+            if r.status_code == 200:
+                return r
+            last = r
+        except Exception:
+            pass
+        _imo_sid[0] += 1
+    return last
+
 
 def _v(msg):
     if VERBOSE:
@@ -202,8 +235,9 @@ def sweep_imobiliare(pages=3):
                'judetul-cluj/cluj-napoca' + (f'?page={p}' if p > 1 else ''))
         t0 = time.time()
         try:
-            r = cffi.get(url, impersonate='chrome124', timeout=30,
-                         headers={'Accept-Language': 'ro-RO,ro;q=0.9'})
+            r = imo_get(url, timeout=30)
+            if r is None:
+                raise RuntimeError('no response after retries')
         except Exception as e:
             _v(f'  imobiliare p{p}: fetch fail {type(e).__name__}')
             if p == 1:

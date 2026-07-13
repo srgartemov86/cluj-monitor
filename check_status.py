@@ -101,12 +101,17 @@ def fetch(url, timeout=20):
         if not HAS_CFFI:
             return 'ERR', 0, 'curl_cffi missing — cannot bypass DataDome', None
         try:
-            r = cffi_requests.get(url, impersonate='chrome124', timeout=timeout,
-                                  allow_redirects=True,
-                                  headers={'Accept-Language': 'ro-RO,ro;q=0.9'})
+            import curl_sweep
+            # imo_get: ретраи + резидентный прокси. None/не-200 = DataDome-блок,
+            # это НЕ признак снятия лота — вернём код как есть, is_dead даст unknown
+            r = curl_sweep.imo_get(url, timeout=timeout)
+            if r is None:
+                return 'ERR', 0, 'DataDome block after retries', None
             body = r.text
             m = re.search(r'<title>([^<]*)</title>', body)
             title = m.group(1).strip() if m else ''
+            if r.status_code != 200:
+                return str(r.status_code), len(body), '', None
             return str(r.status_code), len(body), title, None
         except Exception as e:
             return 'ERR', 0, str(e)[:80], None

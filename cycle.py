@@ -226,14 +226,9 @@ def decode_escapes(s):
 def fetch_html(url, timeout=20):
     """Returns (html, http_status). http_status=0 on error."""
     if 'imobiliare.ro' in url:
-        try:
-            from curl_cffi import requests as cffi_requests
-            r = cffi_requests.get(url, impersonate='chrome124',
-                                  timeout=timeout, allow_redirects=True,
-                                  headers={'Accept-Language': 'ro-RO,ro;q=0.9'})
-            return r.text, r.status_code
-        except Exception:
-            return '', 0
+        # imo_get: ретраи + резидентный прокси (HALO_PROXY→ro) против DataDome
+        r = curl_sweep.imo_get(url, timeout=timeout)
+        return (r.text, r.status_code) if r is not None else ('', 0)
     try:
         r = subprocess.run(
             ['curl', '-sL', '-A', UA, '--max-time', str(timeout), '--compressed',
