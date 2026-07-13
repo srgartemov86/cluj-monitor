@@ -12,6 +12,8 @@ jobs:
           python-version: '3.12'
       - run: pip install curl_cffi telethon
       - name: Probe halooglasi from DC-IP
+        env:
+          HALO_PROXY: ${{ secrets.HALO_PROXY }}
         run: |
           python test_halooglasi.py > result.txt 2> probe.log || true
           echo "----- probe.log -----"
