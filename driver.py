@@ -156,12 +156,19 @@ def main():
     else:
         for p in passes:
             caption = p.get('caption') or ''
-            summary = english_summary(p)[:900]
-            # переклеиваем блок Summary на английский (cycle.py кладёт румынский snippet)
+            summary = english_summary(p)
+            # Переклеиваем блок Summary на английский (cycle.py кладёт румынский snippet).
+            # ВАЖНО: cycle приклеивает строку скоринга ПОСЛЕ Summary — сохранить её
+            # (баг 2026-07-11: тупой срез до конца снёс "Location score" из карточек).
             if '📝 Summary:' in caption:
-                caption = caption[:caption.index('📝 Summary:')] + f'📝 Summary: {summary}\n'
+                idx = caption.index('📝 Summary:')
+                head, tail = caption[:idx], caption[idx:]
+                m = re.search(r'\n\n\S+ Location score.*$', tail, re.DOTALL)
+                score_part = m.group(0) if m else ''
+                budget = 1024 - len(head) - len(score_part) - len('📝 Summary: \n')
+                caption = head + f'📝 Summary: {summary[:max(budget, 100)].rstrip()}\n' + score_part
             elif summary:
-                caption += f'\n📝 Summary: {summary}\n'
+                caption += f'\n📝 Summary: {summary[:600]}\n'
             caption = caption[:1024]
             photos = [ph for ph in (p.get('photo_paths') or []) if os.path.exists(ph)]
             try:
