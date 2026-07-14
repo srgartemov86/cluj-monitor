@@ -776,7 +776,15 @@ def build_caption(cand, detail, district_str, flags):
     area = cand.get('area')
     price = cand.get('price')
     floor = detail.get('floor') or 'parter'
-    addr = (detail.get('street') or cand.get('street') or '').strip() or 'no exact address'
+    addr = (detail.get('street') or cand.get('street') or '').strip()
+    if not addr:
+        # уточняем, ЧЕГО именно нет: текст-адреса при точном пине — мелочь,
+        # а вот «area only» значит, что и точка на карте ориентировочная
+        if 'lat' in detail:
+            addr = ('no street address (area only)' if detail.get('geo_approx')
+                    else 'no street address (map pin is exact)')
+        else:
+            addr = 'no address or map pin in the listing'
 
     pano = None
     approx = detail.get('geo_approx')
