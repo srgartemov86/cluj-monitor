@@ -144,6 +144,8 @@ def sweep_olx(pages=4):
                 'street': '', 'municipality': (loc.get('city') or {}).get('name') or '',
                 'type': None, 'floor': None,
                 'lat': mp.get('lat'), 'lon': mp.get('lon'),
+                # OLX: продавец скрыл точное место → пин = центр круга ~radius км
+                'geo_approx': bool(mp.get('radius')) or mp.get('show_detailed') is False,
                 'date': it.get('last_refresh_time') or it.get('created_time') or '',
             })
             n += 1

@@ -304,6 +304,7 @@ def parse_olx(html, cand):
     if cand.get('lat') is not None and cand.get('lon') is not None:
         out['lat'] = float(cand['lat'])
         out['lon'] = float(cand['lon'])
+        out['geo_approx'] = bool(cand.get('geo_approx'))
 
     if cand.get('date'):
         out['refreshed_at'] = cand['date']
@@ -778,9 +779,14 @@ def build_caption(cand, detail, district_str, flags):
     addr = (detail.get('street') or cand.get('street') or '').strip() or 'no exact address'
 
     pano = None
+    approx = detail.get('geo_approx')
     if 'lat' in detail and 'lon' in detail:
         maps = f"https://www.google.com/maps/?q={detail['lat']},{detail['lon']}"
-        pano = yandex_pano_url(detail['lat'], detail['lon'])
+        if approx:
+            # пин = центр круга/района, не помещение: Street View оттуда бессмыслен
+            maps += ' (approximate area)'
+        else:
+            pano = yandex_pano_url(detail['lat'], detail['lon'])
     else:
         q_text = addr if addr != 'no exact address' else district_str.split(' (')[0]
         q = quote(f"{q_text}, Cluj-Napoca, Romania")
@@ -1051,7 +1057,7 @@ def run_process():
             if 'lat' in detail:
                 rec['geo_lat'] = detail['lat']
                 rec['geo_lon'] = detail['lon']
-                rec['geo_source'] = 'detail'
+                rec['geo_source'] = 'detail_approx' if detail.get('geo_approx') else 'detail'
             if detail.get('refreshed_at'): rec['refreshed_at'] = detail['refreshed_at']
             if detail.get('published_at'): rec['published_at'] = detail['published_at']
             if detail.get('photo_url'): rec['photo_url'] = detail['photo_url']
