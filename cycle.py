@@ -1398,10 +1398,11 @@ def cmd_mark_sent(listing_key, message_id, desc_ru=None):
 
         rec['in_sheet'] = True
 
-        # Скоринг → кол. M (заполняется отдельно: webhook insert_at_top пишет только A–H).
-        # Находим строку по URL (insert_at_top кладёт лот наверх), пишем M через Sheets API.
-        sc = rec.get('score')
-        if sc is not None and rec.get('url'):
+        # Находим строку лота по URL один раз (insert_at_top кладёт наверх):
+        # нужна и для скоринга в кол. M, и для named range (ссылка из Telegram).
+        sheet_link = None
+        lot_row = None
+        if rec.get('url'):
             try:
                 svc = _sheets_service()
                 urls = svc.spreadsheets().values().get(
@@ -1410,10 +1411,23 @@ def cmd_mark_sent(listing_key, message_id, desc_ru=None):
                 target = rec['url'].strip()
                 for i, row in enumerate(urls, start=2):
                     if row and row[0].strip() == target:
-                        update_cells([{'row': i, 'col': 13, 'value': sc}])
+                        lot_row = i
                         break
             except Exception:
+                pass
+        sc = rec.get('score')
+        if sc is not None and lot_row:
+            try:
+                update_cells([{'row': lot_row, 'col': 13, 'value': sc}])
+            except Exception:
                 pass  # скоринг в M не критичен, не валим mark-sent
+        if lot_row:
+            try:
+                from sheets_append import create_lot_named_range
+                sheet_link = create_lot_named_range(lot_row, listing_key)
+                rec['sheet_link'] = sheet_link
+            except Exception:
+                pass  # ссылка — nice-to-have
 
         s.setdefault('sent_messages', {})[str(message_id)] = {
             'listing_key': listing_key, 'sent_at': rec['sent_at'],
@@ -1421,6 +1435,7 @@ def cmd_mark_sent(listing_key, message_id, desc_ru=None):
         save_state(s)
         print(json.dumps({'ok': True, 'sheets': sheet_resp,
                           'listing_key': listing_key,
+                          'sheet_link': sheet_link,
                           'in_sheet': True}))
     return 0
 

@@ -152,3 +152,24 @@ def delete_rows(row_numbers, timeout=30):
 if __name__ == '__main__':
     lots = json.load(sys.stdin)
     print(json.dumps(insert_lots(lots)))
+
+
+def create_lot_named_range(row, listing_key):
+    """Named range на строку лота (A{row}:L{row}) листа Locations. Возвращает
+    URL с #rangeid — он отслеживает строку при insert_at_top (обычный range=A{row}
+    протухает с каждой вставкой сверху). Дубликат имени → пересоздаём."""
+    name = 'lot_' + ''.join(c if c.isalnum() else '_' for c in listing_key)
+    svc = _sheets_service()
+    meta = svc.spreadsheets().get(spreadsheetId=SPREADSHEET_ID,
+                                  fields='namedRanges').execute()
+    reqs = [{'deleteNamedRange': {'namedRangeId': nr['namedRangeId']}}
+            for nr in meta.get('namedRanges', []) if nr.get('name') == name]
+    reqs.append({'addNamedRange': {'namedRange': {
+        'name': name,
+        'range': {'sheetId': 498788918, 'startRowIndex': row - 1, 'endRowIndex': row,
+                  'startColumnIndex': 0, 'endColumnIndex': 12}}}})
+    resp = svc.spreadsheets().batchUpdate(
+        spreadsheetId=SPREADSHEET_ID, body={'requests': reqs}).execute()
+    rid = resp['replies'][-1]['addNamedRange']['namedRange']['namedRangeId']
+    return (f'https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID}'
+            f'/edit#gid=498788918&rangeid={rid}')

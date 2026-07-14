@@ -165,7 +165,8 @@ def main():
                 head, tail = caption[:idx], caption[idx:]
                 m = re.search(r'\n\n\S+ Location score.*$', tail, re.DOTALL)
                 score_part = m.group(0) if m else ''
-                budget = 1024 - len(head) - len(score_part) - len('📝 Summary: \n')
+                # −140: резерв под "📋 Sheet: <link>", который допишется после mark-sent
+                budget = 1024 - 140 - len(head) - len(score_part) - len('📝 Summary: \n')
                 caption = head + f'📝 Summary: {summary[:max(budget, 100)].rstrip()}\n' + score_part
             elif summary:
                 caption += f'\n📝 Summary: {summary[:600]}\n'
@@ -179,9 +180,21 @@ def main():
                     mid = 0 if send_text(caption) else None
                 if mid is None:
                     raise RuntimeError('send failed')
-                subprocess.run([sys.executable, 'cycle.py', '--mark-sent',
-                                p['listing_key'], str(mid), '--desc-ru', summary],
-                               capture_output=True, cwd=HERE, timeout=120)
+                ms = subprocess.run([sys.executable, 'cycle.py', '--mark-sent',
+                                     p['listing_key'], str(mid), '--desc-ru', summary[:900]],
+                                    capture_output=True, text=True, cwd=HERE, timeout=120)
+                # mark-sent вернул ссылку на строку таблицы → дописываем в caption
+                try:
+                    link = json.loads(ms.stdout.strip().splitlines()[-1]).get('sheet_link')
+                except Exception:
+                    link = None
+                if link and mid and photos:
+                    new_cap = f'{caption.rstrip()}\n📋 Sheet: {link}'[:1024]
+                    er = subprocess.run([sys.executable, 'edit_caption.py', CHAT_ID,
+                                         str(mid), '-'], input=new_cap, capture_output=True,
+                                        text=True, timeout=60, cwd=HERE)
+                    if '"ok": true' not in (er.stdout or ''):
+                        print(f'  caption edit failed for {mid}', file=sys.stderr)
                 sent += 1
             except Exception as e:
                 # не mark-sent → лот останется unalerted, доедет следующим циклом
