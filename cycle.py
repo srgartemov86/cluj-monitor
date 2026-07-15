@@ -598,13 +598,20 @@ def download_photo(url, listing_key):
     ext_m = re.search(r'\.(jpe?g|webp|avif|png)(?:[?#]|$)', url, re.IGNORECASE)
     ext = (ext_m.group(1).lower() if ext_m else 'jpg').replace('jpeg', 'jpg')
     raw_path = PHOTO_DIR / f"{listing_key}.{ext}"
-    try:
-        subprocess.run(['curl', '-sL', '-A', UA, '--max-time', '30', url,
-                        '-o', str(raw_path)],
-                       capture_output=True, timeout=35)
-    except Exception:
-        return None
-    if not raw_path.exists() or raw_path.stat().st_size < 1000:
+    # 2 попытки: единичный сбой curl (таймаут/сброс) иначе роняет фото из альбома,
+    # а лот с одним фото — в текст (паритет с belgrade-monitor, 2026-07-14).
+    ok = False
+    for _attempt in range(2):
+        try:
+            subprocess.run(['curl', '-sL', '-A', UA, '--max-time', '30', url,
+                            '-o', str(raw_path)],
+                           capture_output=True, timeout=35)
+        except Exception:
+            continue
+        if raw_path.exists() and raw_path.stat().st_size >= 1000:
+            ok = True
+            break
+    if not ok:
         return None
     if ext in ('webp', 'avif', 'png'):
         jpg = PHOTO_DIR / f"{listing_key}.jpg"
