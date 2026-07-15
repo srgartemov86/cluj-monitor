@@ -1468,6 +1468,21 @@ def cmd_finalize():
     out = {'ok': True}
 
     # check_status manages its own state writes; prints summary on stdout
+    # «Last scan» в Rejected!J1 — обновляется КАЖДЫМ прогоном, даже пустым.
+    # Сергей мониторит лист глазами: свежий штамп + нет строк = тихий рынок,
+    # старый штамп = монитор умер, бить тревогу.
+    try:
+        from datetime import datetime as _dt
+        import zoneinfo
+        _now = _dt.now(zoneinfo.ZoneInfo('Europe/Bucharest')).strftime('%Y-%m-%d %H:%M')
+        _sheets_service().spreadsheets().values().update(
+            spreadsheetId=SPREADSHEET_ID, range='Rejected!J1',
+            valueInputOption='RAW',
+            body={'values': [[f'Last scan: {_now} (Cluj time)']]}).execute()
+        out['last_scan_stamp'] = True
+    except Exception as e:
+        out['last_scan_stamp'] = f'fail: {e}'
+
     cr = subprocess.run(['python3', str(SCRIPT_DIR / 'check_status.py')],
                         capture_output=True, text=True, timeout=300)
     cout = (cr.stdout or '') + '\n' + (cr.stderr or '')

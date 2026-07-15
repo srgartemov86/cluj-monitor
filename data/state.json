@@ -1327,7 +1327,7 @@
       "district": "Mănăștur",
       "subdistrict": null,
       "first_seen_at": "2026-07-10T15:27:29.576243+00:00",
-      "last_seen_at": "2026-07-15T14:24:28.973278+00:00",
+      "last_seen_at": "2026-07-15T14:46:17.372164+00:00",
       "in_sheet": true,
       "alerted": true,
       "flags": [
@@ -10189,7 +10189,7 @@
       "district": "Mănăștur",
       "subdistrict": null,
       "first_seen_at": "2026-07-14T18:48:22.202469+00:00",
-      "last_seen_at": "2026-07-15T14:24:28.973278+00:00",
+      "last_seen_at": "2026-07-15T14:46:17.372164+00:00",
       "in_sheet": true,
       "alerted": true,
       "flags": [
@@ -10989,7 +10989,7 @@
       }
     },
     "source": "sheet_col_K",
-    "updated_at": "2026-07-15T14:24:51.632980+00:00"
+    "updated_at": "2026-07-15T14:46:37.841761+00:00"
   },
   "version": 6
 }
