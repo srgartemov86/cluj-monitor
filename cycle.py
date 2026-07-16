@@ -1586,31 +1586,40 @@ def run_canary(s):
             res[name] = 'ok' if ok else 'FAIL: empty/no price'
         except Exception as e:
             res[name] = f'FAIL: {e}'
-    # detail-каналы: свежий живой in_sheet лот каждого источника
+    # detail-каналы: свежие живые in_sheet лоты каждого источника.
+    # Пробуем до 3: свежеудалённый лот может отдавать 200-заглушку/редирект —
+    # один мёртвый подопытный не должен давать ложную тревогу. FAIL — если все.
     for prefix, src_name, label in (('olx_', 'olx.ro', 'olx_detail'),
                                     ('storia_', 'storia.ro', 'storia_detail'),
                                     ('imobiliare_', 'imobiliare.ro', 'imobiliare_detail')):
-        rec = None
+        recs = []
         for k, v in sorted(s.get('listings', {}).items(),
                            key=lambda kv: ((kv[1] or {}).get('last_seen_at') or ''),
                            reverse=True):
             if (k.startswith(prefix) and isinstance(v, dict) and v.get('in_sheet')
                     and not v.get('removed_from_sheet') and v.get('url')):
-                rec = v
-                break
-        if rec is None:
+                recs.append(v)
+                if len(recs) >= 3:
+                    break
+        if not recs:
             res[label] = 'skip: no live listing'
             continue
-        try:
-            html, code = fetch_html(rec['url'])
-            if not html or code != 200:
-                res[label] = f'FAIL: http={code}'
-                continue
-            d = parse_detail(html, {'source': src_name, 'url': rec['url']})
-            ok = bool(d.get('photo_url') or d.get('description') or d.get('lat'))
-            res[label] = 'ok' if ok else 'FAIL: detail empty (photo/desc/geo)'
-        except Exception as e:
-            res[label] = f'FAIL: {e}'
+        last_reason = 'no data'
+        for rec in recs:
+            try:
+                html, code = fetch_html(rec['url'])
+                if not html or code != 200:
+                    last_reason = f'http={code}'
+                    continue
+                d = parse_detail(html, {'source': src_name, 'url': rec['url']})
+                if d.get('photo_url') or d.get('description') or d.get('lat'):
+                    res[label] = 'ok'
+                    break
+                last_reason = 'detail empty (listing gone/redesign?)'
+            except Exception as e:
+                last_reason = str(e)
+        else:
+            res[label] = f'FAIL x{len(recs)}: {last_reason}'
     return res
 
 
