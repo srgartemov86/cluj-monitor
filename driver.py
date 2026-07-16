@@ -18,6 +18,9 @@ from pathlib import Path
 
 HERE = Path(__file__).parent
 CHAT_ID = os.environ.get('CLUJ_CHAT_ID', '3828339567')
+# Служебные уведомления (health-алерты) — лично Сергею в Daily wrap up,
+# не в рабочий чат лотов (просьба 2026-07-16).
+ALERT_CHAT_ID = os.environ.get('CLUJ_ALERT_CHAT_ID', '5131688215')
 MANY_PASSES = 15  # SKILL: при ≥15 лотов — одна сводка вместо N сообщений
 
 # Глоссарий ro→en (SKILL.md): термины недвижимости, по которым принимается решение.
@@ -122,8 +125,8 @@ def send_album(caption, photos):
         os.unlink(cap_path)
 
 
-def send_text(text, reply_to=None):
-    args = ['send_text.py', CHAT_ID, '-']
+def send_text(text, reply_to=None, chat_id=None):
+    args = ['send_text.py', chat_id or CHAT_ID, '-']
     if reply_to:
         args += ['--reply-to', str(reply_to)]
     r = subprocess.run([sys.executable] + args, input=text, capture_output=True,
@@ -243,7 +246,8 @@ def main():
         alerts.append('🐤 parser canary:\n   ' + '\n   '.join(canary_bad))
     if alerts:
         send_text('⚠️ Cluj monitor — cycle anomalies:\n'
-                  + '\n'.join('· ' + a for a in alerts))
+                  + '\n'.join('· ' + a for a in alerts),
+                  chat_id=ALERT_CHAT_ID)
 
     # Вечерняя сводка дня в чат (последний прогон дня: после 21:00 по Клужу).
     # Дедуп через state['daily_digest_sent'] — шлём один раз в сутки.
