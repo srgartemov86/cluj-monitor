@@ -237,7 +237,9 @@ def sweep_imobiliare(pages=3):
                'judetul-cluj/cluj-napoca' + (f'?page={p}' if p > 1 else ''))
         t0 = time.time()
         try:
-            r = imo_get(url, timeout=30)
+            # p1 — 8 попыток: DataDome охраняет листинги агрессивнее карточек,
+            # 4 ротаций exit-IP порой не хватает (ложный sources_down 2026-07-16)
+            r = imo_get(url, timeout=30, attempts=8 if p == 1 else 4)
             if r is None:
                 raise RuntimeError('no response after retries')
         except Exception as e:
