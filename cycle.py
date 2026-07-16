@@ -1326,6 +1326,24 @@ def run_process():
         passes.sort(key=lambda p: 0 if p.get('feedback_like') else 1)
 
         s['last_cycle_at'] = now_iso()
+
+        # Дневные счётчики для вечерней сводки-воронки в чат (driver шлёт после 21:00).
+        # Сбрасываются при смене даты (Клуж).
+        import zoneinfo
+        from datetime import datetime as _dt
+        _today = _dt.now(zoneinfo.ZoneInfo('Europe/Bucharest')).strftime('%Y-%m-%d')
+        ds = s.get('daily_stats') or {}
+        if ds.get('date') != _today:
+            ds = {'date': _today, 'runs': 0, 'sweep_last': 0, 'new': 0,
+                  'checked': 0, 'rejects': 0, 'passes': 0, 'duplicates': 0}
+        ds['runs'] += 1
+        ds['sweep_last'] = len(all_l)
+        ds['new'] += len(new_lots)
+        ds['checked'] += len(capped)
+        ds['rejects'] += len(rejects)
+        ds['passes'] += len(passes)
+        ds['duplicates'] += len(duplicates)
+        s['daily_stats'] = ds
         save_state(s)
 
         elapsed = time.time() - t0

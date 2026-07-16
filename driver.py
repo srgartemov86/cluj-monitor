@@ -209,6 +209,35 @@ def main():
 
     fin = run_json(['cycle.py', '--finalize'], 600)
 
+    # Вечерняя сводка дня в чат (последний прогон дня: после 21:00 по Клужу).
+    # Дедуп через state['daily_digest_sent'] — шлём один раз в сутки.
+    try:
+        from datetime import datetime
+        import zoneinfo
+        now_cluj = datetime.now(zoneinfo.ZoneInfo('Europe/Bucharest'))
+        state_path = os.path.join(os.environ.get('CLUJ_DATA', '.'), 'state.json')
+        with open(state_path, encoding='utf-8') as f:
+            st = json.load(f)
+        ds = st.get('daily_stats') or {}
+        today = now_cluj.strftime('%Y-%m-%d')
+        if (now_cluj.hour >= 21 and ds.get('date') == today
+                and st.get('daily_digest_sent') != today):
+            msg = (f"📊 Daily summary · {now_cluj.strftime('%b %d')}\n"
+                   f"· {ds['runs']} feed scans, ~{ds['sweep_last']} live listings watched\n"
+                   f"· {ds['new']} new listings analyzed in detail\n"
+                   f"· {ds['rejects']} rejected → Rejected tab:\n"
+                   f"  https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=133442332\n"
+                   f"· {ds['passes']} passed the filters and posted here → Locations tab:\n"
+                   f"  https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918")
+            if ds.get('duplicates'):
+                msg += f"\n· {ds['duplicates']} cross-posted duplicates merged"
+            if send_text(msg):
+                st['daily_digest_sent'] = today
+                with open(state_path, 'w', encoding='utf-8') as f:
+                    json.dump(st, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        print(f'  daily digest failed: {e}', file=sys.stderr)
+
     s = out.get('summary') or {}
     print(json.dumps({
         'sweep': s.get('sweep_raw'), 'new': s.get('new'),
