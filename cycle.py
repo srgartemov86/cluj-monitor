@@ -844,6 +844,59 @@ def _price_similar(p1, p2):
     return abs(p1 - p2) <= max(100, 0.03 * max(p1, p2))
 
 
+def dedupe_passes_same_cycle(s, passes, duplicates):
+    """Кросс-посты, пришедшие ОДНИМ прогоном, обходят find_active_duplicate
+    (он сверяет только с in_sheet-лотами, а внутрицикловые ещё не отправлены) —
+    кейс Andrei Mureșanu 14.07: olx+storia одного помещения = 2 карточки в чате.
+    Матчинг пар внутри passes: площадь ±3 м² + цена похожа + (гео <250 м ИЛИ
+    одинаковое начало описания — кросс-посты копируют текст дословно).
+    Оставляем лот с адресом (обычно storia), второй клеим как alt_url."""
+    def desc_prefix(k):
+        d = (s['listings'].get(k, {}).get('description') or '').lower()
+        return re.sub(r'\s+', '', d)[:120]
+
+    kept = []
+    for p_ in passes:
+        rec = s['listings'].get(p_['listing_key'], {})
+        dup_of = None
+        for q in kept:
+            qrec = s['listings'].get(q['listing_key'], {})
+            a1, a2 = rec.get('area_m2'), qrec.get('area_m2')
+            p1, p2 = rec.get('price_eur'), qrec.get('price_eur')
+            if not (a1 and a2 and p1 and p2): continue
+            if abs(a1 - a2) > 3 or not _price_similar(p1, p2): continue
+            geo_close = False
+            if all(rec.get(x) is not None for x in ('geo_lat', 'geo_lon')) and \
+               all(qrec.get(x) is not None for x in ('geo_lat', 'geo_lon')):
+                geo_close = haversine_km(rec['geo_lat'], rec['geo_lon'],
+                                         qrec['geo_lat'], qrec['geo_lon']) < 0.25
+            same_text = (desc_prefix(p_['listing_key']) and
+                         desc_prefix(p_['listing_key']) == desc_prefix(q['listing_key']))
+            if geo_close or same_text:
+                dup_of = q
+                break
+        if dup_of is None:
+            kept.append(p_)
+            continue
+        # если у нового есть адрес, а у оставленного нет — меняем местами
+        if rec.get('address') and not s['listings'].get(dup_of['listing_key'], {}).get('address'):
+            kept[kept.index(dup_of)] = p_
+            p_, dup_of = dup_of, p_
+            rec = s['listings'].get(p_['listing_key'], {})
+        canon = s['listings'].get(dup_of['listing_key'], {})
+        canon.setdefault('alt_urls', [])
+        if rec.get('url') and rec['url'] not in canon['alt_urls']:
+            canon['alt_urls'].append(rec['url'])
+        rec['rejected'] = True
+        rec['duplicate_of'] = dup_of['listing_key']
+        duplicates.append({'key': p_['listing_key'],
+                           'duplicate_of': dup_of['listing_key'],
+                           'url': rec.get('url'), 'canonical_url': canon.get('url'),
+                           'district': p_.get('district'), 'area': rec.get('area_m2'),
+                           'price': rec.get('price_eur'), 'same_cycle': True})
+    return kept
+
+
 def find_active_duplicate(s, rec, self_key):
     """Ищет активный in_sheet лот с тем же физическим помещением: гео <200 м +
     площадь ±3 м² + цена ±max(100€,3%). Агентства перезаливают объявления с новыми
@@ -1324,6 +1377,8 @@ def run_process():
                 p['caption'] = ('⭐ District with locations already in progress\n'
                                 + p['caption'])[:1024]
         passes.sort(key=lambda p: 0 if p.get('feedback_like') else 1)
+
+        passes = dedupe_passes_same_cycle(s, passes, duplicates)
 
         s['last_cycle_at'] = now_iso()
 
