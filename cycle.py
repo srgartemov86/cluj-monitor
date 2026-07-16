@@ -204,7 +204,13 @@ def load_state():
         return json.load(f)
 
 
+DRY_RUN = False  # --dry-run: считаем всё, НИЧЕГО не пишем (state/лист)
+
+
 def save_state(s):
+    if DRY_RUN:
+        print('  [dry-run] state.json НЕ сохранён', file=sys.stderr)
+        return
     tmp = STATE_PATH + '.tmp'
     with open(tmp, 'w', encoding='utf-8') as f:
         json.dump(s, f, ensure_ascii=False, indent=2)
@@ -770,6 +776,9 @@ def write_rejects_to_sheet(rejects):
             r.get('url') or '',
             label,
         ])
+    if DRY_RUN:
+        print(f'  [dry-run] реджект-лист: {len(rows)} строк НЕ записаны', file=sys.stderr)
+        return {'ok': True, 'inserted': 0, 'dry_run': True}
     try:
         import sheets_append
         return sheets_append.append_reject_rows(rows)
@@ -1077,7 +1086,7 @@ def run_process():
             capped.append(c)
         s['pending_candidates'] = leftover
 
-        passes, rejects, duplicates = [], [], []
+        passes, rejects, duplicates, deferred = [], [], [], []
         done_this_cycle = set()  # лот мог быть и в new, и в pending → не обрабатывать дважды
 
         for cand in capped:
@@ -1190,7 +1199,26 @@ def run_process():
                     photo_paths.append(str(pp))
             photo_path = photo_paths[0] if photo_paths else None
 
+            # --- Инварианты перед отправкой: запрет тихой деградации ---
+            # Пасс без фото/координат/скоринга при ПЕРВОЙ попытке откладываем на
+            # следующий цикл (сеть/Overpass часто оживают). Со второй — шлём с пометкой.
+            missing = []
+            if gallery and not photo_paths:
+                missing.append('photos')
+            if rec.get('geo_lat') is None:
+                missing.append('coordinates')
+            elif sc is None:
+                missing.append('location score')
+            retry_n = int(cand.get('_send_retry') or 0)
+            if missing and retry_n == 0:
+                cand['_send_retry'] = 1
+                s['pending_candidates'].append(cand)
+                deferred.append({'key': key, 'missing': missing, 'url': cand['url']})
+                continue
+
             caption = build_caption(cand, detail, district_str, flags)
+            if missing:
+                caption += f"⚠️ unavailable: {', '.join(missing)}\n"
             if sc:
                 caption = caption + "\n\n" + scoring.score_line(sc)
 
@@ -1206,6 +1234,8 @@ def run_process():
                 'price': cand.get('price'),
                 'url': cand['url'],
                 'flags': flags,
+                'score': (sc or {}).get('score'),
+                'had_photos': bool(gallery),
             })
 
         # --- Реджекты по цене / цене за м² ---
@@ -1399,6 +1429,12 @@ def run_process():
         ds['passes'] += len(passes)
         ds['duplicates'] += len(duplicates)
         s['daily_stats'] = ds
+        # Статистика цикла для штампа Last scan в Rejected!J1 (finalize её читает).
+        s['last_cycle_stats'] = {
+            'at': now_iso(), 'sweep_raw': len(all_l), 'new': len(new_lots),
+            'passes': len(passes), 'rejects': len(rejects),
+            'sources_down': sources_down,
+        }
         save_state(s)
 
         elapsed = time.time() - t0
@@ -1412,6 +1448,7 @@ def run_process():
             'passes': len(passes),
             'rejects': len(rejects),
             'duplicates': len(duplicates),
+            'deferred': len(deferred),
             'price_changes': len(price_changes),
             'sources_down': sources_down,
             'errors': sweep_errors[:5],
@@ -1445,6 +1482,7 @@ def run_process():
             'passes': passes,
             'rejects': rejects,
             'duplicates': duplicates,
+            'deferred': deferred,
             'price_changes': price_changes,
             'reject_digest': None,
             'reject_sheet': reject_sheet,
@@ -1534,6 +1572,48 @@ def cmd_mark_sent(listing_key, message_id, desc_ru=None):
     return 0
 
 
+def run_canary(s):
+    """Канарейка: раз в сутки по 1 живому лоту с каждого источника — парсер вернул
+    цену/фото/описание? Сломался парсер или бан — видно в тот же день (health-алерт)."""
+    res = {}
+    # sweep-каналы: пустой ответ или без цены = сломан парсинг листинга/бан
+    for name, fn in (('olx_sweep', curl_sweep.sweep_olx),
+                     ('storia_sweep', curl_sweep.sweep_storia),
+                     ('imobiliare_sweep', curl_sweep.sweep_imobiliare)):
+        try:
+            lst = fn(1)
+            ok = bool(lst and lst[0].get('price') and lst[0].get('area'))
+            res[name] = 'ok' if ok else 'FAIL: empty/no price'
+        except Exception as e:
+            res[name] = f'FAIL: {e}'
+    # detail-каналы: свежий живой in_sheet лот каждого источника
+    for prefix, src_name, label in (('olx_', 'olx.ro', 'olx_detail'),
+                                    ('storia_', 'storia.ro', 'storia_detail'),
+                                    ('imobiliare_', 'imobiliare.ro', 'imobiliare_detail')):
+        rec = None
+        for k, v in sorted(s.get('listings', {}).items(),
+                           key=lambda kv: ((kv[1] or {}).get('last_seen_at') or ''),
+                           reverse=True):
+            if (k.startswith(prefix) and isinstance(v, dict) and v.get('in_sheet')
+                    and not v.get('removed_from_sheet') and v.get('url')):
+                rec = v
+                break
+        if rec is None:
+            res[label] = 'skip: no live listing'
+            continue
+        try:
+            html, code = fetch_html(rec['url'])
+            if not html or code != 200:
+                res[label] = f'FAIL: http={code}'
+                continue
+            d = parse_detail(html, {'source': src_name, 'url': rec['url']})
+            ok = bool(d.get('photo_url') or d.get('description') or d.get('lat'))
+            res[label] = 'ok' if ok else 'FAIL: detail empty (photo/desc/geo)'
+        except Exception as e:
+            res[label] = f'FAIL: {e}'
+    return res
+
+
 def cmd_finalize():
     """Run check_status + gen_map + write runs.log line. Single tool-call replacement
     for the previous 3-step agent flow."""
@@ -1541,17 +1621,25 @@ def cmd_finalize():
     out = {'ok': True}
 
     # check_status manages its own state writes; prints summary on stdout
-    # «Last scan» в Rejected!J1 — обновляется КАЖДЫМ прогоном, даже пустым.
-    # Сергей мониторит лист глазами: свежий штамп + нет строк = тихий рынок,
-    # старый штамп = монитор умер, бить тревогу.
+    # «Last scan» в Rejected!J1 — обновляется КАЖДЫМ прогоном, даже пустым,
+    # и несёт статистику цикла: одна ячейка отвечает «жив и что видел».
     try:
+        if DRY_RUN:
+            raise RuntimeError('dry-run: штамп не пишем')
         from datetime import datetime as _dt
         import zoneinfo
         _now = _dt.now(zoneinfo.ZoneInfo('Europe/Bucharest')).strftime('%Y-%m-%d %H:%M')
+        _st = load_state().get('last_cycle_stats') or {}
+        _down = _st.get('sources_down') or []
+        _extra = ''
+        if _st:
+            _extra = (f" · sweep {_st.get('sweep_raw', '?')} · new {_st.get('new', '?')}"
+                      f" · src {3 - len(_down)}/3"
+                      + (f" · DOWN: {','.join(_down)}" if _down else ''))
         _sheets_service().spreadsheets().values().update(
             spreadsheetId=SPREADSHEET_ID, range='Rejected!J1',
             valueInputOption='RAW',
-            body={'values': [[f'Last scan: {_now} (Cluj time)']]}).execute()
+            body={'values': [[f'Last scan: {_now} (Cluj){_extra}']]}).execute()
         out['last_scan_stamp'] = True
     except Exception as e:
         out['last_scan_stamp'] = f'fail: {e}'
@@ -1595,12 +1683,25 @@ def cmd_finalize():
         feedback = None
         out['feedback_error'] = str(e)[:200]
 
+    # Канарейка парсеров: раз в сутки, сетевые запросы ДО StateLock (не держим лок).
+    canary = None
+    _canary_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+    try:
+        _s0 = load_state()
+        if (_s0.get('canary') or {}).get('date') != _canary_date:
+            canary = run_canary(_s0)
+    except Exception as e:
+        canary = {'canary_error': f'FAIL: {e}'}
+
     with StateLock():
         s = load_state()
         listings = s.get('listings', {})
         if feedback:
             s['feedback_aggregates'] = feedback
             out['feedback_districts'] = len(feedback['by_district'])
+        if canary is not None:
+            s['canary'] = {'date': _canary_date, 'results': canary}
+            out['canary'] = s['canary']
 
         # Компакция: терминальным записям старше 45 дней тяжёлые поля не нужны
         # (описания и фото-списки — основной вес state.json).
@@ -1675,7 +1776,22 @@ def main():
                     help='Русское «Кратко» для Sheets кол. F (вместо сырого сербского описания)')
     ap.add_argument('--finalize', action='store_true',
                     help='Run check_status + gen_map + runs.log')
+    ap.add_argument('--dry-run', action='store_true',
+                    help='Полный прогон БЕЗ записи: state не сохраняется, лист не трогается. '
+                         'Ручные прогоны — ТОЛЬКО так: живой монитор в облаке, иначе дубли.')
     args = ap.parse_args()
+
+    if args.dry_run:
+        global DRY_RUN
+        DRY_RUN = True
+        print('=== DRY-RUN: state и Google Sheet НЕ будут изменены ===', file=sys.stderr)
+
+    if args.dry_run and (args.finalize or args.mark_sent):
+        # finalize/mark-sent пишут через подпроцессы (check_status → лист,
+        # gen_map → surge) — dry-run их не гейтит. Запрещаем совсем.
+        print('dry-run поддерживает только process-фазу (без --finalize/--mark-sent)',
+              file=sys.stderr)
+        return 2
 
     if args.mark_sent:
         return cmd_mark_sent(args.mark_sent[0], args.mark_sent[1], desc_ru=args.desc_ru)

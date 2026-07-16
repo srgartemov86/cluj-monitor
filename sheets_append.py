@@ -14,7 +14,20 @@ Interface — идентичен белградскому sheets_append (cycle.p
 _sheets_service, SPREADSHEET_ID. WEBHOOK_URL/SECRET оставлены пустыми для
 совместимости импортов (кнопок статуса на карте v1 нет).
 """
-import json, os, sys
+import json, os, sys, time
+
+
+def _retry(fn, tries=3, base_delay=2.0):
+    """Google API моргает (429/5xx/сеть) — 3 попытки с backoff вместо потери записи."""
+    last = None
+    for i in range(tries):
+        try:
+            return fn()
+        except Exception as e:
+            last = e
+            if i < tries - 1:
+                time.sleep(base_delay * (i + 1))
+    raise last
 from datetime import datetime, timezone
 
 SPREADSHEET_ID = '1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c'
@@ -68,7 +81,9 @@ def _insert_rows_at_top(sheet_name, fallback_gid, rows, ncols):
     if sheet_id is None:
         sheet_id = fallback_gid
     n = len(rows)
-    svc.spreadsheets().batchUpdate(
+    # insertDimension не идемпотентна: ретрай после «успел вставить, ответ потерялся»
+    # даст лишние пустые строки — терпимо, потеря данных хуже.
+    _retry(lambda: svc.spreadsheets().batchUpdate(
         spreadsheetId=SPREADSHEET_ID,
         body={'requests': [{
             'insertDimension': {
@@ -77,14 +92,14 @@ def _insert_rows_at_top(sheet_name, fallback_gid, rows, ncols):
                 'inheritFromBefore': False,
             }
         }]},
-    ).execute()
+    ).execute())
     end_col = chr(ord('A') + ncols - 1)
-    svc.spreadsheets().values().update(
+    _retry(lambda: svc.spreadsheets().values().update(
         spreadsheetId=SPREADSHEET_ID,
         range=f"'{sheet_name}'!A2:{end_col}{1 + n}",
         valueInputOption='USER_ENTERED',
         body={'values': rows},
-    ).execute()
+    ).execute())
     return {'ok': True, 'inserted': n, 'op': 'insert_at_top'}
 
 

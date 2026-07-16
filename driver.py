@@ -139,7 +139,7 @@ def main():
         return 0
 
     passes = out.get('passes') or []
-    sent = failed = 0
+    sent = failed = nophoto_sent = 0
 
     if len(passes) >= MANY_PASSES:
         lines = [f'🍕 {len(passes)} new locations (bulk):']
@@ -178,6 +178,8 @@ def main():
                     mid = res.get('first_message_id')
                 else:
                     mid = 0 if send_text(caption) else None
+                    if p.get('had_photos'):
+                        nophoto_sent += 1  # фото были в объявлении, но не скачались
                 if mid is None:
                     raise RuntimeError('send failed')
                 ms = subprocess.run([sys.executable, 'cycle.py', '--mark-sent',
@@ -208,6 +210,40 @@ def main():
         send_text(msg, reply_to=c.get('reply_to_message_id'))
 
     fin = run_json(['cycle.py', '--finalize'], 600)
+
+    # --- Health-алерт: аномалии цикла → короткое ⚠️ в тот же чат (English) ---
+    s_sum = out.get('summary') or {}
+    alerts = []
+    if s_sum.get('sources_down'):
+        alerts.append('⛔ sources down: ' + ', '.join(s_sum['sources_down']))
+    ff = [r for r in (out.get('rejects') or [])
+          if str(r.get('reason', '')).startswith('fetch_fail')]
+    if len(ff) >= 3:
+        alerts.append(f'🌐 detail fetch failed for {len(ff)} listings (ban/network?)')
+    if failed:
+        alerts.append(f'✉️ send failed for {failed} listings')
+    if nophoto_sent:
+        alerts.append(f'📷 posted without photos (listing had them): {nophoto_sent}')
+    noscore = [p for p in passes if p.get('score') is None]
+    if noscore:
+        alerts.append(f'📊 location score missing on {len(noscore)} posted')
+    rs = out.get('reject_sheet') or {}
+    if rs and not rs.get('ok'):
+        alerts.append('📄 Rejected sheet write failed')
+    if fin.get('map_ok') is False:
+        alerts.append('🗺 map generation failed')
+    if fin.get('map_surge_ok') is False:
+        alerts.append('🌍 surge deploy failed')
+    if isinstance(fin.get('last_scan_stamp'), str):
+        alerts.append('🕐 Last scan stamp failed')
+    canary_bad = [f'{k} — {v}' for k, v in
+                  ((fin.get('canary') or {}).get('results') or {}).items()
+                  if str(v).startswith('FAIL')]
+    if canary_bad:
+        alerts.append('🐤 parser canary:\n   ' + '\n   '.join(canary_bad))
+    if alerts:
+        send_text('⚠️ Cluj monitor — cycle anomalies:\n'
+                  + '\n'.join('· ' + a for a in alerts))
 
     # Вечерняя сводка дня в чат (последний прогон дня: после 21:00 по Клужу).
     # Дедуп через state['daily_digest_sent'] — шлём один раз в сутки.
