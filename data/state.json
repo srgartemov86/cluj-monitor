@@ -7999,7 +7999,7 @@
       "subdistrict": null,
       "first_seen_at": "2026-07-13T20:04:24.910913+00:00",
       "last_seen_at": "2026-07-13T20:04:24.910931+00:00",
-      "in_sheet": true,
+      "in_sheet": false,
       "alerted": true,
       "flags": [
         "uncertain_floor"
@@ -8020,7 +8020,7 @@
         "https://frankfurt.apollo.olxcdn.com:443/v1/files/2gvcs9icedbn2-RO/image;s=1280x960",
         "https://frankfurt.apollo.olxcdn.com:443/v1/files/k3pc8ku0ownf-RO/image;s=1280x960"
       ],
-      "rejected": false,
+      "rejected": true,
       "score": 32,
       "score_data": {
         "score": 32,
@@ -8052,7 +8052,8 @@
       "description_ru": "130sqm house with terrace and 555sqm lot on high-traffic Calea Turzii, featuring 7 private parking spots and flexible interior layout. Property includes full utilities, HVAC, and AC. Long-term lease available with owner open to tenant-specific renovations and partitioning.",
       "telegram_message_id": 103,
       "sent_at": "2026-07-13T20:13:18.812926+00:00",
-      "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=140804521"
+      "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=140804521",
+      "duplicate_of": "storia_10456908"
     },
     "olx_306823165": {
       "source": "olx.ro",
@@ -8687,7 +8688,10 @@
       "description_ru": "130sqm house with terrace and 555sqm lot on high-traffic Calea Turzii, featuring 7 private parking spots and flexible interior layout. Property includes full utilities, HVAC, and AC, with owner open to long-term lease negotiations and tenant-specific fit-outs. Available immediately.",
       "telegram_message_id": 114,
       "sent_at": "2026-07-13T20:13:42.643769+00:00",
-      "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=784340770"
+      "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=784340770",
+      "alt_urls": [
+        "https://www.olx.ro/d/oferta/exclusivitate-spatiu-comercial-130mp-teren-555mp-singur-in-curte-IDkLoYq.html"
+      ]
     },
     "olx_303986444": {
       "source": "olx.ro",
