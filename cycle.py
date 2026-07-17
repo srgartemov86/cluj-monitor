@@ -1037,7 +1037,9 @@ def run_process():
         for name, fn, pages in [
             ('olx', curl_sweep.sweep_olx, 4),
             ('storia', curl_sweep.sweep_storia, 4),
-            ('imobiliare', curl_sweep.sweep_imobiliare, 3),
+            # 6 стр. = вся секция: сортировка imobiliare не по свежести, новый лот
+            # может сразу оказаться на стр. 3+ (кейс 275395542, 17.07)
+            ('imobiliare', curl_sweep.sweep_imobiliare, 6),
         ]:
             try:
                 all_l.extend(fn(pages=pages))
