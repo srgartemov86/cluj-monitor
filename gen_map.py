@@ -10,7 +10,7 @@
 Маркер: цвет по свежести (зелёный <7д / оранжевый 7-30д / серый 30+д).
 Popup: район · цена · метраж · описание · кнопка-ссылка.
 """
-import json, datetime, csv, html as _html, time, sys, os, re, io
+import json, datetime, csv, html as _html, time, sys, os, re, io, math
 from curl_cffi import requests
 
 STATE_PATH = os.path.join(os.environ.get('CLUJ_DATA', '/Users/dodo/cluj-location-monitor'), 'state.json')
@@ -572,6 +572,20 @@ def build_features(state, sheet):
             'manual_coord': manual_coord,
             'photos': photos[:10],
         })
+    # Разброс совпадающих координат (лоты без гео → один центр района:
+    # маркеры стопкой, виден только верхний). Детеминированное кольцо ~40 м.
+    from collections import defaultdict as _dd
+    _groups = _dd(list)
+    for f in feats:
+        _groups[(round(f['lat'], 5), round(f['lon'], 5))].append(f)
+    for _same in _groups.values():
+        if len(_same) < 2:
+            continue
+        for _i, f in enumerate(_same):
+            _ang = 2 * math.pi * _i / len(_same)
+            f['lat'] += 0.00036 * math.cos(_ang)
+            f['lon'] += 0.00052 * math.sin(_ang)
+    
     return feats
 
 
