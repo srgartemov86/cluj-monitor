@@ -37,7 +37,9 @@ _imo_sid = [1]  # sticky-sid: инкремент при неудаче = нов�
 _IMO_IMPS = ('chrome124', 'chrome131', 'chrome120', 'safari17_0')
 
 
-def imo_get(url, timeout=30, attempts=4):
+def imo_get(url, timeout=30, attempts=8):
+    # 4→8 попыток 18.07: DataDome ужесточился (~50%→~15% на попытку),
+    # пауза между попытками сбивает rate-детект
     """GET imobiliare.ro: ретраи с ротацией exit-IP через прокси (если задан).
     Возвращает Response со status 200, либо последний Response/None."""
     from curl_cffi import requests as cffi
@@ -59,6 +61,7 @@ def imo_get(url, timeout=30, attempts=4):
         except Exception:
             pass
         _imo_sid[0] += 1
+        time.sleep(1.5)
     return last
 
 
