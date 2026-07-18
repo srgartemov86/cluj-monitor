@@ -67,7 +67,10 @@ def gemini_summary(desc_ro):
               "commercial-property listing into English and compress to 2-4 short lines with only "
               "what matters for a restaurant tenant: space type/condition, street frontage/windows, "
               "utilities (ventilation, power, HVAC), terms (deposit, availability). "
-              "Plain text, no intro, no bullets, no markdown.\n\n" + desc_ro[:2000])
+              "Plain text, no intro, no bullets, no markdown. "
+              "Then, on the LAST line, output exactly 'LOCATION: <street name or nearby landmarks "
+              "mentioned in the text, max 8 words>' or 'LOCATION: none' if the text gives no hint.\n\n"
+              + desc_ro[:2000])
     body = {'contents': [{'parts': [{'text': prompt}]}],
             # думающие flash-модели тратят токены на reasoning ДО ответа —
             # 500 обрезало перевод на полуслове, нужен запас
@@ -86,20 +89,45 @@ def gemini_summary(desc_ro):
     return None
 
 
+def split_location_hint(text):
+    """Отделяет 'LOCATION: ...' (последняя строка ответа Gemini) от summary."""
+    if not text:
+        return text, None
+    m = re.search(r'\n?LOCATION:\s*(.+)\s*$', text, re.IGNORECASE)
+    if not m:
+        return text, None
+    hint = m.group(1).strip().rstrip('.')
+    if hint.lower() in ('none', 'n/a', '-'):
+        hint = None
+    return text[:m.start()].rstrip(), hint
+
+
 def english_summary(pass_rec):
     """Английский Summary для caption/таблицы/карты: Gemini → глоссарий-fallback."""
     state_path = os.path.join(os.environ.get('CLUJ_DATA', '.'), 'state.json')
     desc = ''
     try:
         with open(state_path, encoding='utf-8') as f:
-            desc = (json.load(f).get('listings', {})
-                    .get(pass_rec['listing_key'], {}).get('description') or '')
+            rec = json.load(f).get('listings', {}).get(pass_rec['listing_key'], {})
+        # заголовок вперёд: ориентиры места агенты часто пишут ТОЛЬКО в нём
+        # (кейс 'in zona OMV Marasti, Toni Auto, Posta' — в описании их нет).
+        # У старых лотов title в state нет — восстанавливаем из URL-слага.
+        title = rec.get('title')
+        if not title and rec.get('url'):
+            m = re.search(r'/(?:d/)?oferta/([a-z0-9\-]+?)(?:-ID\w+)?(?:\.html)?$',
+                          rec['url'], re.IGNORECASE)
+            if m:
+                title = m.group(1).replace('-', ' ')
+        desc = ' — '.join(x for x in (title, rec.get('description')) if x)
     except Exception:
         pass
     if not desc:  # в state нет — берём snippet из caption
         m = re.search(r'📝 Summary:\s*(.+)', pass_rec.get('caption') or '', re.DOTALL)
         desc = m.group(1).strip() if m else ''
-    return gemini_summary(desc) or glossary_en(desc)
+    g = gemini_summary(desc)
+    if g:
+        return split_location_hint(g)
+    return glossary_en(desc), None
 
 
 def run_json(args, timeout):
@@ -159,7 +187,17 @@ def main():
     else:
         for p in passes:
             caption = p.get('caption') or ''
-            summary = english_summary(p)
+            summary, loc_hint = english_summary(p)
+            # адресная зацепка из текста объявления (улица/ориентиры) — в строку 📍,
+            # когда структурного адреса нет (кейс OLX 'zona OMV Marasti...')
+            if loc_hint:
+                for stub in ('📍 no street address (area only)',
+                             '📍 no street address (map pin is exact)',
+                             '📍 no address or map pin in the listing',
+                             '📍 no exact address'):
+                    if stub in caption:
+                        caption = caption.replace(stub, f'📍 ~{loc_hint} (from listing text)')
+                        break
             # Переклеиваем блок Summary на английский (cycle.py кладёт румынский snippet).
             # ВАЖНО: cycle приклеивает строку скоринга ПОСЛЕ Summary — сохранить её
             # (баг 2026-07-11: тупой срез до конца снёс "Location score" из карточек).

@@ -1123,6 +1123,7 @@ def run_process():
 
             rec = {
                 'source': src, 'id': cid, 'url': cand['url'],
+                'title': (detail.get('title') or cand.get('title') or '')[:200],
                 'area_m2': cand.get('area'), 'price_eur': cand.get('price'),
                 'floor': detail.get('floor') or cand.get('floor'),
                 'address': (detail.get('street') or cand.get('street') or '').strip(),
