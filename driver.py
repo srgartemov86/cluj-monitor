@@ -306,7 +306,8 @@ def main():
                    f"· {ds['rejects']} rejected → Rejected tab:\n"
                    f"  https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=133442332\n"
                    f"· {ds['passes']} passed the filters and posted here → Locations tab:\n"
-                   f"  https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918")
+                   f"  https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918\n"
+                   f"🗺 Map: https://dodo-cluj-lokali.surge.sh/lokali.html")
             if ds.get('duplicates'):
                 msg += f"\n· {ds['duplicates']} cross-posted duplicates merged"
             if send_text(msg):
