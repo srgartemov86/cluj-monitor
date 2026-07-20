@@ -1585,7 +1585,10 @@ def run_canary(s):
                      ('imobiliare_sweep', curl_sweep.sweep_imobiliare)):
         try:
             lst = fn(1)
-            ok = bool(lst and lst[0].get('price') and lst[0].get('area'))
+            # не по первой карточке: конкретный лот легально может быть без
+            # площади в слаге (ложная тревога 18.07) — здоровье = хоть кто-то
+            # из первых 5 распарсился полностью
+            ok = any(l.get('price') and l.get('area') for l in lst[:5])
             res[name] = 'ok' if ok else 'FAIL: empty/no price'
         except Exception as e:
             res[name] = f'FAIL: {e}'
