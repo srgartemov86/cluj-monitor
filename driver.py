@@ -153,10 +153,12 @@ def send_album(caption, photos):
         os.unlink(cap_path)
 
 
-def send_text(text, reply_to=None, chat_id=None):
+def send_text(text, reply_to=None, chat_id=None, html=False):
     args = ['send_text.py', chat_id or CHAT_ID, '-']
     if reply_to:
         args += ['--reply-to', str(reply_to)]
+    if html:
+        args += ['--html']
     r = subprocess.run([sys.executable] + args, input=text, capture_output=True,
                        text=True, timeout=60, cwd=HERE)
     sys.stderr.write(r.stderr or '')
@@ -300,17 +302,16 @@ def main():
         today = now_cluj.strftime('%Y-%m-%d')
         if (now_cluj.hour >= 21 and ds.get('date') == today
                 and st.get('daily_digest_sent') != today):
+            _sheet = 'https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit'
             msg = (f"📊 Daily summary · {now_cluj.strftime('%b %d')}\n"
                    f"· {ds['runs']} feed scans, ~{ds['sweep_last']} live listings watched\n"
                    f"· {ds['new']} new listings analyzed in detail\n"
-                   f"· {ds['rejects']} rejected → Rejected tab:\n"
-                   f"  https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=133442332\n"
-                   f"· {ds['passes']} passed the filters and posted here → Locations tab:\n"
-                   f"  https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918\n"
-                   f"🗺 Map: https://dodo-cluj-lokali.surge.sh/lokali.html")
+                   f"· {ds['rejects']} rejected → <a href=\"{_sheet}#gid=133442332\">Rejected tab</a>\n"
+                   f"· {ds['passes']} passed the filters and posted here → <a href=\"{_sheet}#gid=498788918\">Locations tab</a>\n"
+                   f"🗺 <a href=\"https://dodo-cluj-lokali.surge.sh/lokali.html\">Map</a>")
             if ds.get('duplicates'):
                 msg += f"\n· {ds['duplicates']} cross-posted duplicates merged"
-            if send_text(msg):
+            if send_text(msg, html=True):
                 st['daily_digest_sent'] = today
                 with open(state_path, 'w', encoding='utf-8') as f:
                     json.dump(st, f, ensure_ascii=False, indent=2)
