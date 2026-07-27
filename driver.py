@@ -303,11 +303,23 @@ def main():
         if (now_cluj.hour >= 21 and ds.get('date') == today
                 and st.get('daily_digest_sent') != today):
             _sheet = 'https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit'
+            # прошедшие лоты дня — буллетами: район · м² · цена, ссылкой на объявление
+            _passed_lines = ''
+            _today_sent = [v for v in st.get('listings', {}).values()
+                           if (v.get('sent_at') or '')[:10] == today
+                           and v.get('telegram_message_id')]
+            _today_sent.sort(key=lambda v: v.get('sent_at') or '')
+            for v in _today_sent[:10]:
+                _label = (f"{v.get('district') or '?'} · {v.get('area_m2')} m² · "
+                          f"{v.get('price_eur')} €/mo")
+                _passed_lines += (f"\n   • <a href=\"{v.get('url')}\">{_label}</a>"
+                                  if v.get('url') else f"\n   • {_label}")
             msg = (f"📊 Daily summary · {now_cluj.strftime('%b %d')}\n"
                    f"· {ds['runs']} feed scans, ~{ds['sweep_last']} live listings watched\n"
                    f"· {ds['new']} new listings analyzed in detail\n"
                    f"· {ds['rejects']} rejected → <a href=\"{_sheet}#gid=133442332\">Rejected tab</a>\n"
-                   f"· {ds['passes']} passed the filters and posted here → <a href=\"{_sheet}#gid=498788918\">Locations tab</a>\n"
+                   f"· {ds['passes']} passed the filters and posted here → <a href=\"{_sheet}#gid=498788918\">Locations tab</a>"
+                   f"{_passed_lines}\n"
                    f"🗺 Map: https://dodo-cluj-lokali.surge.sh/lokali.html")
             if ds.get('duplicates'):
                 msg += f"\n· {ds['duplicates']} cross-posted duplicates merged"
