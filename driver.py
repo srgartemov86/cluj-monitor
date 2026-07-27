@@ -308,7 +308,7 @@ def main():
                    f"· {ds['new']} new listings analyzed in detail\n"
                    f"· {ds['rejects']} rejected → <a href=\"{_sheet}#gid=133442332\">Rejected tab</a>\n"
                    f"· {ds['passes']} passed the filters and posted here → <a href=\"{_sheet}#gid=498788918\">Locations tab</a>\n"
-                   f"🗺 <a href=\"https://dodo-cluj-lokali.surge.sh/lokali.html\">Map</a>")
+                   f"🗺 Map: https://dodo-cluj-lokali.surge.sh/lokali.html")
             if ds.get('duplicates'):
                 msg += f"\n· {ds['duplicates']} cross-posted duplicates merged"
             if send_text(msg, html=True):
