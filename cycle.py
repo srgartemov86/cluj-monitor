@@ -1047,6 +1047,18 @@ def run_process():
                 sources_down.append(name)
                 sweep_errors.append(f'{name}:{type(e).__name__}')
 
+        # Здоровье парсинга по источникам — для канарейки (судит по факту цикла,
+        # НЕ делает своих запросов: лишний фетч ловил 403 после прокси-очереди цикла)
+        _sw = {}
+        for l in all_l:
+            _src_key = (l.get('source') or '?').split('.')[0]
+            d = _sw.setdefault(_src_key, {'cards': 0, 'parsed': 0})
+            d['cards'] += 1
+            if l.get('price') and l.get('area'):
+                d['parsed'] += 1
+        s['last_sweep_health'] = {'at': now_iso(), 'by_source': _sw,
+                                  'down': list(sources_down)}
+
         # Prefilter — same logic as curl_sweep.main()
         filtered = []
         for l in all_l:
@@ -1579,19 +1591,24 @@ def run_canary(s):
     """Канарейка: раз в сутки по 1 живому лоту с каждого источника — парсер вернул
     цену/фото/описание? Сломался парсер или бан — видно в тот же день (health-алерт)."""
     res = {}
-    # sweep-каналы: пустой ответ или без цены = сломан парсинг листинга/бан
-    for name, fn in (('olx_sweep', curl_sweep.sweep_olx),
-                     ('storia_sweep', curl_sweep.sweep_storia),
-                     ('imobiliare_sweep', curl_sweep.sweep_imobiliare)):
-        try:
-            lst = fn(1)
-            # не по первой карточке: конкретный лот легально может быть без
-            # площади в слаге (ложная тревога 18.07) — здоровье = хоть кто-то
-            # из первых 5 распарсился полностью
-            ok = any(l.get('price') and l.get('area') for l in lst[:5])
-            res[name] = 'ok' if ok else 'FAIL: empty/no price'
-        except Exception as e:
-            res[name] = f'FAIL: {e}'
+    # sweep-каналы: по результату sweep'а ПОСЛЕДНЕГО цикла из state — свой
+    # контрольный фетч дублировал трафик и ловил 403 после прокси-очереди
+    # цикла (ложные тревоги 18.07 и 27.07)
+    sh = s.get('last_sweep_health') or {}
+    by_src = sh.get('by_source') or {}
+    down = set(sh.get('down') or [])
+    for name, srck in (('olx_sweep', 'olx'), ('storia_sweep', 'storia'),
+                       ('imobiliare_sweep', 'imobiliare')):
+        if srck in down:
+            res[name] = 'FAIL: source down in last sweep'
+            continue
+        d = by_src.get(srck) or {}
+        if not d.get('cards'):
+            res[name] = 'FAIL: 0 cards in last sweep'
+        elif not d.get('parsed'):
+            res[name] = f"FAIL: {d['cards']} cards, 0 parsed (markup changed?)"
+        else:
+            res[name] = 'ok'
     # detail-каналы: свежие живые in_sheet лоты каждого источника.
     # Пробуем до 3: свежеудалённый лот может отдавать 200-заглушку/редирект —
     # один мёртвый подопытный не должен давать ложную тревогу. FAIL — если все.
