@@ -1246,31 +1246,6 @@
       ],
       "rejected": true
     },
-    "imobiliare_270262555": {
-      "source": "imobiliare.ro",
-      "id": "270262555",
-      "url": "https://www.imobiliare.ro/oferta/spatiu-comercial-de-inchiriat-cluj-napoca-central-163mp-270262555",
-      "area_m2": 163,
-      "price_eur": 4500,
-      "floor": null,
-      "address": "",
-      "district": "Centru",
-      "subdistrict": null,
-      "first_seen_at": "2026-07-10T15:27:27.920665+00:00",
-      "last_seen_at": "2026-07-10T15:27:27.920683+00:00",
-      "in_sheet": false,
-      "alerted": false,
-      "flags": [
-        "office:\\bbirouri\\b",
-        "uncertain_floor"
-      ],
-      "description": "Va oferim spre inchiriere un spatiu comercial in suprafata utila de 163 m2 situat in imediata apropiere a pietei Avram Iancu si a Directiei Finantelor Publice. Spatiul comercial este situat la parterul unei cladiri de birouri, dispune de o vitrina de 9 metri, este compartimentat la interior cu pereti din structura usoara, fiind usor de recompartimentat si personalizat. Ideal pentru diverse activitati. Disponibil imediat. Nu se percepe TVA. Pentru detalii si vizionari va stam la dispozitie. Nr grupuri sanitare: 1 Suprafata construita: 170 mp Nr incaperi: 3 Utilitati - Sistem incalzire (Centrala proprie,Calorifere); Climatizare (Aer conditionat); Utilitati generale (Curent,Apa,Canalizare,Gaz) Finisaje - Izolatii termice (Exterior); Podele (Gresie); Stare interior (Buna); Ferestre cu geam termopan (PVC) pret inchiriere: 4500 moneda inchiriere: EUR Disponibilitate proprietate: imediat",
-      "photo_url": "https://i.roamcdn.net/prop/imo/og-image-full-1200w-630h/qhfordKdZeq8WHy-6hG-Gw/-_1qwZnHqNaAA/_1I8pjhgYGxuaGpkaGAA/1ff8b2bd-9375-4fa4-8db8-9ed47adf9490.jpg",
-      "photo_urls": [
-        "https://i.roamcdn.net/prop/imo/og-image-full-1200w-630h/qhfordKdZeq8WHy-6hG-Gw/-_1qwZnHqNaAA/_1I8pjhgYGxuaGpkaGAA/1ff8b2bd-9375-4fa4-8db8-9ed47adf9490.jpg"
-      ],
-      "rejected": true
-    },
     "imobiliare_273045215": {
       "source": "imobiliare.ro",
       "id": "273045215",
@@ -24034,7 +24009,16 @@
       "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=2043261240"
     }
   },
-  "pending_candidates": [],
+  "pending_candidates": [
+    {
+      "id": "270262555",
+      "source": "imobiliare.ro",
+      "url": "https://www.imobiliare.ro/oferta/spatiu-comercial-de-inchiriat-cluj-napoca-central-163mp-270262555",
+      "area": 163,
+      "price": 4500,
+      "floor": null
+    }
+  ],
   "source_health": {},
   "district_blacklist": [],
   "last_cycle_at": "2026-07-30T13:02:19.621666+00:00",
