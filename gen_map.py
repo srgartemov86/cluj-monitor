@@ -306,7 +306,7 @@ def regeo_nominatim(state, max_shift_threshold_m=200, district_radius_m=6000):
                 try:
                     rla = float(r['lat']); rlo = float(r['lon'])
                 except: continue
-                if not (44.65 <= rla <= 44.95 and 20.30 <= rlo <= 20.65): continue
+                if not (46.68 <= rla <= 46.85 and 23.45 <= rlo <= 23.72): continue  # bbox Клуж-Напоки
                 cl, t = r.get('class', ''), r.get('type', '')
                 # Пропускаем city/suburb-level и slishком общие boundary
                 if cl == 'boundary': continue

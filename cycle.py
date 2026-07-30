@@ -770,7 +770,7 @@ def write_rejects_to_sheet(rejects):
         return {'ok': True, 'inserted': 0}
     try:
         from zoneinfo import ZoneInfo
-        now_bg = datetime.now(ZoneInfo('Europe/Belgrade')).strftime('%Y-%m-%d %H:%M')
+        now_bg = datetime.now(ZoneInfo('Europe/Bucharest')).strftime('%Y-%m-%d %H:%M')
     except Exception:
         now_bg = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
     rows = []
