@@ -60,6 +60,14 @@ TRG_LAT, TRG_LON = 46.7694, 23.5893  # Piața Unirii
 RADIUS_KM = 6.0
 MAX_DETAILS_PER_CYCLE = 30
 MAX_DETAILS_PER_SOURCE = 10
+# Сколько циклов пытаемся дожать лот, застрявший без терминального статуса
+# (упала отправка в Telegram и т.п.). known_ids() считает его известным,
+# из выдачи он больше не придёт — очередь восстанавливаем сами.
+STUCK_RETRIES = 6
+# Фото — самая долгая часть цикла (часть источников идёт через прокси).
+# 6 кадров хватает для решения по локации; качаем их параллельно.
+MAX_PHOTOS_PER_LOT = 6
+PHOTO_WORKERS = 5
 # Пригороды-спальники за границей города (задача = только Cluj-Napoca).
 # Florești формально 7-8 км от Unirii — радиус его тоже режет, slug для надёжности.
 ZEMUN_SLUGS = ('floresti', 'baciu', 'apahida', 'sannicoara')
@@ -895,7 +903,13 @@ def dedupe_passes_same_cycle(s, passes, duplicates):
                                          qrec['geo_lat'], qrec['geo_lon']) < 0.25
             same_text = (desc_prefix(p_['listing_key']) and
                          desc_prefix(p_['listing_key']) == desc_prefix(q['listing_key']))
-            if geo_close or same_text:
+            # то же правило, что в find_active_duplicate: точный метраж + точная
+            # цена + тот же район = кросс-пост, даже когда координат ещё нет
+            exact = (p_.get('area') == q.get('area') and p_.get('price') == q.get('price')
+                     and (p_.get('district') or '').split('(')[0].strip().lower()
+                     == (q.get('district') or '').split('(')[0].strip().lower()
+                     and bool(p_.get('district')))
+            if geo_close or same_text or exact:
                 dup_of = q
                 break
         if dup_of is None:
@@ -937,6 +951,15 @@ def find_active_duplicate(s, rec, self_key):
         va, vp = v.get('area_m2'), v.get('price_eur')
         if not va or not vp or abs(va - a) > 3 or not _price_similar(p, vp):
             continue
+        # Точное совпадение метража И цены при том же районе — кросс-пост одного
+        # помещения. Гео тут не помогает: у части источников координат нет на
+        # момент проверки, а адресный геокодинг двух записей одного адреса легко
+        # расходится на километры.
+        _d1 = (rec.get('district') or '').split('(')[0].strip().lower()
+        _d2 = (v.get('district') or '').split('(')[0].strip().lower()
+        if va == a and vp == p and _d1 and _d1 == _d2:
+            return k, v
+
         vlat, vlon = v.get('geo_lat'), v.get('geo_lon')
         if lat is not None and vlat is not None:
             if haversine_km(lat, lon, vlat, vlon) <= 0.2:
@@ -1100,7 +1123,56 @@ def run_process():
         new_lots = [l for l in filtered if l.get('id') and l['id'] not in known]
 
         pending = list(s.get('pending_candidates', []))
-        candidates = new_lots + pending
+
+        # Лоты, зависшие без терминального статуса: прошли фильтр, но не уехали
+        # в чат/таблицу (сбой сети или Telegram). В выдаче они уже «известные»,
+        # поэтому вернуть их в работу может только этот проход.
+        stuck = []
+        for _k, _v in (s.get('listings') or {}).items():
+            if not isinstance(_v, dict):
+                continue
+            if _v.get('in_sheet') or _v.get('rejected') or _v.get('removed_from_sheet'):
+                continue
+            if not (_v.get('url') and _v.get('id')):
+                continue
+            _n = int(_v.get('stuck_retries') or 0)
+            if _n >= STUCK_RETRIES:
+                continue
+            _v['stuck_retries'] = _n + 1
+            stuck.append({
+                'source': _v.get('source'), 'id': _v.get('id'), 'url': _v['url'],
+                'title': _v.get('title') or '', 'area': _v.get('area_m2'),
+                'price': _v.get('price_eur'), 'street': _v.get('address') or '',
+                'municipality': _v.get('district') or '', 'type': None,
+                'floor': _v.get('floor'), 'lat': _v.get('geo_lat'), 'lon': _v.get('geo_lon'),
+                'date': _v.get('refreshed_at') or '',
+            })
+        if stuck:
+            print(f'  requeued stuck (no terminal status): {len(stuck)}', file=sys.stderr)
+
+        # Цена/метраж в очереди устаревают: кандидат помнит значения на момент
+        # постановки. Освежаем из текущего свипа, иначе лот, вышедший за рамки
+        # (правка цены владельцем), проезжает фильтр по старому значению.
+        _fresh = {}
+        for _l in all_l:
+            if _l.get('id'):
+                _fresh[f"{(_l.get('source') or '?').split('.')[0]}_{_l['id']}"] = _l
+
+        def _refresh(c):
+            f = _fresh.get(f"{(c.get('source') or '?').split('.')[0]}_{c.get('id')}")
+            if f:
+                if f.get('price'):
+                    c['price'] = f['price']
+                if f.get('area'):
+                    c['area'] = f['area']
+            return c
+
+        pending = [_refresh(c) for c in pending]
+        stuck = [_refresh(c) for c in stuck]
+
+        # Зависшие идут ПЕРВЫМИ: им осталась только отправка, а очередь pending
+        # может быть на сотни лотов и отодвинет их на сутки.
+        candidates = stuck + new_lots + pending
 
         # Cap per source
         per_src, capped, leftover = {}, [], []
@@ -1220,12 +1292,14 @@ def run_process():
             sc = score_and_cache(rec)
 
             # Все фото лота (до 10) — Telegram-альбом одним сообщением.
-            photo_paths = []
             gallery = purls or ([detail['photo_url']] if detail.get('photo_url') else [])
-            for pi, pu in enumerate(gallery[:10]):
-                pp = download_photo(pu, f'{key}_{pi}')
-                if pp:
-                    photo_paths.append(str(pp))
+            sel = list(enumerate(gallery[:MAX_PHOTOS_PER_LOT]))
+            photo_paths = []
+            if sel:
+                from concurrent.futures import ThreadPoolExecutor
+                with ThreadPoolExecutor(max_workers=PHOTO_WORKERS) as _ex:
+                    got = list(_ex.map(lambda t: download_photo(t[1], f'{key}_{t[0]}'), sel))
+                photo_paths = [str(x) for x in got if x]  # ex.map сохраняет порядок
             photo_path = photo_paths[0] if photo_paths else None
 
             # --- Инварианты перед отправкой: запрет тихой деградации ---
