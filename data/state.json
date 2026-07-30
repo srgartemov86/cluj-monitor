@@ -22655,128 +22655,6 @@
       "sent_at": "2026-07-29T10:31:57.971515+00:00",
       "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=869202877"
     },
-    "storia_10495485": {
-      "source": "storia.ro",
-      "id": "10495485",
-      "url": "https://www.storia.ro/ro/oferta/spaiu-comercial-marasti-trafic-pietonal-intens-vizibilitate-IDI2m1",
-      "title": "Spațiu Comercial – Marasti – Trafic Pietonal Intens - Vizibilitate",
-      "area_m2": 112,
-      "price_eur": 3260,
-      "floor": "parter",
-      "address": "Bulevardul 21 Decembrie 1989",
-      "district": "Mărăști",
-      "subdistrict": null,
-      "first_seen_at": "2026-07-29T10:29:58.458604+00:00",
-      "last_seen_at": "2026-07-29T10:29:58.458622+00:00",
-      "in_sheet": false,
-      "alerted": false,
-      "flags": [
-        "office:\\bbirouri\\b"
-      ],
-      "description": "ID: CP3264633 Disponibil spre închiriere un spațiu comercial generos, situat în inima cartierului Marasti, una dintre cele mai căutate și dinamice zone comerciale din Cluj-Napoca. Locație premium – poziționat într-o zonă cu trafic pietonal și rutier intens, aproape de mijloace de transport în comun, centre de birouri, instituții publice și zone rezidențiale dense. Suprafață totală: 112 mp, dispus pe parter, ideal pentru diverse activități comerciale. Caracteristici spațiu: - Acces facil din stradă - Vizibilitate excelentă – fațadă generoasă - Posibilitate de compartimentare flexibilă - Utilități complete (curent trifazic, apă, canalizare, internet) - Posibilitate de personalizare în funcție de nevoile chiriașului Pretul de inchiriere este de 3.260Euro/luna GOLD PARK / Commercial Real Estate – dedicata exclusiv segmentului comercial, am ajuns sa intelegem cele mai profunde nevoi ale clientilor si sa oferim cele mai bune locatii din piata pentru fiecare business. Pentru mai multe oferte asemanatoare, contacteaza-ne acum!",
-      "geo_lat": 46.777515,
-      "geo_lon": 23.612917,
-      "geo_source": "detail",
-      "refreshed_at": "2026-07-29T10:18:33Z",
-      "published_at": "2026-07-29T10:18:22Z",
-      "photo_url": "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjFmaTJoOHdzemp4ZjEtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.3mrLW9WC2efUGXjE92PlzDLRKvx2c3Bxeud2naOXlQ4/image;s=2048x1536;q=80",
-      "photo_urls": [
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjFmaTJoOHdzemp4ZjEtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.3mrLW9WC2efUGXjE92PlzDLRKvx2c3Bxeud2naOXlQ4/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjF0czJwY3kxeHhmay1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.13S1dV2-rNYzmH7InQH0Tr__OnAoqB6cX3o9c533ZGE/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Imsxa2dnaHhpc2NkazMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.ZT0Q-lQhz2OFJuOuicW6AdDekEF7ujHv3nRS-8NiiPE/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjVsajc4OWhvcHMxOC1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.LVR5jOewDR4o7-tbt7yFA78tWy7HIqGZ_aSdc0GUmQM/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjhrZTBwMGJyeHU3NDItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.CkZ_gwFd5J3O4IBeSZl3ErViD-I0G6J2Ts8wRpzbHv8/image;s=655x491;q=80"
-      ],
-      "rejected": true,
-      "score": 72,
-      "score_data": {
-        "score": 72,
-        "residents_500": 10881,
-        "residents_1000": 34001,
-        "transit_300": 4,
-        "shops_300": 89,
-        "food_400": 14,
-        "offices_500": 17,
-        "edu_500": 6,
-        "competitors_200": 11,
-        "nearest_dodo_km": null,
-        "breakdown": {
-          "catchment": 1.0,
-          "secondary": 0.85,
-          "transit": 0.67,
-          "retail": 1.0,
-          "food": 0.7,
-          "daytime": 1.0,
-          "comp_penalty": 1.0,
-          "cannib_penalty": 0.0
-        },
-        "pop_source": "hybrid",
-        "residents_500_kontur": null,
-        "residents_500_osm_raw": 10881
-      },
-      "scored_at": "2026-07-29T10:30:04.704369+00:00"
-    },
-    "storia_91049548500067": {
-      "source": "storia.ro",
-      "id": "91049548500067",
-      "url": "https://www.storia.ro/ro/oferta/spaiu-comercial-marasti-trafic-pietonal-intens-vizibilitate-IDI2m1",
-      "title": "Spațiu Comercial – Marasti – Trafic Pietonal Intens - Vizibilitate",
-      "area_m2": 112,
-      "price_eur": 3260,
-      "floor": "parter",
-      "address": "Bulevardul 21 Decembrie 1989",
-      "district": "Mărăști",
-      "subdistrict": null,
-      "first_seen_at": "2026-07-29T10:29:58.567666+00:00",
-      "last_seen_at": "2026-07-29T10:29:58.567683+00:00",
-      "in_sheet": false,
-      "alerted": false,
-      "flags": [
-        "office:\\bbirouri\\b"
-      ],
-      "description": "ID: CP3264633 Disponibil spre închiriere un spațiu comercial generos, situat în inima cartierului Marasti, una dintre cele mai căutate și dinamice zone comerciale din Cluj-Napoca. Locație premium – poziționat într-o zonă cu trafic pietonal și rutier intens, aproape de mijloace de transport în comun, centre de birouri, instituții publice și zone rezidențiale dense. Suprafață totală: 112 mp, dispus pe parter, ideal pentru diverse activități comerciale. Caracteristici spațiu: - Acces facil din stradă - Vizibilitate excelentă – fațadă generoasă - Posibilitate de compartimentare flexibilă - Utilități complete (curent trifazic, apă, canalizare, internet) - Posibilitate de personalizare în funcție de nevoile chiriașului Pretul de inchiriere este de 3.260Euro/luna GOLD PARK / Commercial Real Estate – dedicata exclusiv segmentului comercial, am ajuns sa intelegem cele mai profunde nevoi ale clientilor si sa oferim cele mai bune locatii din piata pentru fiecare business. Pentru mai multe oferte asemanatoare, contacteaza-ne acum!",
-      "geo_lat": 46.777515,
-      "geo_lon": 23.612917,
-      "geo_source": "detail",
-      "refreshed_at": "2026-07-29T10:18:33Z",
-      "published_at": "2026-07-29T10:18:22Z",
-      "photo_url": "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjFmaTJoOHdzemp4ZjEtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.3mrLW9WC2efUGXjE92PlzDLRKvx2c3Bxeud2naOXlQ4/image;s=2048x1536;q=80",
-      "photo_urls": [
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjFmaTJoOHdzemp4ZjEtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.3mrLW9WC2efUGXjE92PlzDLRKvx2c3Bxeud2naOXlQ4/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjF0czJwY3kxeHhmay1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.13S1dV2-rNYzmH7InQH0Tr__OnAoqB6cX3o9c533ZGE/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Imsxa2dnaHhpc2NkazMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.ZT0Q-lQhz2OFJuOuicW6AdDekEF7ujHv3nRS-8NiiPE/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjVsajc4OWhvcHMxOC1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.LVR5jOewDR4o7-tbt7yFA78tWy7HIqGZ_aSdc0GUmQM/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjhrZTBwMGJyeHU3NDItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.CkZ_gwFd5J3O4IBeSZl3ErViD-I0G6J2Ts8wRpzbHv8/image;s=655x491;q=80"
-      ],
-      "rejected": true,
-      "score": 72,
-      "score_data": {
-        "score": 72,
-        "residents_500": 10881,
-        "residents_1000": 33904,
-        "transit_300": 4,
-        "shops_300": 89,
-        "food_400": 14,
-        "offices_500": 17,
-        "edu_500": 6,
-        "competitors_200": 11,
-        "nearest_dodo_km": null,
-        "breakdown": {
-          "catchment": 1.0,
-          "secondary": 0.85,
-          "transit": 0.67,
-          "retail": 1.0,
-          "food": 0.7,
-          "daytime": 1.0,
-          "comp_penalty": 1.0,
-          "cannib_penalty": 0.0
-        },
-        "pop_source": "hybrid",
-        "residents_500_kontur": null,
-        "residents_500_osm_raw": 10881
-      },
-      "scored_at": "2026-07-29T10:31:42.528704+00:00"
-    },
     "olx_301722180": {
       "source": "olx.ro",
       "id": "301722180",
@@ -22916,66 +22794,6 @@
         "residents_500_osm_raw": 10501
       },
       "scored_at": "2026-07-29T12:33:28.570980+00:00"
-    },
-    "olx_307370031": {
-      "source": "olx.ro",
-      "id": "307370031",
-      "url": "https://www.olx.ro/d/oferta/spatiu-comercial-marasti-trafic-pietonal-intens-vizibilitate-IDkNGZ9.html",
-      "title": "Spațiu Comercial – Marasti – Trafic Pietonal Intens - Vizibilitate",
-      "area_m2": 112,
-      "price_eur": 3260,
-      "floor": "parter",
-      "address": "",
-      "district": "Mărăști",
-      "subdistrict": null,
-      "first_seen_at": "2026-07-29T12:31:42.557392+00:00",
-      "last_seen_at": "2026-07-29T12:31:42.557407+00:00",
-      "in_sheet": false,
-      "alerted": false,
-      "flags": [
-        "office:\\bbirouri\\b"
-      ],
-      "description": "ID: CP3264633 Disponibil spre închiriere un spațiu comercial generos, situat în inima cartierului Marasti, una dintre cele mai căutate și dinamice zone comerciale din Cluj-Napoca. Locație premium – poziționat într-o zonă cu trafic pietonal și rutier intens, aproape de mijloace de transport în comun, centre de birouri, instituții publice și zone rezidențiale dense. Suprafață totală: 112 mp, dispus pe parter, ideal pentru diverse activități comerciale. Caracteristici spațiu: - Acces facil din stradă - Vizibilitate excelentă – fațadă generoasă - Posibilitate de compartimentare flexibilă - Utilități complete (curent trifazic, apă, canalizare, internet) - Posibilitate de personalizare în funcție de nevoile chiriașului Pretul de inchiriere este de 3.260Euro/luna GOLD PARK / Commercial Real Estate – dedicata exclusiv segmentului comercial, am ajuns sa intelegem cele mai profunde nevoi ale clientilor si sa oferim cele mai bune locatii din piata pentru fiecare business. Pentru mai multe oferte asemanatoare, contacteaza-ne acum!",
-      "geo_lat": 46.777517,
-      "geo_lon": 23.612916,
-      "geo_source": "detail_approx",
-      "refreshed_at": "2026-07-29T13:18:44+03:00",
-      "photo_url": "https://frankfurt.apollo.olxcdn.com:443/v1/files/l5441wvk6zrv3-RO/image;s=1280x598",
-      "photo_urls": [
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/l5441wvk6zrv3-RO/image;s=1280x598",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/z907k1qzwb521-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/51f7fvt5thhn-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/rvzoxoed8hnl2-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/l2huxc7z05921-RO/image"
-      ],
-      "rejected": true,
-      "score": 72,
-      "score_data": {
-        "score": 72,
-        "residents_500": 10874,
-        "residents_1000": 34005,
-        "transit_300": 4,
-        "shops_300": 90,
-        "food_400": 14,
-        "offices_500": 17,
-        "edu_500": 6,
-        "competitors_200": 11,
-        "nearest_dodo_km": null,
-        "breakdown": {
-          "catchment": 1.0,
-          "secondary": 0.85,
-          "transit": 0.67,
-          "retail": 1.0,
-          "food": 0.7,
-          "daytime": 1.0,
-          "comp_penalty": 1.0,
-          "cannib_penalty": 0.0
-        },
-        "pop_source": "hybrid",
-        "residents_500_kontur": null,
-        "residents_500_osm_raw": 10874
-      },
-      "scored_at": "2026-07-29T12:33:24.600502+00:00"
     },
     "storia_10495871": {
       "source": "storia.ro",
@@ -24089,7 +23907,16 @@
       "scored_at": "2026-07-30T12:10:37.384517+00:00"
     }
   },
-  "pending_candidates": [],
+  "pending_candidates": [
+    {
+      "id": "307370031",
+      "source": "olx.ro",
+      "url": "https://www.olx.ro/d/oferta/spatiu-comercial-marasti-trafic-pietonal-intens-vizibilitate-IDkNGZ9.html",
+      "area": 112,
+      "price": 3260,
+      "floor": null
+    }
+  ],
   "source_health": {},
   "district_blacklist": [],
   "last_cycle_at": "2026-07-30T12:11:52.744102+00:00",

@@ -569,8 +569,22 @@ def apply_filters(cand, detail, skip_price=False):
     haystack = ((detail.get('description', '') or '') + ' ' +
                 (detail.get('title', '') or '')).lower()
 
+    # Офис-паттерн в контексте СОСЕДСТВА («aproape de centre de birouri») — это
+    # описание окружения, не назначения помещения. Ложный реджект 30.07:
+    # olx_307370031, Mărăști 112м², «рядом с офисными центрами» → office:\bbirouri\b.
+    _PROX = re.compile(
+        r'(?:aproape\s+de|l[âa]ng[ăa]|[îi]n\s+apropiere[a]?(?:\s+de)?|vizavi\s+de|'
+        r'zon[ăa]\s+cu|[îi]nconjurat\s+de|centre?\s+de|cl[ăa]diri\s+de)'
+        r'[a-zăâîșț,\s]{0,30}$')
     for pat in OFFICE_PATS:
-        if re.search(pat, haystack):
+        hard_hit = False
+        for m_ in re.finditer(pat, haystack):
+            ctx = haystack[max(0, m_.start() - 45):m_.start()]
+            if _PROX.search(ctx):
+                continue  # соседство — не считаем
+            hard_hit = True
+            break
+        if hard_hit:
             return False, flags, f'office:{pat[:25]}'
     for pat in MALL_PATS:
         if re.search(pat, haystack):
