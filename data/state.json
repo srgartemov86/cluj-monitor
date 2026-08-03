@@ -777,7 +777,7 @@
       "district": "Mănăștur",
       "subdistrict": null,
       "first_seen_at": "2026-07-10T15:27:29.576243+00:00",
-      "last_seen_at": "2026-08-03T12:31:39.767419+00:00",
+      "last_seen_at": "2026-08-03T14:06:14.312819+00:00",
       "in_sheet": true,
       "alerted": true,
       "flags": [
@@ -925,7 +925,8 @@
       "flags": [
         "price_far",
         "price=12"
-      ]
+      ],
+      "compacted": true
     },
     "olx_305932993": {
       "source": "olx.ro",
@@ -1132,7 +1133,7 @@
       "address": "Strada Intre Lacuri",
       "district": "Între Lacuri",
       "first_seen_at": "2026-07-10T15:27:36.692212+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052756+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557376+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -1150,7 +1151,7 @@
       "address": "Bulevardul 21 Decembrie 1989",
       "district": "Marasti",
       "first_seen_at": "2026-07-10T15:27:36.692302+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052775+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557393+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -1168,7 +1169,7 @@
       "address": "Strada Taietura Turcului",
       "district": "Gruia",
       "first_seen_at": "2026-07-10T15:27:36.693111+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052791+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557409+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -1205,7 +1206,7 @@
       "address": "",
       "district": "Bulgaria",
       "first_seen_at": "2026-07-10T15:27:36.693247+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052811+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557428+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -1263,7 +1264,7 @@
       "address": "",
       "district": "Cluj-Napoca",
       "first_seen_at": "2026-07-10T15:27:37.698985+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052828+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557444+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -1282,7 +1283,7 @@
       "address": "Strada Avram Iancu",
       "district": "Centru",
       "first_seen_at": "2026-07-10T15:27:38.183651+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052844+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557460+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -1300,7 +1301,7 @@
       "address": "",
       "district": "Cluj-Napoca",
       "first_seen_at": "2026-07-10T15:27:38.183718+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052857+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557472+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -1319,7 +1320,7 @@
       "address": "Strada Oasului",
       "district": "Iris",
       "first_seen_at": "2026-07-10T15:27:38.614183+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052870+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557485+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -1338,7 +1339,7 @@
       "address": "Calea Floresti",
       "district": "Mănăștur",
       "first_seen_at": "2026-07-10T15:27:39.261165+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052883+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557498+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -1356,7 +1357,7 @@
       "address": "Strada 1 Decembrie 1918",
       "district": "Campia Turzii",
       "first_seen_at": "2026-07-10T15:27:39.261265+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052899+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557513+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -1551,7 +1552,7 @@
       "address": "",
       "district": "Dâmbul Rotund",
       "first_seen_at": "2026-07-10T15:27:43.415822+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052915+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557529+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -4583,7 +4584,8 @@
       "flags": [
         "office:\\bbirouri\\b",
         "price=1150"
-      ]
+      ],
+      "compacted": true
     },
     "olx_304195019": {
       "source": "olx.ro",
@@ -5218,7 +5220,7 @@
       "address": "",
       "district": "Campia Turzii",
       "first_seen_at": "2026-07-14T09:09:26.242160+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052716+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557359+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -5341,7 +5343,7 @@
       "address": "Strada Fanatelor",
       "district": "Iris",
       "first_seen_at": "2026-07-14T10:55:05.275154+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052701+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557344+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -5646,7 +5648,7 @@
       "address": "Strada Traian Vuia",
       "district": "Someșeni",
       "first_seen_at": "2026-07-14T14:09:45.316094+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052687+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557331+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -6021,7 +6023,7 @@
       "district": "Mănăștur",
       "subdistrict": null,
       "first_seen_at": "2026-07-14T18:48:22.202469+00:00",
-      "last_seen_at": "2026-08-03T12:31:39.767419+00:00",
+      "last_seen_at": "2026-08-03T14:06:14.312819+00:00",
       "in_sheet": true,
       "alerted": true,
       "flags": [
@@ -6232,7 +6234,7 @@
       "address": "",
       "district": "Cluj-Napoca",
       "first_seen_at": "2026-07-15T08:54:46.484409+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052661+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557305+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -6250,7 +6252,7 @@
       "address": "",
       "district": "Someseni",
       "first_seen_at": "2026-07-15T08:54:46.484423+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052674+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557318+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -6522,7 +6524,7 @@
       "address": "",
       "district": "Cluj-Napoca",
       "first_seen_at": "2026-07-15T14:22:41.357293+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052647+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557291+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -7275,7 +7277,7 @@
       "address": "Strada Tudor Vladimirescu",
       "district": "Gruia",
       "first_seen_at": "2026-07-16T10:32:01.420199+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052632+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557277+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -7498,7 +7500,7 @@
       "address": "Strada Meteor",
       "district": "Zorilor",
       "first_seen_at": "2026-07-16T16:04:37.943689+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052616+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557260+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -7952,7 +7954,7 @@
       "district": "Borhanci",
       "subdistrict": null,
       "first_seen_at": "2026-07-17T10:29:47.179569+00:00",
-      "last_seen_at": "2026-08-03T12:31:39.767419+00:00",
+      "last_seen_at": "2026-08-03T14:06:14.312819+00:00",
       "in_sheet": true,
       "alerted": true,
       "flags": [
@@ -8055,7 +8057,7 @@
       "district": "Mărăști",
       "subdistrict": null,
       "first_seen_at": "2026-07-17T10:29:49.124868+00:00",
-      "last_seen_at": "2026-08-03T12:31:39.767419+00:00",
+      "last_seen_at": "2026-08-03T14:06:14.312819+00:00",
       "in_sheet": true,
       "alerted": true,
       "flags": [
@@ -8141,7 +8143,8 @@
       "flags": [
         "price_far",
         "price=16"
-      ]
+      ],
+      "compacted": true
     },
     "imobiliare_275563059": {
       "source": "imobiliare.ro",
@@ -8246,7 +8249,7 @@
       "district": "Centru",
       "subdistrict": null,
       "first_seen_at": "2026-07-17T11:09:23.507201+00:00",
-      "last_seen_at": "2026-08-03T12:31:39.767419+00:00",
+      "last_seen_at": "2026-08-03T14:06:14.312819+00:00",
       "in_sheet": true,
       "alerted": true,
       "flags": [
@@ -8491,7 +8494,7 @@
       "address": "Piata Unirii",
       "district": "Centru",
       "first_seen_at": "2026-07-17T16:04:57.243045+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052596+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557240+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -8753,7 +8756,7 @@
       "address": "Strada Decebal",
       "district": "Semicentral",
       "first_seen_at": "2026-07-18T10:05:27.786862+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052581+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557225+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -9932,7 +9935,7 @@
       "address": "Strada Regele Ferdinand",
       "district": "Centru",
       "first_seen_at": "2026-07-20T10:29:55.197493+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052566+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557211+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -10200,7 +10203,7 @@
       "address": "Strada George Baritiu",
       "district": "Centru",
       "first_seen_at": "2026-07-20T19:57:49.617879+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052551+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557196+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -10912,7 +10915,7 @@
       "address": "Strada Regele Ferdinand",
       "district": "Centru",
       "first_seen_at": "2026-07-22T12:10:10.464137+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052537+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557182+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -11322,7 +11325,7 @@
       "address": "Strada Soimului",
       "district": "Zorilor",
       "first_seen_at": "2026-07-23T08:29:56.471724+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052521+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557166+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -11470,7 +11473,7 @@
       "address": "Strada Regele Ferdinand",
       "district": "Centru",
       "first_seen_at": "2026-07-23T14:29:42.434435+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052507+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557153+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -11778,7 +11781,7 @@
       "address": "Strada Busteni",
       "district": "Gheorgheni",
       "first_seen_at": "2026-07-24T10:29:48.699661+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052473+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557118+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -11919,7 +11922,7 @@
       "address": "Strada George Baritiu",
       "district": "Centru",
       "first_seen_at": "2026-07-24T14:23:27.442154+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052459+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557105+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -12143,7 +12146,7 @@
       "address": "Strada Regele Ferdinand",
       "district": "Centru",
       "first_seen_at": "2026-07-25T10:29:46.407270+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052443+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557090+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -12438,7 +12441,8 @@
       "flags": [
         "price_far",
         "price=799"
-      ]
+      ],
+      "compacted": true
     },
     "olx_304411429": {
       "source": "olx.ro",
@@ -12468,7 +12472,7 @@
       "address": "",
       "district": "Cluj-Napoca",
       "first_seen_at": "2026-07-26T08:30:12.956586+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052426+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557072+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -13746,7 +13750,7 @@
       "address": "Strada Horea",
       "district": "Centru",
       "first_seen_at": "2026-07-29T06:30:28.474916+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052408+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557054+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -14137,7 +14141,8 @@
       "flags": [
         "price_far",
         "price=500"
-      ]
+      ],
+      "compacted": true
     },
     "olx_273351248": {
       "source": "olx.ro",
@@ -14156,7 +14161,8 @@
       "flags": [
         "office:\\bopen[\\s-]?space\\b",
         "price_per_m2=8.8"
-      ]
+      ],
+      "compacted": true
     },
     "storia_91046967300067": {
       "source": "storia.ro",
@@ -14369,7 +14375,8 @@
       "flags": [
         "floor=demisol",
         "price=1000"
-      ]
+      ],
+      "compacted": true
     },
     "storia_10497436": {
       "source": "storia.ro",
@@ -14603,7 +14610,8 @@
       "flags": [
         "price_far",
         "price=800"
-      ]
+      ],
+      "compacted": true
     },
     "olx_300205520": {
       "source": "olx.ro",
@@ -14622,7 +14630,8 @@
       "flags": [
         "floor=mansarda",
         "price=1100"
-      ]
+      ],
+      "compacted": true
     },
     "olx_291957470": {
       "source": "olx.ro",
@@ -14640,7 +14649,8 @@
       "flags": [
         "price_far",
         "price=800"
-      ]
+      ],
+      "compacted": true
     },
     "olx_307410069": {
       "source": "olx.ro",
@@ -14893,7 +14903,7 @@
       "district": "Centru",
       "subdistrict": null,
       "first_seen_at": "2026-07-30T13:16:10.023112+00:00",
-      "last_seen_at": "2026-08-03T12:31:39.767419+00:00",
+      "last_seen_at": "2026-08-03T14:06:14.312819+00:00",
       "in_sheet": true,
       "alerted": true,
       "flags": [
@@ -15078,7 +15088,8 @@
       "flags": [
         "office:spa[țt]i[iu]+\\s+(?:de\\s+)",
         "price=900"
-      ]
+      ],
+      "compacted": true
     },
     "storia_91044922100067": {
       "source": "storia.ro",
@@ -15117,7 +15128,8 @@
       "flags": [
         "office:\\bbirouri\\b",
         "price=1125"
-      ]
+      ],
+      "compacted": true
     },
     "olx_254585793": {
       "source": "olx.ro",
@@ -15136,7 +15148,8 @@
       "flags": [
         "office:\\bbirouri\\b",
         "price_per_m2=7.5"
-      ]
+      ],
+      "compacted": true
     },
     "olx_254585767": {
       "source": "olx.ro",
@@ -15154,7 +15167,8 @@
       "flags": [
         "price_far",
         "price=800"
-      ]
+      ],
+      "compacted": true
     },
     "olx_254585680": {
       "source": "olx.ro",
@@ -15172,7 +15186,8 @@
       "flags": [
         "price_far",
         "price=800"
-      ]
+      ],
+      "compacted": true
     },
     "olx_302007471": {
       "source": "olx.ro",
@@ -15858,52 +15873,15 @@
         "office:\\bbirouri\\b",
         "uncertain_floor"
       ],
-      "description": "Sunt disponibile 2 spatii comerciale | Acestea pot fi atat cumparate cat si inchiriate Spatiile sunt moderne, noi (an constructie 2024) fiecare beneficiind de 8 locuri de parcare subterane. Modern si versatil, insotit de 8 locuri de parcare si cu o inaltime de 3.2m, acest spatiu ofera tot confortul si functionalitatea de care aveti nevoie pentru afacerea dumneavoastra. Toate utilitatile sunt disponibile, asigurandu-va ca operatiunile dumneavoastra se desfasoara fara probleme. Fie ca va doriti un cabinet medical, un birou elegant sau un spatiu pentru orice alt tip de afacere, aceste spatii comerciale de aproximativ 250 mp fiecare va ofera o flexibilitate considerabila. Cu terase spațioase de aproximativ 100 mp fiecare, aveti posibilitatea de a crea terase in aer liber, perfecte pentru a va dezvolta afacerea. Beneficiati de vecinatatea unui supermarket Lidl si a hotelului Golden Tulip Ana Dome, care pot aduce clienti in plus pentru afacerea dumneavoastra. Constructia noua si infrastructura moderna va asigura un mediu placut pentru clienti, intalniri de afaceri sau evenimente speciale. Aflati mai multe despre aceasta oportunitate unica si profitati de avantajele oferite de aceasta locatie premium: Vitrina si terase generoase; Configurare usoara a spatiilor conform necesitatilor dumneavoastra (configurare spatii/grupuri sanitare etc); Raport calitate/pret competitiv atat pentru inchiriere, cat si pentru vanzare; Parcare subterana pentru clientii si personalul dumneavoastra; Acces facil la statii de transport public; Numeroase puncte de atractie in vecinatate; Potrivit pentru diverse activitati comerciale, cabinete medicale, birouri sau evenimente speciale. Nu ratati sansa de a investi intr-un spatiu comercial versatil intr-o zona cu potential ridicat! Pentru mai multe informatii sau pentru a programa o vizionare, nu ezitati sa ne contactati.",
       "geo_lat": 46.75055,
       "geo_lon": 23.57599,
       "geo_source": "detail_approx",
       "refreshed_at": "2026-01-02T15:00:21+02:00",
       "photo_url": "https://frankfurt.apollo.olxcdn.com:443/v1/files/wqsduph6ny3v1-RO/image;s=1200x0",
-      "photo_urls": [
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/wqsduph6ny3v1-RO/image;s=1200x0",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/myz28eotbxqq-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/q97b8a9dejij1-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/6u6cqae7gu0i1-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/6p8b9o8p72a32-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/vfj84j2k0ru83-RO/image;s=1024x576",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/j6idpm7mp4g41-RO/image;s=1024x576",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/skmd4aoy35gw2-RO/image;s=1024x576",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/nnu4pky2daho3-RO/image;s=1024x576",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/vgjqy0dq0as02-RO/image;s=1024x576"
-      ],
       "rejected": true,
       "score": 39,
-      "score_data": {
-        "score": 39,
-        "residents_500": 5842,
-        "residents_1000": 18978,
-        "transit_300": 5,
-        "shops_300": 6,
-        "food_400": 0,
-        "offices_500": 4,
-        "edu_500": 1,
-        "competitors_200": 0,
-        "nearest_dodo_km": null,
-        "breakdown": {
-          "catchment": 0.58,
-          "secondary": 0.47,
-          "transit": 0.83,
-          "retail": 0.15,
-          "food": 0.0,
-          "daytime": 0.2,
-          "comp_penalty": 0.0,
-          "cannib_penalty": 0.0
-        },
-        "pop_source": "hybrid",
-        "residents_500_kontur": null,
-        "residents_500_osm_raw": 5842
-      },
-      "scored_at": "2026-07-31T12:36:23.441872+00:00"
+      "scored_at": "2026-07-31T12:36:23.441872+00:00",
+      "compacted": true
     },
     "storia_91045492300067": {
       "source": "storia.ro",
@@ -15924,53 +15902,16 @@
         "office:\\bbirouri\\b",
         "uncertain_floor"
       ],
-      "description": "Va propunem inspre inchiriere un imobil cochet situat pe Calea Turzii nr.61, este vorba despre o casa cu curte, zona de parcare amenajata, terasa. Suprafata utila este de aproximativ 130mp, se prelungeste zona de birouri cu o terasa. Atractia acestui imobil este curtea care inconjoara cladirea. Suprafata totala a terenului este de 555mp, locurile de parcare se pot suplimenta prin extinderea platformei actuale dedicate zonei de parcare. In interior spatiul este compartimentat, se poate rediscuta compartimentarea in functie de structura cladirii si de nevoile viitorului chirias. Cladirea dispune de toate utilitatile,aer conditionat, sistem de incalzire, locuri de parcare in interior in numar de 7, locurile de parcare se pot suplimenta prin locurile de parcare de pe strada, in acelasi timp cu trafic intens, vad, acces rapid spre zonele importante. Proprietarul doreste semnarea unui contract pe termen lung, este dispus la discutii legate de compartimentare, amenajari.",
       "geo_lat": 46.760326,
       "geo_lon": 23.598179,
       "geo_source": "detail",
       "refreshed_at": "2026-07-31T02:45:35Z",
       "published_at": "2026-07-13T08:16:13Z",
       "photo_url": "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImVjdHk2dnk0Nm10cC1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.CTtkkhq7npp4iM6jngTqzPqXJ30zb9DFXUvuWGRC0tU/image;s=2048x1536;q=80",
-      "photo_urls": [
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImVjdHk2dnk0Nm10cC1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.CTtkkhq7npp4iM6jngTqzPqXJ30zb9DFXUvuWGRC0tU/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImYzYXNqd3hmM2R1NzEtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.5Rd701Lmr4IPLFBqfh8WDM6Tfpn7MEAnzKb6yHSsY5g/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Im53NzQ4ZGJ1aTV2ajItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.aZkG7GziGkR4Ud39maFVxdEavLGJI4-KhS_tpWEEmCE/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InNzMTM3NHU1aHUzczMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.DgXzphBi4dRC9ezBfWofde9L4InzsD76kzQWOFEPeN0/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Imt0NjM2d2t1bDNmdDMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.z-WBII4AzqTSyud6Tu1_kIJ3kASaHCW6mmxvu-6Ez1Q/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InB4azVuMmVncHhjdTMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.MO_o3hQWEYzY2vti2uY3YVQ7P8qs6BOui-EDpKQtIos/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Imo2OTVodno3OWo0Yy1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.aktP7IqBCbIobDaS1AuYnUnlXPVTBnYqDDQhHKKU-VI/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Ind2cmlweW1iNzJ6dzItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.AAcDLt1P35fubVKx5lQNcr3uicnB_ID3LWH9GvKAdh8/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InZ3NG94NzM4MzVidTMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.Ge1c4dxm-Ip4P0gG0s4waPYAADA--yfbOvi4ARRyi6g/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InY5eDU2cWk1bnUwODMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.vJpKie6rMB7uGl_OXF1gdJxkwDKe78WW19FD2tXH_Yw/image;s=655x491;q=80"
-      ],
       "rejected": true,
       "score": 26,
-      "score_data": {
-        "score": 26,
-        "residents_500": 3219,
-        "residents_1000": 18669,
-        "transit_300": 2,
-        "shops_300": 4,
-        "food_400": 2,
-        "offices_500": 18,
-        "edu_500": 0,
-        "competitors_200": 1,
-        "nearest_dodo_km": null,
-        "breakdown": {
-          "catchment": 0.32,
-          "secondary": 0.47,
-          "transit": 0.33,
-          "retail": 0.1,
-          "food": 0.1,
-          "daytime": 0.45,
-          "comp_penalty": 0.12,
-          "cannib_penalty": 0.0
-        },
-        "pop_source": "hybrid",
-        "residents_500_kontur": null,
-        "residents_500_osm_raw": 3219
-      },
-      "scored_at": "2026-07-31T12:38:00.007630+00:00"
+      "scored_at": "2026-07-31T12:38:00.007630+00:00",
+      "compacted": true
     },
     "olx_266145303": {
       "source": "olx.ro",
@@ -15989,7 +15930,8 @@
       "flags": [
         "floor=etaj 5",
         "price_per_m2=9.9"
-      ]
+      ],
+      "compacted": true
     },
     "olx_307441000": {
       "source": "olx.ro",
@@ -16007,7 +15949,8 @@
       "rejected": true,
       "flags": [
         "price=1100"
-      ]
+      ],
+      "compacted": true
     },
     "storia_10501627": {
       "source": "storia.ro",
@@ -16019,7 +15962,7 @@
       "address": "Strada Observatorului",
       "district": "Zorilor",
       "first_seen_at": "2026-07-31T12:36:12.599117+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052388+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557034+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -16256,7 +16199,7 @@
       "address": "Strada Ceahlau",
       "district": "Zorilor",
       "first_seen_at": "2026-08-01T16:30:37.156441+00:00",
-      "last_seen_at": "2026-08-03T12:31:38.052362+00:00",
+      "last_seen_at": "2026-08-03T14:06:12.557005+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -16501,7 +16444,7 @@
   "pending_candidates": [],
   "source_health": {},
   "district_blacklist": [],
-  "last_cycle_at": "2026-08-03T12:31:38.052945+00:00",
+  "last_cycle_at": "2026-08-03T14:06:12.557559+00:00",
   "sent_messages": {
     "971364": {
       "listing_key": "olx_300455326",
@@ -16760,13 +16703,13 @@
       }
     },
     "source": "sheet_col_K",
-    "updated_at": "2026-08-03T12:33:29.318545+00:00"
+    "updated_at": "2026-08-03T14:07:49.390185+00:00"
   },
   "version": 14,
   "daily_stats": {
     "date": "2026-08-03",
-    "runs": 5,
-    "sweep_last": 353,
+    "runs": 6,
+    "sweep_last": 330,
     "new": 3,
     "checked": 3,
     "rejects": 3,
@@ -16774,8 +16717,8 @@
     "duplicates": 0
   },
   "last_cycle_stats": {
-    "at": "2026-08-03T12:31:38.061615+00:00",
-    "sweep_raw": 353,
+    "at": "2026-08-03T14:06:12.616062+00:00",
+    "sweep_raw": 330,
     "new": 0,
     "passes": 0,
     "rejects": 0,
@@ -16796,15 +16739,15 @@
   },
   "daily_digest_sent": "2026-08-02",
   "last_sweep_health": {
-    "at": "2026-08-03T12:31:38.045431+00:00",
+    "at": "2026-08-03T14:06:12.550224+00:00",
     "by_source": {
       "storia": {
         "cards": 292,
         "parsed": 292
       },
       "imobiliare": {
-        "cards": 61,
-        "parsed": 44
+        "cards": 38,
+        "parsed": 26
       }
     },
     "down": [
