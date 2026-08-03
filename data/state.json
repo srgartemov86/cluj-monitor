@@ -777,7 +777,7 @@
       "district": "Mănăștur",
       "subdistrict": null,
       "first_seen_at": "2026-07-10T15:27:29.576243+00:00",
-      "last_seen_at": "2026-08-02T18:44:24.717366+00:00",
+      "last_seen_at": "2026-08-03T06:30:02.274428+00:00",
       "in_sheet": true,
       "alerted": true,
       "flags": [
@@ -886,7 +886,8 @@
       "flags": [
         "office:\\bbirouri\\b",
         "price=1000"
-      ]
+      ],
+      "compacted": true
     },
     "olx_300246305": {
       "source": "olx.ro",
@@ -1131,7 +1132,7 @@
       "address": "Strada Intre Lacuri",
       "district": "Între Lacuri",
       "first_seen_at": "2026-07-10T15:27:36.692212+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523612+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402303+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -1149,7 +1150,7 @@
       "address": "Bulevardul 21 Decembrie 1989",
       "district": "Marasti",
       "first_seen_at": "2026-07-10T15:27:36.692302+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523628+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402319+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -1167,7 +1168,7 @@
       "address": "Strada Taietura Turcului",
       "district": "Gruia",
       "first_seen_at": "2026-07-10T15:27:36.693111+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523644+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402336+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -1204,7 +1205,7 @@
       "address": "",
       "district": "Bulgaria",
       "first_seen_at": "2026-07-10T15:27:36.693247+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523664+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402356+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -1262,7 +1263,7 @@
       "address": "",
       "district": "Cluj-Napoca",
       "first_seen_at": "2026-07-10T15:27:37.698985+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523681+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402373+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -1281,7 +1282,7 @@
       "address": "Strada Avram Iancu",
       "district": "Centru",
       "first_seen_at": "2026-07-10T15:27:38.183651+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523698+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402389+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -1299,7 +1300,7 @@
       "address": "",
       "district": "Cluj-Napoca",
       "first_seen_at": "2026-07-10T15:27:38.183718+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523711+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402403+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -1318,7 +1319,7 @@
       "address": "Strada Oasului",
       "district": "Iris",
       "first_seen_at": "2026-07-10T15:27:38.614183+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523724+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402416+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -1337,7 +1338,7 @@
       "address": "Calea Floresti",
       "district": "Mănăștur",
       "first_seen_at": "2026-07-10T15:27:39.261165+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523737+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402430+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -1355,7 +1356,7 @@
       "address": "Strada 1 Decembrie 1918",
       "district": "Campia Turzii",
       "first_seen_at": "2026-07-10T15:27:39.261265+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523752+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402445+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -1550,7 +1551,7 @@
       "address": "",
       "district": "Dâmbul Rotund",
       "first_seen_at": "2026-07-10T15:27:43.415822+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523769+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402462+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -5217,7 +5218,7 @@
       "address": "",
       "district": "Campia Turzii",
       "first_seen_at": "2026-07-14T09:09:26.242160+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523594+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402285+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -5340,7 +5341,7 @@
       "address": "Strada Fanatelor",
       "district": "Iris",
       "first_seen_at": "2026-07-14T10:55:05.275154+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523579+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402270+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -5645,7 +5646,7 @@
       "address": "Strada Traian Vuia",
       "district": "Someșeni",
       "first_seen_at": "2026-07-14T14:09:45.316094+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523565+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402256+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -6231,7 +6232,7 @@
       "address": "",
       "district": "Cluj-Napoca",
       "first_seen_at": "2026-07-15T08:54:46.484409+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523538+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402228+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -6249,7 +6250,7 @@
       "address": "",
       "district": "Someseni",
       "first_seen_at": "2026-07-15T08:54:46.484423+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523552+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402242+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -6521,7 +6522,7 @@
       "address": "",
       "district": "Cluj-Napoca",
       "first_seen_at": "2026-07-15T14:22:41.357293+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523524+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402214+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -7274,7 +7275,7 @@
       "address": "Strada Tudor Vladimirescu",
       "district": "Gruia",
       "first_seen_at": "2026-07-16T10:32:01.420199+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523509+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402198+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -7497,7 +7498,7 @@
       "address": "Strada Meteor",
       "district": "Zorilor",
       "first_seen_at": "2026-07-16T16:04:37.943689+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523493+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402182+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -7869,7 +7870,7 @@
       "district": "Centru",
       "subdistrict": null,
       "first_seen_at": "2026-07-17T10:29:44.260903+00:00",
-      "last_seen_at": "2026-08-02T22:40:06.139795+00:00",
+      "last_seen_at": "2026-08-03T06:30:02.274428+00:00",
       "in_sheet": true,
       "alerted": true,
       "flags": [
@@ -7951,7 +7952,7 @@
       "district": "Borhanci",
       "subdistrict": null,
       "first_seen_at": "2026-07-17T10:29:47.179569+00:00",
-      "last_seen_at": "2026-08-02T22:40:06.139795+00:00",
+      "last_seen_at": "2026-08-03T06:30:02.274428+00:00",
       "in_sheet": true,
       "alerted": true,
       "flags": [
@@ -8054,7 +8055,7 @@
       "district": "Mărăști",
       "subdistrict": null,
       "first_seen_at": "2026-07-17T10:29:49.124868+00:00",
-      "last_seen_at": "2026-08-02T18:44:24.717366+00:00",
+      "last_seen_at": "2026-08-03T06:30:02.274428+00:00",
       "in_sheet": true,
       "alerted": true,
       "flags": [
@@ -8245,7 +8246,7 @@
       "district": "Centru",
       "subdistrict": null,
       "first_seen_at": "2026-07-17T11:09:23.507201+00:00",
-      "last_seen_at": "2026-08-02T22:40:06.139795+00:00",
+      "last_seen_at": "2026-08-03T06:30:02.274428+00:00",
       "in_sheet": true,
       "alerted": true,
       "flags": [
@@ -8490,7 +8491,7 @@
       "address": "Piata Unirii",
       "district": "Centru",
       "first_seen_at": "2026-07-17T16:04:57.243045+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523472+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402161+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -8752,7 +8753,7 @@
       "address": "Strada Decebal",
       "district": "Semicentral",
       "first_seen_at": "2026-07-18T10:05:27.786862+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523457+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402146+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -9931,7 +9932,7 @@
       "address": "Strada Regele Ferdinand",
       "district": "Centru",
       "first_seen_at": "2026-07-20T10:29:55.197493+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523442+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402131+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -10199,7 +10200,7 @@
       "address": "Strada George Baritiu",
       "district": "Centru",
       "first_seen_at": "2026-07-20T19:57:49.617879+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523426+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402116+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -10910,7 +10911,7 @@
       "address": "Strada Regele Ferdinand",
       "district": "Centru",
       "first_seen_at": "2026-07-22T12:10:10.464137+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523412+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402101+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -11320,7 +11321,7 @@
       "address": "Strada Soimului",
       "district": "Zorilor",
       "first_seen_at": "2026-07-23T08:29:56.471724+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523382+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402071+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -11468,7 +11469,7 @@
       "address": "Strada Regele Ferdinand",
       "district": "Centru",
       "first_seen_at": "2026-07-23T14:29:42.434435+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523368+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402056+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -11776,7 +11777,7 @@
       "address": "Strada Busteni",
       "district": "Gheorgheni",
       "first_seen_at": "2026-07-24T10:29:48.699661+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523335+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402022+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -11917,7 +11918,7 @@
       "address": "Strada George Baritiu",
       "district": "Centru",
       "first_seen_at": "2026-07-24T14:23:27.442154+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523321+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402008+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -12141,7 +12142,7 @@
       "address": "Strada Regele Ferdinand",
       "district": "Centru",
       "first_seen_at": "2026-07-25T10:29:46.407270+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523305+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.401992+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -12466,7 +12467,7 @@
       "address": "",
       "district": "Cluj-Napoca",
       "first_seen_at": "2026-07-26T08:30:12.956586+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523287+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.401974+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -13643,7 +13644,8 @@
       "flags": [
         "office:\\bopen[\\s-]?space\\b",
         "price=1050"
-      ]
+      ],
+      "compacted": true
     },
     "olx_293488543": {
       "source": "olx.ro",
@@ -13691,7 +13693,8 @@
       "flags": [
         "office:spa[țt]i[iu]+\\s+(?:de\\s+)",
         "price_per_m2=9.3"
-      ]
+      ],
+      "compacted": true
     },
     "olx_292081561": {
       "source": "olx.ro",
@@ -13709,7 +13712,8 @@
       "flags": [
         "price_far",
         "price=800"
-      ]
+      ],
+      "compacted": true
     },
     "olx_307358295": {
       "source": "olx.ro",
@@ -13740,7 +13744,7 @@
       "address": "Strada Horea",
       "district": "Centru",
       "first_seen_at": "2026-07-29T06:30:28.474916+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523269+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.401955+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -14886,7 +14890,7 @@
       "district": "Centru",
       "subdistrict": null,
       "first_seen_at": "2026-07-30T13:16:10.023112+00:00",
-      "last_seen_at": "2026-08-02T18:44:24.717366+00:00",
+      "last_seen_at": "2026-08-03T06:30:02.274428+00:00",
       "in_sheet": true,
       "alerted": true,
       "flags": [
@@ -15249,44 +15253,15 @@
         "office:\\bopen[\\s-]?space\\b",
         "uncertain_floor"
       ],
-      "description": "Oportunitate unică de investiție! Spațiu comercial în zonă foarte bună și frecventată, ocupabil imediat! Propunem spre închiriere un spațiu comercial, cu o suprafață de 100 mp, situat la demisolul unui bloc cu regim de înălțime D+P+11, într-o locație excelentă, aproape de toate punctele de interes: magazine, restaurante, statii bus, supermarket, farmacii, bănci etc .. Caracteristici ale spațiuluii: - Suprafață de 100 mp utili; - Compartimentare open space; - Rampă de acces în spate + parcare și lift de marfă; - Contorizare separată și cheltuieli mici. - Vad la stradă. Perfect pentru investiție și desfășurarea activității comerciale într-o zonă intens frecventată zilnic. Pentru programarea unei vizionări sau mai multe detalii contactați-ne folosind ID extern: P6347",
       "geo_lat": 46.77861,
       "geo_lon": 23.615518,
       "geo_source": "detail_approx",
       "refreshed_at": "2026-07-31T06:13:29+03:00",
       "photo_url": "https://frankfurt.apollo.olxcdn.com:443/v1/files/svdkp801zcb5-RO/image;s=1200x0",
-      "photo_urls": [
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/svdkp801zcb5-RO/image;s=1200x0",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/uz98h4lcnyd62-RO/image"
-      ],
       "rejected": true,
       "score": 75,
-      "score_data": {
-        "score": 75,
-        "residents_500": 11913,
-        "residents_1000": 33595,
-        "transit_300": 4,
-        "shops_300": 96,
-        "food_400": 11,
-        "offices_500": 17,
-        "edu_500": 3,
-        "competitors_200": 1,
-        "nearest_dodo_km": null,
-        "breakdown": {
-          "catchment": 1.0,
-          "secondary": 0.84,
-          "transit": 0.67,
-          "retail": 1.0,
-          "food": 0.55,
-          "daytime": 0.72,
-          "comp_penalty": 0.12,
-          "cannib_penalty": 0.0
-        },
-        "pop_source": "hybrid",
-        "residents_500_kontur": null,
-        "residents_500_osm_raw": 11913
-      },
-      "scored_at": "2026-07-31T06:32:15.416595+00:00"
+      "scored_at": "2026-07-31T06:32:15.416595+00:00",
+      "compacted": true
     },
     "olx_302005525": {
       "source": "olx.ro",
@@ -15307,47 +15282,15 @@
         "office:\\bopen[\\s-]?space\\b",
         "uncertain_floor"
       ],
-      "description": "Va propunem spre inchiriere un spatiu comercial pe suprafata de 136mp, compartimentat open-space cu o suprafata vitrata generoasa de peste 20 ML Momentan spatiul functioneaza ca showroom, intr-o zona cu trafic intens si acces facil de la statiile de transport public. Este compartimentat in : -Camera principala pe o suprafata de 123 mp cu vitrina pe toata suprafata exterioara, -Hol intrare 6,5mp -Grup sanitar 7mp Spatiul se va preda la stadiul de finisat, ideal pentru a fi amenajat pentru afacerea dumneavoastra. Disponibil din decembrie! Pentru mai multe detalii sau programarea unei vizionari folositi ID Extern: P4110",
       "geo_lat": 46.811641,
       "geo_lon": 23.604313,
       "geo_source": "detail_approx",
       "refreshed_at": "2026-07-31T05:57:29+03:00",
       "photo_url": "https://frankfurt.apollo.olxcdn.com:443/v1/files/0xkc4xaf1ec51-RO/image;s=1200x0",
-      "photo_urls": [
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/0xkc4xaf1ec51-RO/image;s=1200x0",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/db7vsjvynjvr-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/gwzcba17n94c-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/m8dtv71jbtj51-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/aqzsgs9oes3m2-RO/image"
-      ],
       "rejected": true,
       "score": 13,
-      "score_data": {
-        "score": 13,
-        "residents_500": 790,
-        "residents_1000": 2349,
-        "transit_300": 4,
-        "shops_300": 0,
-        "food_400": 0,
-        "offices_500": 0,
-        "edu_500": 0,
-        "competitors_200": 0,
-        "nearest_dodo_km": null,
-        "breakdown": {
-          "catchment": 0.08,
-          "secondary": 0.06,
-          "transit": 0.67,
-          "retail": 0.0,
-          "food": 0.0,
-          "daytime": 0.0,
-          "comp_penalty": 0.0,
-          "cannib_penalty": 0.0
-        },
-        "pop_source": "hybrid",
-        "residents_500_kontur": null,
-        "residents_500_osm_raw": 790
-      },
-      "scored_at": "2026-07-31T06:35:34.264211+00:00"
+      "scored_at": "2026-07-31T06:35:34.264211+00:00",
+      "compacted": true
     },
     "olx_302005440": {
       "source": "olx.ro",
@@ -15367,47 +15310,15 @@
       "flags": [
         "office:spa[țt]i[iu]+\\s+(?:de\\s+)"
       ],
-      "description": "Va propunem spre inchiriere spatiu pentru birouri in zona semicentrala in Cluj, 100mp, intr-un imobil cu regim de inaltime P+1. Imobilul este compartimentat astfel: Parter - 1 hol - 1 baie utilata - 1 bucatarie utilata - 1 camera - zona de receptie, Etajul 1 - 1 hol -1 baie utilata - 4 camere. Spatiul se afla intr-o cladire finisata cu materiale de calitate, dispune de incalzire centrala, geamuri termopan, instalatie de aer conditionat, sistem de alarma, internet. Se inchirieaza exclusiv cu destinatie de birouri si este in apropierea tribunalului , anaf, alte institutii, statii de bus, magazine, restaurante. Parcarea se poate face in zona. Pentru mai multe detalii sau programarea unei vizionari folositi ID Extern: P5927",
       "geo_lat": 46.774322,
       "geo_lon": 23.600027,
       "geo_source": "detail_approx",
       "refreshed_at": "2026-07-31T05:54:24+03:00",
       "photo_url": "https://frankfurt.apollo.olxcdn.com:443/v1/files/px9abpvd6iwe2-RO/image;s=1200x0",
-      "photo_urls": [
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/px9abpvd6iwe2-RO/image;s=1200x0",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/zpa0xbwieuvk-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/mxrxace4h74d2-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/5o7ixlu91kw62-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/8pf9zz7wzjhf-RO/image"
-      ],
       "rejected": true,
       "score": 52,
-      "score_data": {
-        "score": 52,
-        "residents_500": 5179,
-        "residents_1000": 27247,
-        "transit_300": 2,
-        "shops_300": 10,
-        "food_400": 26,
-        "offices_500": 106,
-        "edu_500": 4,
-        "competitors_200": 3,
-        "nearest_dodo_km": null,
-        "breakdown": {
-          "catchment": 0.52,
-          "secondary": 0.68,
-          "transit": 0.33,
-          "retail": 0.25,
-          "food": 1.0,
-          "daytime": 1.0,
-          "comp_penalty": 0.38,
-          "cannib_penalty": 0.0
-        },
-        "pop_source": "hybrid",
-        "residents_500_kontur": null,
-        "residents_500_osm_raw": 5179
-      },
-      "scored_at": "2026-07-31T06:32:00.466080+00:00"
+      "scored_at": "2026-07-31T06:32:00.466080+00:00",
+      "compacted": true
     },
     "olx_302005365": {
       "source": "olx.ro",
@@ -15498,45 +15409,15 @@
         "office:\\bopen[\\s-]?space\\b",
         "uncertain_floor"
       ],
-      "description": "Va propunem spre inchiriere un spatiu comercial 140mp pe 2 nivele {D70mp\\P70mp} D+P intr-o cladire cu regim de inaltime D+P+1 in zona Paris | Cluj. Compartimentarea interioara este una open space cu posibilitate de a recompartimenta dupa preferintele dorite. Este situat la strada principala cu 2 geamuri si intrare din strada. Pretabil pentru cafenea sau restarant cu terasa, magazin de prezentare sau alte activitati comerciale. Pentru mai multe detalii nu ezitati sa ne contactati. ID extern: P5857",
       "geo_lat": 46.778009,
       "geo_lon": 23.59756,
       "geo_source": "detail_approx",
       "refreshed_at": "2026-07-31T05:49:30+03:00",
       "photo_url": "https://frankfurt.apollo.olxcdn.com:443/v1/files/tnaj079r3npj-RO/image;s=1200x0",
-      "photo_urls": [
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/tnaj079r3npj-RO/image;s=1200x0",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/7mhmc6gcxqgk3-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/x139qhz6hf881-RO/image"
-      ],
       "rejected": true,
       "score": 53,
-      "score_data": {
-        "score": 53,
-        "residents_500": 7001,
-        "residents_1000": 24615,
-        "transit_300": 2,
-        "shops_300": 12,
-        "food_400": 16,
-        "offices_500": 49,
-        "edu_500": 6,
-        "competitors_200": 4,
-        "nearest_dodo_km": null,
-        "breakdown": {
-          "catchment": 0.7,
-          "secondary": 0.62,
-          "transit": 0.33,
-          "retail": 0.3,
-          "food": 0.8,
-          "daytime": 1.0,
-          "comp_penalty": 0.5,
-          "cannib_penalty": 0.0
-        },
-        "pop_source": "hybrid",
-        "residents_500_kontur": null,
-        "residents_500_osm_raw": 7001
-      },
-      "scored_at": "2026-07-31T06:30:05.818446+00:00"
+      "scored_at": "2026-07-31T06:30:05.818446+00:00",
+      "compacted": true
     },
     "olx_302005350": {
       "source": "olx.ro",
@@ -15557,45 +15438,15 @@
         "office:\\bopen[\\s-]?space\\b",
         "uncertain_floor"
       ],
-      "description": "Va propunem spre inchiriat spatiu comercial in Cluj Napoca, zona Republicii, situat la parterul unui imobil cu regim de inaltime D+P+2 cu vitrina la strada, acces din strada. Proprietea dispune de o suprafata utila 140 mp cu o terasa, fiind compartimentat open-space. Disponibilitate: imediată. Poate fi utilizat ca magazin de prezentare sau alte functiuni similare. In prezent, spatiul neutilat, astfel incat poate fi amenajat dupa preferintele viitorului chirias. Avantaje: * vizibilitate foarte buna, acces facil pentru clienti si aprovizionare, posibilitate de reclama exterioara pe vitrina la strada. Pentru mai multe detalii sau programarea unei vizionari folositi ID Extern:P5852",
       "geo_lat": 46.760961,
       "geo_lon": 23.592226,
       "geo_source": "detail_approx",
       "refreshed_at": "2026-07-31T05:49:27+03:00",
       "photo_url": "https://frankfurt.apollo.olxcdn.com:443/v1/files/ad1j7uxtn77h1-RO/image;s=1200x0",
-      "photo_urls": [
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/ad1j7uxtn77h1-RO/image;s=1200x0",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/fjznrclvxqzw-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/l2zqpyy3lryk3-RO/image"
-      ],
       "rejected": true,
       "score": 22,
-      "score_data": {
-        "score": 22,
-        "residents_500": 2402,
-        "residents_1000": 17859,
-        "transit_300": 0,
-        "shops_300": 2,
-        "food_400": 2,
-        "offices_500": 17,
-        "edu_500": 2,
-        "competitors_200": 0,
-        "nearest_dodo_km": null,
-        "breakdown": {
-          "catchment": 0.24,
-          "secondary": 0.45,
-          "transit": 0.0,
-          "retail": 0.05,
-          "food": 0.1,
-          "daytime": 0.62,
-          "comp_penalty": 0.0,
-          "cannib_penalty": 0.0
-        },
-        "pop_source": "hybrid",
-        "residents_500_kontur": null,
-        "residents_500_osm_raw": 2402
-      },
-      "scored_at": "2026-07-31T06:32:04.417390+00:00"
+      "scored_at": "2026-07-31T06:32:04.417390+00:00",
+      "compacted": true
     },
     "olx_302005351": {
       "source": "olx.ro",
@@ -15615,45 +15466,15 @@
       "flags": [
         "floor=etaj 1"
       ],
-      "description": "Va propunem spre inchiriere un spatiu pentru birouri 139mp in zona Republicii | Cluj. Compartimentarea interioara este una open space cu posibilitate de a recompartimenta dupa preferintele dorite. Spatiul se preteaza pentru birouri. Este situat la etajul 1 al unui imobil cu regim de inaltime D+P+2. Pentru mai multe detalii nu ezitati sa ne contactati. ID extern: P5853",
       "geo_lat": 46.761594,
       "geo_lon": 23.591593,
       "geo_source": "detail_approx",
       "refreshed_at": "2026-07-31T05:49:25+03:00",
       "photo_url": "https://frankfurt.apollo.olxcdn.com:443/v1/files/jtvbbrsrlc8z2-RO/image;s=1200x0",
-      "photo_urls": [
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/jtvbbrsrlc8z2-RO/image;s=1200x0",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/ss9uvdyplfsq1-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/biesb0vi2gda1-RO/image"
-      ],
       "rejected": true,
       "score": 22,
-      "score_data": {
-        "score": 22,
-        "residents_500": 2217,
-        "residents_1000": 18368,
-        "transit_300": 0,
-        "shops_300": 2,
-        "food_400": 2,
-        "offices_500": 19,
-        "edu_500": 2,
-        "competitors_200": 0,
-        "nearest_dodo_km": null,
-        "breakdown": {
-          "catchment": 0.22,
-          "secondary": 0.46,
-          "transit": 0.0,
-          "retail": 0.05,
-          "food": 0.1,
-          "daytime": 0.68,
-          "comp_penalty": 0.0,
-          "cannib_penalty": 0.0
-        },
-        "pop_source": "hybrid",
-        "residents_500_kontur": null,
-        "residents_500_osm_raw": 2217
-      },
-      "scored_at": "2026-07-31T06:32:21.473025+00:00"
+      "scored_at": "2026-07-31T06:32:21.473025+00:00",
+      "compacted": true
     },
     "olx_302005355": {
       "source": "olx.ro",
@@ -15673,45 +15494,15 @@
       "flags": [
         "floor=etaj 1"
       ],
-      "description": "Va propunem spre inchiriere un spatiu pentru birouri 139mp in zona Republicii | Cluj. Compartimentarea interioara este una open space cu posibilitate de a recompartimenta dupa preferintele dorite. Spatiul se preteaza pentru birouri. Este situat la etajul 1 al unui imobil cu regim de inaltime D+P+2. Pentru mai multe detalii nu ezitati sa ne contactati. ID extern: P5854",
       "geo_lat": 46.761638,
       "geo_lon": 23.591549,
       "geo_source": "detail_approx",
       "refreshed_at": "2026-07-31T05:49:25+03:00",
       "photo_url": "https://frankfurt.apollo.olxcdn.com:443/v1/files/8r037x9mke8w1-RO/image;s=1200x0",
-      "photo_urls": [
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/8r037x9mke8w1-RO/image;s=1200x0",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/9o4rswbond4o2-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/58h78q9ae7y91-RO/image"
-      ],
       "rejected": true,
       "score": 22,
-      "score_data": {
-        "score": 22,
-        "residents_500": 2245,
-        "residents_1000": 18324,
-        "transit_300": 0,
-        "shops_300": 2,
-        "food_400": 2,
-        "offices_500": 19,
-        "edu_500": 2,
-        "competitors_200": 0,
-        "nearest_dodo_km": null,
-        "breakdown": {
-          "catchment": 0.22,
-          "secondary": 0.46,
-          "transit": 0.0,
-          "retail": 0.05,
-          "food": 0.1,
-          "daytime": 0.68,
-          "comp_penalty": 0.0,
-          "cannib_penalty": 0.0
-        },
-        "pop_source": "hybrid",
-        "residents_500_kontur": null,
-        "residents_500_osm_raw": 2245
-      },
-      "scored_at": "2026-07-31T06:34:25.600342+00:00"
+      "scored_at": "2026-07-31T06:34:25.600342+00:00",
+      "compacted": true
     },
     "olx_302005353": {
       "source": "olx.ro",
@@ -15731,46 +15522,15 @@
       "flags": [
         "floor=etaj 2"
       ],
-      "description": "Va propunem spre inchiriere un spatiu pentru birouri 140mp in zona Centrala | Cluj. Compartimentarea interioara este una open space cu posibilitate de a recompartimenta dupa preferintele dorite. Spatiul se preteaza pentru birouri. Este situat la etajul 2 al unui imobil cu regim de inaltime S+P+3. Pentru mai multe detalii nu ezitati sa ne contactati. ID extern: P5849",
       "geo_lat": 46.773027,
       "geo_lon": 23.5899,
       "geo_source": "detail_approx",
       "refreshed_at": "2026-07-31T05:49:20+03:00",
       "photo_url": "https://frankfurt.apollo.olxcdn.com:443/v1/files/85ul6z9u69o33-RO/image;s=1200x0",
-      "photo_urls": [
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/85ul6z9u69o33-RO/image;s=1200x0",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/ret73w9xa6k63-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/zj25qhlyeygd2-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/b5hh3zp0drfz-RO/image"
-      ],
       "rejected": true,
       "score": 67,
-      "score_data": {
-        "score": 67,
-        "residents_500": 6473,
-        "residents_1000": 20580,
-        "transit_300": 11,
-        "shops_300": 218,
-        "food_400": 117,
-        "offices_500": 103,
-        "edu_500": 16,
-        "competitors_200": 32,
-        "nearest_dodo_km": null,
-        "breakdown": {
-          "catchment": 0.65,
-          "secondary": 0.51,
-          "transit": 1.0,
-          "retail": 1.0,
-          "food": 1.0,
-          "daytime": 1.0,
-          "comp_penalty": 1.0,
-          "cannib_penalty": 0.0
-        },
-        "pop_source": "hybrid",
-        "residents_500_kontur": null,
-        "residents_500_osm_raw": 6473
-      },
-      "scored_at": "2026-07-31T06:36:39.408974+00:00"
+      "scored_at": "2026-07-31T06:36:39.408974+00:00",
+      "compacted": true
     },
     "olx_302005344": {
       "source": "olx.ro",
@@ -16449,7 +16209,7 @@
       "address": "Strada Observatorului",
       "district": "Zorilor",
       "first_seen_at": "2026-07-31T12:36:12.599117+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523249+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.401934+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -16686,7 +16446,7 @@
       "address": "Strada Ceahlau",
       "district": "Zorilor",
       "first_seen_at": "2026-08-01T16:30:37.156441+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523221+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.401905+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -16705,7 +16465,7 @@
       "address": "Strada Ceahlau",
       "district": "Zorilor",
       "first_seen_at": "2026-08-01T16:30:37.224409+00:00",
-      "last_seen_at": "2026-08-02T22:40:04.523397+00:00",
+      "last_seen_at": "2026-08-03T06:30:00.402086+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -16718,7 +16478,7 @@
   "pending_candidates": [],
   "source_health": {},
   "district_blacklist": [],
-  "last_cycle_at": "2026-08-02T22:40:04.523796+00:00",
+  "last_cycle_at": "2026-08-03T06:30:00.402478+00:00",
   "sent_messages": {
     "971364": {
       "listing_key": "olx_300455326",
@@ -16977,13 +16737,13 @@
       }
     },
     "source": "sheet_col_K",
-    "updated_at": "2026-08-02T22:43:20.236559+00:00"
+    "updated_at": "2026-08-03T06:31:31.620376+00:00"
   },
   "version": 14,
   "daily_stats": {
     "date": "2026-08-03",
-    "runs": 1,
-    "sweep_last": 318,
+    "runs": 2,
+    "sweep_last": 330,
     "new": 0,
     "checked": 0,
     "rejects": 0,
@@ -16991,8 +16751,8 @@
     "duplicates": 0
   },
   "last_cycle_stats": {
-    "at": "2026-08-02T22:40:04.533330+00:00",
-    "sweep_raw": 318,
+    "at": "2026-08-03T06:30:00.411484+00:00",
+    "sweep_raw": 330,
     "new": 0,
     "passes": 0,
     "rejects": 0,
@@ -17001,7 +16761,7 @@
     ]
   },
   "canary": {
-    "date": "2026-08-02",
+    "date": "2026-08-03",
     "results": {
       "olx_sweep": "FAIL: source down in last sweep",
       "storia_sweep": "ok",
@@ -17013,15 +16773,15 @@
   },
   "daily_digest_sent": "2026-08-02",
   "last_sweep_health": {
-    "at": "2026-08-02T22:40:04.516563+00:00",
+    "at": "2026-08-03T06:30:00.394996+00:00",
     "by_source": {
       "storia": {
         "cards": 292,
         "parsed": 292
       },
       "imobiliare": {
-        "cards": 26,
-        "parsed": 19
+        "cards": 38,
+        "parsed": 26
       }
     },
     "down": [
