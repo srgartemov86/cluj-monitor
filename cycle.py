@@ -243,6 +243,11 @@ def fetch_html(url, timeout=20):
         # imo_get: ретраи + резидентный прокси (HALO_PROXY→ro) против DataDome
         r = curl_sweep.imo_get(url, timeout=timeout)
         return (r.text, r.status_code) if r is not None else ('', 0)
+    if 'olx.ro' in url:
+        # CloudFront с 04.08.2026 отдаёт 403 на голый curl (TLS-отпечаток) —
+        # и API, и detail-страницы; ходим браузерным отпечатком
+        body = curl_sweep.olx_get(url, timeout=timeout, html=True)
+        return (body, 200 if body else 0)
     try:
         r = subprocess.run(
             ['curl', '-sL', '-A', UA, '--max-time', str(timeout), '--compressed',

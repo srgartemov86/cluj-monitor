@@ -96,6 +96,29 @@ def _eur(value, currency):
 # --------------------------------------------------------------------------
 # olx.ro — JSON API
 # --------------------------------------------------------------------------
+_OLX_IMPS = ('chrome124', 'chrome131', 'chrome120', 'safari17_0')
+
+
+def olx_get(url, timeout=25, attempts=3, html=False):
+    """GET olx API: CloudFront с 04.08.2026 режет голый curl по TLS-отпечатку
+    (403 Request blocked) — ходим браузерным отпечатком curl_cffi. Прокси не
+    нужен: блок по fingerprint, не по IP."""
+    from curl_cffi import requests as cffi
+    for i in range(attempts):
+        try:
+            r = cffi.get(url, impersonate=_OLX_IMPS[i % len(_OLX_IMPS)], timeout=timeout,
+                         headers={'Accept': 'application/json',
+                                  'Accept-Language': 'ro-RO,ro;q=0.9',
+                                  'Referer': 'https://www.olx.ro/'})
+            ct = r.headers.get('content-type') or ''
+            if r.status_code == 200 and (html or 'json' in ct):
+                return r.text
+        except Exception:
+            pass
+        time.sleep(1.0)
+    return ''
+
+
 def sweep_olx(pages=4):
     """40/страницу, сортировка по свежести (sort_by=created_at:desc).
     OLX подмешивает promoted — их id всё равно уникальны, дедуп по state."""
@@ -107,7 +130,7 @@ def sweep_olx(pages=4):
                '&filter_enum_alege%%5B0%%5D=inchiriere'
                '&sort_by=created_at%%3Adesc' % offset)
         t0 = time.time()
-        body = _curl(url)
+        body = olx_get(url)
         try:
             data = json.loads(body)
         except Exception:
