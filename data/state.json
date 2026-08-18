@@ -747,7 +747,7 @@
       "district": "Mănăștur",
       "subdistrict": null,
       "first_seen_at": "2026-07-10T15:27:29.576243+00:00",
-      "last_seen_at": "2026-08-17T16:53:18.437383+00:00",
+      "last_seen_at": "2026-08-18T05:53:21.340791+00:00",
       "in_sheet": true,
       "alerted": true,
       "flags": [
@@ -7865,7 +7865,7 @@
       "district": "Borhanci",
       "subdistrict": null,
       "first_seen_at": "2026-07-17T10:29:47.179569+00:00",
-      "last_seen_at": "2026-08-17T16:53:18.437383+00:00",
+      "last_seen_at": "2026-08-18T05:53:21.340791+00:00",
       "in_sheet": true,
       "alerted": true,
       "flags": [
@@ -14787,7 +14787,7 @@
       "district": "Centru",
       "subdistrict": null,
       "first_seen_at": "2026-07-30T13:16:10.023112+00:00",
-      "last_seen_at": "2026-08-17T14:00:07.559971+00:00",
+      "last_seen_at": "2026-08-18T05:53:21.340791+00:00",
       "in_sheet": true,
       "alerted": true,
       "flags": [
@@ -19905,7 +19905,7 @@
       "address": "Strada Regele Ferdinand",
       "district": "Centru",
       "first_seen_at": "2026-08-17T15:49:47.677367+00:00",
-      "last_seen_at": "2026-08-17T16:53:16.700032+00:00",
+      "last_seen_at": "2026-08-18T05:53:19.543670+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -20221,7 +20221,7 @@
       }
     },
     "source": "sheet_col_K",
-    "updated_at": "2026-08-17T16:56:44.400712+00:00"
+    "updated_at": "2026-08-18T05:57:07.728695+00:00"
   },
   "version": 14,
   "daily_stats": {
@@ -20245,14 +20245,14 @@
     ]
   },
   "canary": {
-    "date": "2026-08-17",
+    "date": "2026-08-18",
     "results": {
       "olx_sweep": "ok",
       "storia_sweep": "ok",
       "imobiliare_sweep": "FAIL: source down in last sweep",
       "olx_detail": "ok",
       "storia_detail": "ok",
-      "imobiliare_detail": "ok"
+      "imobiliare_detail": "FAIL x3: http=403"
     }
   },
   "daily_digest_sent": "2026-08-16",
