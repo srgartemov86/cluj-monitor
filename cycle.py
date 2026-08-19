@@ -1779,9 +1779,17 @@ def cmd_finalize():
     except Exception as e:
         out['last_scan_stamp'] = f'fail: {e}'
 
-    cr = subprocess.run(['python3', str(SCRIPT_DIR / 'check_status.py')],
-                        capture_output=True, text=True, timeout=300)
-    cout = (cr.stdout or '') + '\n' + (cr.stderr or '')
+    # Проверка живости объявлений — вспомогательный шаг: её таймаут НЕ должен
+    # ронять цикл (19.08: imobiliare начал отдавать 403 везде, ретраи растянули
+    # check_status за 300 с → падал весь прогон, карта и surge не обновлялись).
+    try:
+        cr = subprocess.run(['python3', str(SCRIPT_DIR / 'check_status.py')],
+                            capture_output=True, text=True, timeout=600)
+        cout = (cr.stdout or '') + '\n' + (cr.stderr or '')
+    except subprocess.TimeoutExpired:
+        out['check_timeout'] = True
+        cr = subprocess.CompletedProcess([], 1, '', 'timeout')
+        cout = ''
     m = re.search(r'(\d+)\s+killed[^a-z]*?(\d+)\s+alive', cout)
     killed = int(m.group(1)) if m else 0
     alive = int(m.group(2)) if m else 0

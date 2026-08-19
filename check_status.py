@@ -104,7 +104,10 @@ def fetch(url, timeout=20):
             import curl_sweep
             # imo_get: ретраи + резидентный прокси. None/не-200 = DataDome-блок,
             # это НЕ признак снятия лота — вернём код как есть, is_dead даст unknown
-            r = curl_sweep.imo_get(url, timeout=timeout)
+            # 2 попытки вместо 8: это лишь проверка живости, а не сбор данных;
+            # при массовом 403 (imobiliare с 19.08) 8 ретраев на лот съедали
+            # весь бюджет шага
+            r = curl_sweep.imo_get(url, timeout=timeout, attempts=2)
             if r is None:
                 return 'ERR', 0, 'DataDome block after retries', None
             body = r.text
