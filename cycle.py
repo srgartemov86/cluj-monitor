@@ -1076,6 +1076,12 @@ def run_process():
         t0 = time.time()
         all_l, sources_down, sweep_errors = [], [], []
 
+        # Кулдаун источника: сайт под долгой блокировкой (imobiliare/DataDome
+        # с 19.08) не должен каждый цикл жечь минуты на заведомо мёртвые ретраи.
+        # 3 провала подряд → пауза 6 ч, затем одна разведочная попытка.
+        _cool = s.setdefault('source_cooldown', {})
+        _now_ts = time.time()
+
         for name, fn, pages in [
             ('olx', curl_sweep.sweep_olx, 4),
             ('storia', curl_sweep.sweep_storia, 4),
@@ -1083,11 +1089,21 @@ def run_process():
             # может сразу оказаться на стр. 3+ (кейс 275395542, 17.07)
             ('imobiliare', curl_sweep.sweep_imobiliare, 6),
         ]:
+            if (_cool.get(name) or {}).get('until', 0) > _now_ts:
+                sources_down.append(name)
+                sweep_errors.append(f'{name}:cooldown')
+                continue
             try:
                 all_l.extend(fn(pages=pages))
+                _cool.pop(name, None)  # источник ожил — снимаем кулдаун
             except Exception as e:
                 sources_down.append(name)
                 sweep_errors.append(f'{name}:{type(e).__name__}')
+                _c = _cool.setdefault(name, {'fails': 0, 'until': 0})
+                _c['fails'] = _c.get('fails', 0) + 1
+                if _c['fails'] >= 3:
+                    _c['until'] = _now_ts + 6 * 3600
+                    _c['fails'] = 0
 
         # Здоровье парсинга по источникам — для канарейки (судит по факту цикла,
         # НЕ делает своих запросов: лишний фетч ловил 403 после прокси-очереди цикла)
