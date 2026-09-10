@@ -50,6 +50,7 @@ jobs:
           CLUJ_DATA: ${{ github.workspace }}/data
           GOOGLE_TOKEN_PATH: /tmp/google-token.json
           TG_SESSION: ${{ secrets.TG_SESSION }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_API_ID: ${{ secrets.TG_API_ID }}
           TG_API_HASH: ${{ secrets.TG_API_HASH }}
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
@@ -64,6 +65,7 @@ jobs:
         env:
           WATCHDOG_PAT: ${{ secrets.WATCHDOG_PAT }}
           TG_SESSION: ${{ secrets.TG_SESSION }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_API_ID: ${{ secrets.TG_API_ID }}
           TG_API_HASH: ${{ secrets.TG_API_HASH }}
 
@@ -73,6 +75,7 @@ jobs:
         env:
           WATCHDOG_PAT: ${{ secrets.WATCHDOG_PAT }}
           TG_SESSION: ${{ secrets.TG_SESSION }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_API_ID: ${{ secrets.TG_API_ID }}
           TG_API_HASH: ${{ secrets.TG_API_HASH }}
 

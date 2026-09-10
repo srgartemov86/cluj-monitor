@@ -9,6 +9,9 @@ from send_album import keychain
 
 
 async def main():
+    if __import__('os').environ.get('TG_BOT_TOKEN'):  # Bot API вместо сессии (10.09.2026)
+        import tg_bot
+        return tg_bot.cli_edit_caption(sys.argv)
     if len(sys.argv) < 4:
         print(json.dumps({'ok': False, 'error': 'usage: edit_caption.py CHAT_ID MSG_ID FILE'}))
         return 1
