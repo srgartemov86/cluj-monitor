@@ -12580,25 +12580,6 @@
       "scored_at": "2026-07-26T14:32:35.090365+00:00",
       "compacted": true
     },
-    "olx_291598746": {
-      "source": "olx.ro",
-      "id": "291598746",
-      "url": "https://www.olx.ro/d/oferta/spatiu-comercial-113-mp-marasti-IDjJv9A.html",
-      "area_m2": 113,
-      "price_eur": 5210,
-      "floor": null,
-      "address": "",
-      "district": "Unknown",
-      "first_seen_at": "2026-07-26T14:30:34.710629+00:00",
-      "last_seen_at": "2026-08-28T10:29:29.996383+00:00",
-      "in_sheet": false,
-      "alerted": false,
-      "rejected": true,
-      "flags": [
-        "price=5210"
-      ],
-      "compacted": true
-    },
     "olx_268798541": {
       "source": "olx.ro",
       "id": "268798541",
@@ -22009,25 +21990,6 @@
       ],
       "compacted": true
     },
-    "olx_303393231": {
-      "source": "olx.ro",
-      "id": "303393231",
-      "url": "https://www.olx.ro/d/oferta/oportunitate-unica-in-gheorgheni-spatiu-bistro-bacanie-cu-person-IDkx0rd.html",
-      "area_m2": 150,
-      "price_eur": 5445,
-      "floor": null,
-      "address": "",
-      "district": "Gheorgheni",
-      "first_seen_at": "2026-09-01T08:29:11.415895+00:00",
-      "last_seen_at": "2026-09-06T06:29:35.719254+00:00",
-      "in_sheet": false,
-      "alerted": false,
-      "rejected": true,
-      "flags": [
-        "price=5445"
-      ],
-      "compacted": true
-    },
     "olx_308712721": {
       "source": "olx.ro",
       "id": "308712721",
@@ -23903,7 +23865,24 @@
       "scored_at": "2026-09-10T06:31:41.283415+00:00"
     }
   },
-  "pending_candidates": [],
+  "pending_candidates": [
+    {
+      "id": "291598746",
+      "source": "olx.ro",
+      "url": "https://www.olx.ro/d/oferta/spatiu-comercial-113-mp-marasti-IDjJv9A.html",
+      "area": 113,
+      "price": 5210,
+      "floor": null
+    },
+    {
+      "id": "303393231",
+      "source": "olx.ro",
+      "url": "https://www.olx.ro/d/oferta/oportunitate-unica-in-gheorgheni-spatiu-bistro-bacanie-cu-person-IDkx0rd.html",
+      "area": 150,
+      "price": 5445,
+      "floor": null
+    }
+  ],
   "source_health": {},
   "district_blacklist": [],
   "last_cycle_at": "2026-09-10T06:31:41.283457+00:00",
