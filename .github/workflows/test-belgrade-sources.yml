@@ -17,7 +17,7 @@ jobs:
           cat probe.log
           cat result.txt
       - name: Report to Telegram
-        run: cat result.txt | python send_text.py 5131688215 -
+        run: cat result.txt | python send_text.py 135201285 -
         env:
           TG_SESSION: ${{ secrets.TG_SESSION }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
