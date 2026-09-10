@@ -52,7 +52,7 @@ RUNS_LOG = os.path.join(os.environ.get('CLUJ_DATA', '/Users/dodo/cluj-location-m
 PHOTO_DIR = Path(os.getcwd()) / '.cluj-photos'
 CHAT_ID = 3828339567  # supergroup (migrated 2026-07-10 from basic group 5328997952)
 
-AREA_MIN, AREA_MAX = 100, 220
+AREA_MIN, AREA_MAX = 89, 220  # нижняя граница снижена со 100 по решению Сергея 10.09.2026
 PRICE_MIN, PRICE_MAX = 1200, 7000  # потолок поднят 5000 → 7000 по решению Сергея 10.09.2026
 PRICE_PER_M2_MIN = 10.0  # €/м²: центр Клужа ~10–18 €/м²/мес; дешевле — окраина/качество
 CEILING_MIN = 3.0
