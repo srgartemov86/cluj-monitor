@@ -53,7 +53,7 @@ PHOTO_DIR = Path(os.getcwd()) / '.cluj-photos'
 CHAT_ID = 3828339567  # supergroup (migrated 2026-07-10 from basic group 5328997952)
 
 AREA_MIN, AREA_MAX = 100, 220
-PRICE_MIN, PRICE_MAX = 1200, 5000
+PRICE_MIN, PRICE_MAX = 1200, 7000  # потолок поднят 5000 → 7000 по решению Сергея 10.09.2026
 PRICE_PER_M2_MIN = 10.0  # €/м²: центр Клужа ~10–18 €/м²/мес; дешевле — окраина/качество
 CEILING_MIN = 3.0
 TRG_LAT, TRG_LON = 46.7694, 23.5893  # Piața Unirii
@@ -77,7 +77,7 @@ FAR_MUNI_SLUGS = ('turda', 'dej', 'campia-turzii', 'gherla', 'huedin', 'gilau',
                   'feleacu', 'chinteni', 'jucu', 'dezmir', 'apahida', 'floresti',
                   'baciu', 'savadisla', 'tureni', 'aiton', 'cojocna')
 # «Near-miss» коридор цены для листа реджектов: рядом с целевым 1200–5000.
-PRICE_NEAR_LOW, PRICE_NEAR_HIGH = 900, 6000
+PRICE_NEAR_LOW, PRICE_NEAR_HIGH = 900, 8000
 
 UA = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 '
       '(KHTML, like Gecko) Chrome/120.0 Safari/537.36')
