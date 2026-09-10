@@ -18,9 +18,10 @@ from pathlib import Path
 
 HERE = Path(__file__).parent
 CHAT_ID = os.environ.get('CLUJ_CHAT_ID', '3828339567')
-# Служебные уведомления (health-алерты) — лично Сергею в Daily wrap up,
-# не в рабочий чат лотов (просьба 2026-07-16).
-ALERT_CHAT_ID = os.environ.get('CLUJ_ALERT_CHAT_ID', '5131688215')
+# Служебные уведомления (health-алерты) — лично Сергею, не в рабочий чат лотов.
+# С 10.09.2026 в личку с ботом @clujmonitorbot (135201285): бот не участник
+# группы Daily wrap up (5131688215, обычная группа).
+ALERT_CHAT_ID = os.environ.get('CLUJ_ALERT_CHAT_ID', '135201285')
 MANY_PASSES = 15  # SKILL: при ≥15 лотов — одна сводка вместо N сообщений
 
 # Глоссарий ro→en (SKILL.md): термины недвижимости, по которым принимается решение.

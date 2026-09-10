@@ -12,7 +12,7 @@ jobs:
           python-version: '3.12'
       - run: pip install telethon
       - name: Send test message
-        run: echo "✅ cluj-monitor test from GitHub Actions — Telegram path works" | python send_text.py 5131688215 -
+        run: echo "✅ cluj-monitor test from GitHub Actions — Telegram path works" | python send_text.py 135201285 -
         env:
           TG_SESSION: ${{ secrets.TG_SESSION }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
