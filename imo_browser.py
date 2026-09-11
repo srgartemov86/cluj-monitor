@@ -15,7 +15,8 @@
 """
 import atexit, os, re, sys
 
-_state = {'cm': None, 'page': None, 'failed': False, 'detail_fails': 0, 'detail_off': False}
+_state = {'cm': None, 'page': None, 'failed': False, 'detail_fails': 0, 'detail_off': False,
+          'coords': {}}
 _BLOCK = ('captcha-delivery', 'var dd=', 'Attention Required', 'Doar un moment', 'Just a moment')
 _CARD = re.compile(r'/oferta/spatiu-comercial-de-inchiriat-[a-z0-9\-]+-\d+')
 DETAIL_BREAKER = 2
@@ -23,6 +24,24 @@ DETAIL_BREAKER = 2
 
 def _log(msg):
     print(f'  imo_browser: {msg}', file=sys.stderr, flush=True)
+
+
+def _on_response(r):
+    """Листинг сам запрашивает /map/top_listing*: results = [{"0": id, "1": [lon, lat]}].
+    Копим координаты по id: detail-страницы с ними закрыты DataDome."""
+    try:
+        u = r.url
+        if '/map/top_listing' in u or '/map/listings' in u:
+            for x in (r.json() or {}).get('results') or []:
+                i, ll = x.get('0'), x.get('1')
+                if i and isinstance(ll, list) and len(ll) == 2:
+                    _state['coords'][str(i)] = (float(ll[1]), float(ll[0]))
+    except Exception:
+        pass
+
+
+def coords():
+    return _state['coords']
 
 
 def enabled():
@@ -48,6 +67,7 @@ def _page():
     _state['cm'] = cm
     atexit.register(close)
     page = browser.new_page()
+    page.on('response', _on_response)
     # прогрев: главная не за челленджем и выдаёт куки, с ней листинг проходит стабильнее
     page.goto('https://www.imobiliare.ro/', timeout=60000, wait_until='domcontentloaded')
     page.wait_for_timeout(3000)

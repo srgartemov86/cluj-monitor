@@ -266,7 +266,7 @@ IMOB_SLUG_DISTRICT_RE = re.compile(
     r'/oferta/spatiu-comercial-de-inchiriat-cluj-napoca-([a-z0-9\-]+?)-\d{2,4}mp-\d+$')
 
 
-def sweep_imobiliare(pages=3):
+def _sweep_imobiliare_regex(pages=3):
     from curl_cffi import requests as cffi
     out, seen = [], set()
     for p in range(1, pages + 1):
@@ -333,6 +333,142 @@ def sweep_imobiliare(pages=3):
         if not matches:
             break
         time.sleep(1.0)  # DataDome не любит бурсты
+    return out
+
+
+
+# id -> данные карточки из листинга (описание, фото, координаты). Detail-страницы
+# imobiliare под DataDome закрыты 100% (пробы 11.09.2026), поэтому cycle.fetch_html
+# собирает из этого кеша мини-HTML для parse_imobiliare. Живёт в процессе цикла.
+IMO_EMBED = {}
+IMO_LIST_URL = 'https://www.imobiliare.ro/inchirieri-spatii-comerciale/judetul-cluj/cluj-napoca'
+
+
+def _imo_page_data(html):
+    """(listings, jsonld_by_id, searchMeta) из отрендеренного листинга (Inertia data-page + JSON-LD)."""
+    import html as _H
+    m = re.search(r'id="app" data-page="([^"]+)"', html)
+    if not m:
+        raise ValueError('no data-page')
+    dp = json.loads(_H.unescape(m.group(1)))
+    props = dp.get('props') or {}
+    listings = []
+    for s in props.get('sections') or []:
+        if s.get('type') == 'results-list':
+            listings = (s.get('data') or {}).get('listings') or []
+    ld = {}
+    lm = re.search(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S)
+    if lm:
+        try:
+            for x in json.loads(lm.group(1)).get('@graph') or []:
+                if x.get('@type') == 'SearchResultsPage':
+                    for el in (x.get('mainEntity') or {}).get('itemListElement') or []:
+                        it = el.get('item') or {}
+                        im = re.search(r'item-(\d+)', it.get('@id') or '')
+                        if im:
+                            ld[im.group(1)] = it
+        except Exception:
+            pass
+    return listings, ld, props.get('searchMeta') or {}
+
+
+def _imo_candidates(listings, ld, coords):
+    """Карточки spatiu-comercial -> кандидаты свипа; попутно наполняет IMO_EMBED."""
+    import html as _H
+    out = []
+    for L in listings:
+        rel = L.get('url') or ''
+        lid = str(L.get('id') or '')
+        if 'spatiu-comercial-de-inchiriat' not in rel or not lid:
+            continue
+        it = ld.get(lid) or {}
+        area = None
+        for hl in L.get('highlights') or []:
+            if hl.get('key') == 'total_usable_surface':
+                mm = re.search(r'(\d+(?:[.,]\d+)?)', hl.get('label') or '')
+                if mm:
+                    # румынский формат: точка разделяет тысячи, запятая дробную часть
+                    area = int(round(float(mm.group(1).replace('.', '').replace(',', '.'))))
+        if area is None:
+            am = IMOB_SLUG_AREA_RE.search(rel)
+            area = int(am.group(1)) if am else None
+        price = None
+        ps = (it.get('offers') or {}).get('priceSpecification') or {}
+        if ps.get('price') is not None:
+            try:
+                price = float(ps['price'])
+                if (ps.get('priceCurrency') or 'EUR').upper() == 'RON':
+                    price = price / RON_PER_EUR
+                price = int(round(price))
+            except (TypeError, ValueError):
+                price = None
+        if price is None:
+            pm = re.search(r'([\d.,]+)', L.get('price') or '')
+            if pm:
+                try:
+                    price = int(round(float(pm.group(1).replace('.', '').replace(',', '.'))))
+                    if 'lei' in (L.get('price') or '').lower():
+                        price = int(round(price / RON_PER_EUR))
+                except ValueError:
+                    price = None
+        district = ''
+        dm = IMOB_SLUG_DISTRICT_RE.search(rel)
+        if dm:
+            district = ' '.join(w.capitalize() for w in dm.group(1).split('-'))
+        elif L.get('location'):
+            district = L['location'].split(',')[0].strip()
+        lat, lon = coords.get(lid, (None, None))
+        desc = _H.unescape(it.get('description') or '') or (L.get('descriptionPreview') or '')
+        imgs = [x.get('src') for x in (L.get('images') or []) if isinstance(x, dict) and x.get('src')]
+        IMO_EMBED[lid] = {'title': L.get('title') or it.get('name') or '', 'description': desc,
+                          'images': imgs, 'lat': lat, 'lon': lon}
+        out.append({
+            'source': 'imobiliare.ro', 'id': lid,
+            'url': ('https://www.imobiliare.ro' + rel) if rel.startswith('/') else rel,
+            'title': L.get('title') or '', 'area': area, 'price': price,
+            'street': '', 'municipality': district, 'type': None, 'floor': None,
+            'lat': lat, 'lon': lon, 'date': '',
+        })
+    return out
+
+
+def sweep_imobiliare(pages=6):
+    """imobiliare через браузер (IMO_BROWSER=1): карточки из JSON листинга, без detail.
+    Без браузера или если JSON не разобрался на стр.1 — старый регэксп-путь."""
+    import imo_browser
+    if not imo_browser.enabled():
+        return _sweep_imobiliare_regex(pages)
+    out, seen, last_page = [], set(), None
+    for p in range(1, pages + 1):
+        if last_page and p > last_page:
+            break
+        url = IMO_LIST_URL + (f'?page={p}' if p > 1 else '')  # ?page=1 -> 404
+        t0 = time.time()
+        html = imo_browser.get_html(url)
+        if not html:
+            if p == 1:
+                raise RuntimeError('imobiliare listing blocked')
+            _v(f'  imobiliare p{p}: blocked, stop')
+            break
+        try:
+            listings, ld, meta = _imo_page_data(html)
+        except Exception as e:
+            _v(f'  imobiliare p{p}: embedded parse fail {type(e).__name__}')
+            if p == 1:
+                return _sweep_imobiliare_regex(pages)
+            break
+        last_page = meta.get('lastPage') or last_page
+        n = 0
+        for c in _imo_candidates(listings, ld, imo_browser.coords()):
+            if c['id'] in seen:
+                continue
+            seen.add(c['id'])
+            out.append(c)
+            n += 1
+        _v(f'  imobiliare p{p}: {n} listings (embedded, {len(listings)} cards on page, '
+           f'lastPage={last_page}, {time.time()-t0:.1f}s)')
+    with_geo = sum(1 for c in out if c.get('lat') is not None)
+    _v(f'  imobiliare: {len(out)} commercial listings, {with_geo} with map coordinates')
     return out
 
 

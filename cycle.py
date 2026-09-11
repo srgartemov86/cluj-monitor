@@ -237,9 +237,35 @@ def decode_escapes(s):
         return s
 
 
+def _imo_embedded_html(url):
+    """Detail imobiliare закрыт DataDome. Данные карточки берём из листинга
+    (curl_sweep.IMO_EMBED, наполняет свип в этом же процессе) и собираем мини-HTML
+    в формате, который понимают parse_imobiliare и extract_photo_urls."""
+    import html as _H
+    m = re.search(r'-(\d+)/?$', url or '')
+    e = curl_sweep.IMO_EMBED.get(m.group(1)) if m else None
+    if not e:
+        return None
+    imgs = e.get('images') or []
+    blob = {'description': e.get('description') or ''}
+    if e.get('lat') is not None:
+        blob['latitude'], blob['longitude'] = e['lat'], e['lon']
+    parts = [f"<html><head><title>{_H.escape(e.get('title') or '')}</title>"]
+    if imgs:
+        parts.append(f'<meta property="og:image" content="{_H.escape(imgs[0])}">')
+    # ensure_ascii: decode_escapes в parse_imobiliare корректно раскрывает только \uXXXX
+    parts.append('</head><body><script type="application/json">' + json.dumps(blob) + '</script>')
+    parts.extend(f'<img src="{_H.escape(u)}">' for u in imgs)
+    parts.append('</body></html>')
+    return ''.join(parts)
+
+
 def fetch_html(url, timeout=20):
     """Returns (html, http_status). http_status=0 on error."""
     if 'imobiliare.ro' in url:
+        emb = _imo_embedded_html(url)
+        if emb:
+            return emb, 200
         # imo_get: ретраи + резидентный прокси (HALO_PROXY→ro) против DataDome
         r = curl_sweep.imo_get(url, timeout=timeout)
         return (r.text, r.status_code) if r is not None else ('', 0)
@@ -519,11 +545,12 @@ def extract_photo_urls(html, source, max_n=10):
                     if u:
                         urls.append(u)
         elif source == 'imobiliare.ro':
+            _roam = re.findall(r'https://i\.roamcdn\.net/prop/imo/gallery-main-[^"\\\s<>]+?\.jpe?g', html)
             cand = re.findall(r'https://[a-z0-9.\-]+/(?:image|images|photos)[^"\\\s]+?\.(?:jpe?g|webp)[^"\\\s]*', html)
             og = re.search(r'og:image"\s+content="([^"]+)"', html)
             if og:
                 cand = [og.group(1)] + cand
-            urls = list(dict.fromkeys(cand))
+            urls = list(dict.fromkeys(_roam + cand))
     except Exception:
         pass
     # Canonical dedup: OLX отдаёт один файл в нескольких размерах
@@ -1087,7 +1114,7 @@ def run_process():
             ('storia', curl_sweep.sweep_storia, 4),
             # 6 стр. = вся секция: сортировка imobiliare не по свежести, новый лот
             # может сразу оказаться на стр. 3+ (кейс 275395542, 17.07)
-            ('imobiliare', curl_sweep.sweep_imobiliare, 6),
+            ('imobiliare', curl_sweep.sweep_imobiliare, 12),  # JSON листинга, стоп на lastPage
         ]:
             if (_cool.get(name) or {}).get('until', 0) > _now_ts:
                 sources_down.append(name)
