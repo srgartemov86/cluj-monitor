@@ -1237,6 +1237,13 @@ def run_process():
             # else: new OR zombie (no terminal status) — fall through to detail-fetch
 
             html, status = fetch_html(cand['url'])
+            if not html and src == 'imobiliare.ro' and int(cand.get('_fetch_fails') or 0) < 24:
+                # detail imobiliare под DataDome: сбой загрузки не значит, что лот плохой.
+                # Возвращаем в очередь без строки в Rejected (иначе дубль каждый час);
+                # после ~24 неудач подряд лот уходит в обычный fetch_fail.
+                cand['_fetch_fails'] = int(cand.get('_fetch_fails') or 0) + 1
+                s['pending_candidates'].append(cand)
+                continue
             if not html:
                 rejects.append({
                     'key': key, 'reason': f'fetch_fail:http={status}',

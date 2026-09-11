@@ -4,9 +4,10 @@
 С августа 2026 imobiliare закрыт Cloudflare + JS-челленджем DataDome на всех
 страницах поиска: HTTP-клиенты (curl_cffi) и резидентные прокси получают 403.
 Пробы 11.09.2026 на раннере GitHub: Camoufox (антидетект-Firefox) НАПРЯМУЮ,
-без прокси, открывает листинг 3 из 3 раз (68 карточек на 6 страницах);
-detail-страница открылась 2 из 3 с первого захода, поэтому есть перезагрузка.
-Chromium/Playwright и любой вариант через прокси блокируются.
+без прокси, открывает листинг 3 из 3 раз (68 карточек на 6 страницах).
+Страницы объявлений в боевом прогоне 11.09 блокировались 6 из 6 даже после
+перезагрузок, поэтому у detail один заход и предохранитель: после двух блоков
+подряд detail в этом процессе больше не открываем (иначе цикл шёл 18 минут).
 
 Один браузер на процесс, ленивый старт, закрывается при выходе процесса.
 Включается env IMO_BROWSER=1 (ставит workflow); без него get_html -> None,
@@ -14,9 +15,10 @@ Chromium/Playwright и любой вариант через прокси бло�
 """
 import atexit, os, re, sys
 
-_state = {'cm': None, 'page': None, 'failed': False}
+_state = {'cm': None, 'page': None, 'failed': False, 'detail_fails': 0, 'detail_off': False}
 _BLOCK = ('captcha-delivery', 'var dd=', 'Attention Required', 'Doar un moment', 'Just a moment')
 _CARD = re.compile(r'/oferta/spatiu-comercial-de-inchiriat-[a-z0-9\-]+-\d+')
+DETAIL_BREAKER = 2
 
 
 def _log(msg):
@@ -57,11 +59,14 @@ def _blocked(html):
     return (not html) or any(m in html for m in _BLOCK)
 
 
-def get_html(url, detail=False, tries=3):
-    """HTML страницы или None. Листинг ждём до появления карточек, detail до
-    ухода челленджа; при блоке перезагружаем (всего до `tries` заходов)."""
+def get_html(url, detail=False, tries=None):
+    """HTML страницы или None. Листинг ждём до появления карточек (до 2 заходов),
+    detail до ухода челленджа (1 заход, затем предохранитель)."""
     if not enabled():
         return None
+    if detail and _state['detail_off']:
+        return None
+    tries = tries or (1 if detail else 2)
     try:
         page = _page()
     except Exception as e:
@@ -75,15 +80,21 @@ def get_html(url, detail=False, tries=3):
             else:
                 page.wait_for_timeout(4000)
                 page.reload(timeout=60000, wait_until='domcontentloaded')
-            for _ in range(8):  # до ~20 с на решение челленджа и рендер
+            for _ in range(6):  # до ~15 с на решение челленджа и рендер
                 page.wait_for_timeout(2500)
                 html = page.content()
                 if detail:
                     if not _blocked(html) and len(html) > 50000:
+                        _state['detail_fails'] = 0
                         return html
                 elif _CARD.search(html):
                     return html
         except Exception as e:
             _log(f'{type(e).__name__} on {url[:80]}')
     _log(f'blocked after {tries} tries: {url[:80]}')
+    if detail:
+        _state['detail_fails'] += 1
+        if _state['detail_fails'] >= DETAIL_BREAKER:
+            _state['detail_off'] = True
+            _log(f'detail breaker open after {DETAIL_BREAKER} blocks: skip detail pages this run')
     return None
