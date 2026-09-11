@@ -31,6 +31,18 @@ jobs:
 
       - run: npm install -g surge
 
+      - name: Cache Camoufox browser
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/camoufox
+          key: camoufox-${{ runner.os }}-v1
+
+      - name: Install Camoufox (imobiliare.ro via real browser)
+        run: |
+          pip install camoufox
+          python -m playwright install-deps firefox
+          python -m camoufox fetch
+
       - name: Write Google OAuth token
         run: echo "$GOOGLE_TOKEN_JSON" > /tmp/google-token.json
         env:
@@ -58,6 +70,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           HALO_PROXY: ${{ secrets.HALO_PROXY }}
           PIZZA_QUIET: '1'
+          IMO_BROWSER: '1'
 
       - name: Watchdog belgrade-monitor
         if: always()

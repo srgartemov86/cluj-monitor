@@ -37,11 +37,23 @@ _imo_sid = [1]  # sticky-sid: инкремент при неудаче = нов�
 _IMO_IMPS = ('chrome124', 'chrome131', 'chrome120', 'safari17_0')
 
 
+class _ImoResp:
+    """Минимальный ответ в форме curl_cffi.Response для вызывающих imo_get."""
+    def __init__(self, text, status_code):
+        self.text, self.status_code = text, status_code
+
+
 def imo_get(url, timeout=30, attempts=8):
     # 4→8 попыток 18.07: DataDome ужесточился (~50%→~15% на попытку),
     # пауза между попытками сбивает rate-детект
     """GET imobiliare.ro: ретраи с ротацией exit-IP через прокси (если задан).
     Возвращает Response со status 200, либо последний Response/None."""
+    # С 11.09.2026 на раннере imobiliare ходит через настоящий браузер (Camoufox):
+    # сайт за Cloudflare + JS-челленджем DataDome, curl_cffi и прокси получают 403.
+    import imo_browser
+    if imo_browser.enabled():
+        html = imo_browser.get_html(url, detail='/oferta/' in url)
+        return _ImoResp(html, 200) if html else None
     from curl_cffi import requests as cffi
     last = None
     for i in range(attempts if _RES_PROXY else 1):
