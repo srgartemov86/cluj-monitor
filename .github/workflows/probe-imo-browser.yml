@@ -1,0 +1,31 @@
+name: probe-imo-browser
+on:
+  workflow_dispatch: {}
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [playwright, camoufox]
+        net: [direct, proxy]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser
+        run: |
+          pip install playwright
+          if [ "${{ matrix.mode }}" = "playwright" ]; then
+            python -m playwright install --with-deps chromium
+          else
+            python -m playwright install-deps firefox
+            pip install 'camoufox[geoip]'
+            python -m camoufox fetch
+          fi
+      - name: Probe
+        env:
+          HALO_PROXY: ${{ secrets.HALO_PROXY }}
+        run: python probe_imobiliare_browser.py ${{ matrix.mode }} ${{ matrix.net }}
