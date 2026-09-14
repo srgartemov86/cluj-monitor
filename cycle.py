@@ -1770,9 +1770,11 @@ def run_canary(s):
     # detail-каналы: свежие живые in_sheet лоты каждого источника.
     # Пробуем до 3: свежеудалённый лот может отдавать 200-заглушку/редирект —
     # один мёртвый подопытный не должен давать ложную тревогу. FAIL — если все.
+    # imobiliare detail здесь нет: с 11.09.2026 данные берутся из карточек листинга
+    # (Camoufox), detail-страницы под DataDome не открываются намеренно. Проверка
+    # давала ложный FAIL x3 каждое утро (12–14.09), sweep-канал источник покрывает.
     for prefix, src_name, label in (('olx_', 'olx.ro', 'olx_detail'),
-                                    ('storia_', 'storia.ro', 'storia_detail'),
-                                    ('imobiliare_', 'imobiliare.ro', 'imobiliare_detail')):
+                                    ('storia_', 'storia.ro', 'storia_detail')):
         recs = []
         for k, v in sorted(s.get('listings', {}).items(),
                            key=lambda kv: ((kv[1] or {}).get('last_seen_at') or ''),
