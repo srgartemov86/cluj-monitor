@@ -262,8 +262,8 @@ def sweep_storia(pages=4):
 IMOB_HREF_RE = re.compile(
     r'href="(?:https://www\.imobiliare\.ro)?(/oferta/spatiu-comercial-de-inchiriat-[a-z0-9\-]+-(\d+))"')
 IMOB_SLUG_AREA_RE = re.compile(r'-(\d{2,4})mp-\d+$')
-IMOB_SLUG_DISTRICT_RE = re.compile(
-    r'/oferta/spatiu-comercial-de-inchiriat-cluj-napoca-([a-z0-9\-]+?)-\d{2,4}mp-\d+$')
+IMOB_SLUG_DISTRICT_RE = re.compile(  # площадь в слаге с 09.2026 не обязательна
+    r'/oferta/spatiu-comercial-de-inchiriat-cluj-napoca-([a-z0-9\-]+?)(?:-\d{2,4}mp)?-\d+$')
 
 
 def _sweep_imobiliare_regex(pages=3):

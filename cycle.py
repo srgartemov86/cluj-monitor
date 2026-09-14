@@ -485,11 +485,15 @@ def _district_by_coords(lat, lon):
 def _district_from_text(text):
     """Картье из текста (название района или топоним-улица)."""
     norm = _norm_sub(text)
+    # только целым словом: 'central' внутри 'semicentral' давал Centru
+    # лоту на Bulevardul Muncii (imobiliare 256317967, 14.09.2026)
+    def _word(t):
+        return re.search(r'(?<![a-z])' + re.escape(t) + r'(?![a-z])', norm)
     for slug, (name, _la, _lo) in CARTIERE.items():
-        if slug.replace('-', ' ') in norm:
+        if _word(slug.replace('-', ' ')):
             return name
     for topo, name in SUBDISTRICT_TO_MUNI.items():
-        if topo in norm:
+        if _word(topo):
             return name
     return ''
 
@@ -498,8 +502,9 @@ def extract_district(cand, detail):
     src = cand.get('source')
 
     if src == 'imobiliare.ro':
-        # район зашит в slug URL: ...cluj-napoca-manastur-94mp-123
-        m = re.search(r'cluj-napoca-([a-z0-9\-]+?)-\d{2,4}mp-\d+$', cand.get('url', ''))
+        # район зашит в slug URL: ...cluj-napoca-manastur-94mp-123;
+        # с 09.2026 бывает и без площади: ...cluj-napoca-industrial-256317967
+        m = re.search(r'cluj-napoca-([a-z0-9\-]+?)(?:-\d{2,4}mp)?-\d+$', cand.get('url', ''))
         if m:
             slug = m.group(1)
             if slug in CARTIERE:
@@ -1979,10 +1984,108 @@ def cmd_finalize():
     return 0
 
 
+GEOCODE_MAX_KM = 9.0  # результат Nominatim дальше от Piața Unirii — это не Клуж
+_STREET_TYPE_RE = re.compile(
+    r'^(?:strada|str|bulevardul|bd|b-dul|bulevard|calea|aleea|piata|piața|splaiul)\.?\s+',
+    re.IGNORECASE)
+
+
+def _nominatim(q):
+    """(lat, lon, addresstype) первого результата или None. stdlib: на macOS-python
+    без certifi падает проверка сертификата, поэтому тот же fallback, что в tg_bot."""
+    import ssl, urllib.request, urllib.parse
+    try:
+        import certifi
+        ctx = ssl.create_default_context(cafile=certifi.where())
+    except Exception:
+        ctx = ssl.create_default_context()
+    url = 'https://nominatim.openstreetmap.org/search?' + urllib.parse.urlencode(
+        {'q': q, 'format': 'json', 'limit': 1, 'countrycodes': 'ro'})
+    try:
+        req = urllib.request.Request(url, headers={'User-Agent': 'cluj-location-monitor/1.0'})
+        with urllib.request.urlopen(req, timeout=15, context=ctx) as r:
+            d = json.loads(r.read().decode())
+    except Exception:
+        return None
+    if not d:
+        return None
+    return float(d[0]['lat']), float(d[0]['lon']), d[0].get('addresstype') or ''
+
+
+def geocode_hint(hint):
+    """Адресная зацепка из текста объявления ('Str. Muncii nr. 209') → (lat, lon).
+    Запросы от точного к грубому: как есть → без типа улицы (в OSM это может быть
+    Bulevardul, а агент пишет Str.) → без номера дома. Принимаем только точки в
+    пределах Клужа и не центроиды города/района: их у лота и так есть."""
+    q0 = re.sub(r'^[~\s]+|\s*\((?:from listing text|approx[^)]*)\)\s*$', '', hint or '').strip()
+    q0 = re.sub(r'\b(?:nr|no)\.?\s*(\d+)', r'\1', q0, flags=re.IGNORECASE)
+    q0 = re.sub(r',?\s*Cluj(?:-Napoca)?\s*$', '', q0, flags=re.IGNORECASE)
+    if not q0:
+        return None, None
+    seg = q0.split(',')[0].strip()  # 'zona OMV Marasti, Toni Auto' → первый ориентир
+    variants = []
+    for base in (q0, seg):
+        no_type = _STREET_TYPE_RE.sub('', base)
+        no_num = re.sub(r'\s+\d+[a-z]?\b', '', no_type).strip()
+        variants += [base, no_type, no_num]
+    seen, queries = set(), []
+    for v in variants:
+        v = v.strip(' ,')
+        if v and v.lower() not in seen:
+            seen.add(v.lower())
+            queries.append(v)
+    for i, q in enumerate(queries[:4]):
+        if i:
+            time.sleep(1.1)  # лимит Nominatim 1 rps
+        res = _nominatim(f'{q}, Cluj-Napoca')
+        if not res:
+            continue
+        lat, lon, atype = res
+        if atype in ('city', 'town', 'municipality', 'suburb', 'county', 'state', 'country'):
+            continue
+        if haversine_km(lat, lon, TRG_LAT, TRG_LON) <= GEOCODE_MAX_KM:
+            return lat, lon
+    return None, None
+
+
+def cmd_geocode_hint(listing_key, hint):
+    """driver.py: у лота нет ни адреса, ни пина, но Gemini вытащил из текста улицу.
+    Геокодим её, пишем координаты (приблизительные) и район в state, считаем
+    скоринг, чтобы карточка получила пин, расстояние и score. stdout — JSON."""
+    lat, lon = geocode_hint(hint)
+    if lat is None:
+        print(json.dumps({'ok': False}))
+        return 0
+    out = {'ok': True, 'lat': lat, 'lon': lon,
+           'dist_km': round(haversine_km(lat, lon, TRG_LAT, TRG_LON), 1),
+           'district': _district_by_coords(lat, lon), 'score_line': ''}
+    with StateLock():
+        s = load_state()
+        rec = s.get('listings', {}).get(listing_key)
+        if rec and rec.get('geo_source') not in ('detail', 'manual'):
+            rec['geo_lat'], rec['geo_lon'] = lat, lon
+            rec['geo_source'] = 'hint_nominatim'  # карта и скоринг покажут как approx
+            rec['address_hint'] = hint
+            if not rec.get('address'):
+                rec['address'] = f'~{hint} (from listing text)'
+            if out['district']:
+                rec['district'] = out['district']
+            try:
+                sc = score_and_cache(rec)
+                out['score_line'] = scoring.score_line(sc) if sc else ''
+            except Exception:
+                pass
+            save_state(s)
+    print(json.dumps(out, ensure_ascii=False))
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--mark-sent', nargs=2, metavar=('KEY', 'MSG_ID'),
                     help='Mark a pass as sent + insert to Sheets')
+    ap.add_argument('--geocode-hint', nargs=2, metavar=('KEY', 'HINT'),
+                    help='Геокодировать адресную зацепку из текста, записать geo+score в state')
     ap.add_argument('--desc-ru', default=None,
                     help='Русское «Кратко» для Sheets кол. F (вместо сырого сербского описания)')
     ap.add_argument('--finalize', action='store_true',
@@ -1997,7 +2100,7 @@ def main():
         DRY_RUN = True
         print('=== DRY-RUN: state и Google Sheet НЕ будут изменены ===', file=sys.stderr)
 
-    if args.dry_run and (args.finalize or args.mark_sent):
+    if args.dry_run and (args.finalize or args.mark_sent or args.geocode_hint):
         # finalize/mark-sent пишут через подпроцессы (check_status → лист,
         # gen_map → surge) — dry-run их не гейтит. Запрещаем совсем.
         print('dry-run поддерживает только process-фазу (без --finalize/--mark-sent)',
@@ -2006,6 +2109,8 @@ def main():
 
     if args.mark_sent:
         return cmd_mark_sent(args.mark_sent[0], args.mark_sent[1], desc_ru=args.desc_ru)
+    if args.geocode_hint:
+        return cmd_geocode_hint(args.geocode_hint[0], args.geocode_hint[1])
     if args.finalize:
         return cmd_finalize()
     return run_process()

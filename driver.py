@@ -201,6 +201,29 @@ def main():
                     if stub in caption:
                         caption = caption.replace(stub, f'📍 ~{loc_hint} (from listing text)')
                         break
+            # Ни адреса, ни пина (🗺 = текстовый поиск по заглушке), но зацепка есть:
+            # геокодим её, чтобы дать пин, расстояние, район и score
+            # (кейс imobiliare 256317967 14.09: пин по 'Str. Muncii 209' вместо поиска
+            # по строке 'no address or map pin in the listing').
+            if loc_hint and 'google.com/maps/search/?api=1' in caption:
+                try:
+                    g = run_json(['cycle.py', '--geocode-hint', p['listing_key'], loc_hint], 240)
+                except Exception as e:
+                    g = {}
+                    print(f'  geocode-hint failed: {e}', file=sys.stderr)
+                if g.get('ok'):
+                    caption = re.sub(
+                        r'🗺 \S+',
+                        f"🗺 https://www.google.com/maps/?q={g['lat']},{g['lon']} "
+                        f"(approximate: geocoded from listing text)", caption, count=1)
+                    caption = caption.replace('⚠️ uncertain_distance',
+                                              f"⚠️ approx_distance_{g['dist_km']}km")
+                    if g.get('district'):
+                        caption = re.sub(r'^🍕 Location · [^\n]+',
+                                         f"🍕 Location · {g['district']} (by street)",
+                                         caption, count=1)
+                    if g.get('score_line') and 'Location score' not in caption:
+                        caption = caption.rstrip('\n') + '\n\n\n' + g['score_line']
             # Переклеиваем блок Summary на английский (cycle.py кладёт румынский snippet).
             # ВАЖНО: cycle приклеивает строку скоринга ПОСЛЕ Summary — сохранить её
             # (баг 2026-07-11: тупой срез до конца снёс "Location score" из карточек).
