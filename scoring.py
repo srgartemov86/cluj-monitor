@@ -167,11 +167,18 @@ def fetch_osm(lat, lon, timeout=180):
          f'node["highway"="bus_stop"](around:{FETCH_RADIUS},{lat},{lon});'
          f'nwr["railway"~"^(station|tram_stop|subway_entrance|halt)$"](around:{FETCH_RADIUS},{lat},{lon});'
          f");out tags geom;")
+    # ОБЩИЙ дедлайн на лот: 3 зеркала × 2 круга × 180 с = до 18 минут при зависших
+    # зеркалах, а process-фаза здесь ограничена 900 с (в belgrade-monitor так упали
+    # два прогона 16.09.2026). Не уложились — score=None.
+    deadline = time.time() + 240
     for round_n in range(2):
         for m in MIRRORS:
+            left = deadline - time.time()
+            if left < 15:
+                return None
             try:
                 r = requests.post(m, data={"data": q},
-                                  headers={"User-Agent": UA}, timeout=timeout)
+                                  headers={"User-Agent": UA}, timeout=min(timeout, left))
                 if r.status_code == 200:
                     return r.json().get("elements", [])
             except Exception:
