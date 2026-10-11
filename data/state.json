@@ -917,7 +917,7 @@
       "address": "",
       "district": "Centru",
       "first_seen_at": "2026-07-10T15:27:33.097947+00:00",
-      "last_seen_at": "2026-10-11T11:32:26.490075+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.116825+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -3967,7 +3967,7 @@
       "address": "",
       "district": "Mărăști",
       "first_seen_at": "2026-07-12T14:44:01.540171+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217212+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.116947+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -3987,7 +3987,7 @@
       "address": "",
       "district": "Mănăștur",
       "first_seen_at": "2026-07-12T14:44:02.231918+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217233+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.116967+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -4089,7 +4089,7 @@
       "address": "",
       "district": "Cluj-Napoca",
       "first_seen_at": "2026-07-12T18:14:37.868468+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217177+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.116912+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -9390,7 +9390,7 @@
       "address": "",
       "district": "Centru",
       "first_seen_at": "2026-07-20T08:30:01.616898+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217158+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.116892+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -18757,7 +18757,7 @@
       "address": "",
       "district": "Unknown",
       "first_seen_at": "2026-08-10T12:30:12.495943+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217197+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.116931+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -19143,7 +19143,7 @@
       "address": "",
       "district": "Unknown",
       "first_seen_at": "2026-08-12T08:29:51.648695+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217130+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.116866+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -19394,7 +19394,7 @@
       "address": "",
       "district": "Mărăști",
       "first_seen_at": "2026-08-12T16:12:56.213477+00:00",
-      "last_seen_at": "2026-09-15T15:09:48.060093+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.116782+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -21356,7 +21356,7 @@
       "address": "Strada Minerilor",
       "district": "Semicentral",
       "first_seen_at": "2026-08-26T14:29:37.696967+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217846+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117528+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -22632,7 +22632,7 @@
       "address": "Strada Alecu Russo",
       "district": "Europa",
       "first_seen_at": "2026-09-03T14:40:51.869117+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217783+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117483+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -22827,7 +22827,7 @@
       "address": "",
       "district": "Someșeni",
       "first_seen_at": "2026-09-07T16:29:56.750605+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217307+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117038+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -22903,7 +22903,7 @@
       "address": "Strada Libertatii",
       "district": "Turda",
       "first_seen_at": "2026-09-08T12:30:57.516256+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217768+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117469+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -22977,53 +22977,16 @@
       "flags": [
         "floor=etaj 3"
       ],
-      "description": "Îți propun un spațiu comercial de închiriat, situat la etajul 3 al unei clădiri de birouri. Aceasta are o suprafață de 110 mp și este gata de utilizare. Proprietatea beneficiază de facilități precum aer condiționat, încălzire, 3 locuri de parcare și acces asfaltat. Amplasarea este excelentă, în zona Sigma Center din Cluj-Napoca. Aproape de diverse puncte de interes, cum ar fi: Liceul de Informatică Tiberiu Popoviciu Carrefour și Sigma Shopping Center Clinica Regina Maria Diverse cafenele și restaurante Accesibilitatea este un alt avantaj, cu stații de autobuz în apropiere. Dacă te interesează acest spațiu, nu ezita să iei legătura pentru mai multe detalii.",
       "geo_lat": 46.757404,
       "geo_lon": 23.596954,
       "geo_source": "detail",
       "refreshed_at": "2026-09-08T13:51:46Z",
       "published_at": "2026-09-08T13:47:47Z",
       "photo_url": "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImllNmNwMGE4N3k2czMtQVJPIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.sk43-V-2C3-lZ4YxxHaypkTKMLGHHCJ49r9-FRokfdY/image;s=2048x1536;q=80",
-      "photo_urls": [
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImllNmNwMGE4N3k2czMtQVJPIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.sk43-V-2C3-lZ4YxxHaypkTKMLGHHCJ49r9-FRokfdY/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjB5ZngyOXAzM2dxeDItQVJPIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.JU0Vw0CfYjtGv7ILzh-jS_F6nCLG6sS6M2_ep4BxGSw/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjFrd2tsc2dkN3U4aDItQVJPIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.Zen7X-YVOSVn5Lb9OP7zxLw8a_h5hNagxnWjgtJVZrA/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InZjYmNlNW4wMmptdy1BUk8iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.7bZWYxrGRCktif82sRkYzQiFhlEfoSV8HqWj93I1IrQ/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Ink3ajkzcnBkb2pqdjEtQVJPIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.bg-tRPQWd8FJ4_iLDV1-SUL4YMLVWipIR40ml1h-mAs/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImJwenp0YnFsYjA3NjMtQVJPIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.woC4AHAKmD8pLFiXXVF2fweoy9jOD04lTqAWIlzIO1E/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Inl0b202Ym1oNWExdjEtQVJPIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.V1l837i9Yl-_h99k-wJJkNEbYFsNE6VHcPo0ZM7f25k/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InUxNXprNmRpYWE2aTEtQVJPIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.lXSQNNP7ywLx4w648uh0EnySuj9dfbAlwboba0gwQ-M/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InhwbDRjaXR3cDVqZjItQVJPIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.5tMwkWMwSZbS3Za6rsFAPAZppUm92gpEkFg3Z0g47BQ/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImhvbnhmemJvZ2d2Yy1BUk8iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.rDs8Gx9zLkTWfLg3yFDADJYtF2PwBXLTFf2XYv5SwGk/image;s=655x491;q=80"
-      ],
       "rejected": true,
       "score": 39,
-      "score_data": {
-        "score": 39,
-        "residents_500": 4846,
-        "residents_1000": 20367,
-        "transit_300": 2,
-        "shops_300": 10,
-        "food_400": 19,
-        "offices_500": 14,
-        "edu_500": 2,
-        "competitors_200": 6,
-        "nearest_dodo_km": null,
-        "breakdown": {
-          "catchment": 0.48,
-          "secondary": 0.51,
-          "transit": 0.33,
-          "retail": 0.25,
-          "food": 0.95,
-          "daytime": 0.55,
-          "comp_penalty": 0.75,
-          "cannib_penalty": 0.0
-        },
-        "pop_source": "hybrid",
-        "residents_500_kontur": null,
-        "residents_500_osm_raw": 4846
-      },
-      "scored_at": "2026-09-08T14:40:39.885046+00:00"
+      "scored_at": "2026-09-08T14:40:39.885046+00:00",
+      "compacted": true
     },
     "storia_91059789700067": {
       "source": "storia.ro",
@@ -24051,7 +24014,7 @@
       "address": "",
       "district": "Centru",
       "first_seen_at": "2026-09-10T13:08:23.983054+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217258+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.116992+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -24090,7 +24053,7 @@
       "address": "Piata Avram Iancu",
       "district": "Semicentral",
       "first_seen_at": "2026-09-10T13:08:24.330671+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217796+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117496+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -24109,7 +24072,7 @@
       "address": "Aleea Slanic",
       "district": "Gheorgheni",
       "first_seen_at": "2026-09-10T13:08:24.888337+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217815+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117514+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -24127,7 +24090,7 @@
       "address": "Strada Rosiori",
       "district": "Marasti",
       "first_seen_at": "2026-09-10T13:08:24.888435+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217864+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117542+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -25566,7 +25529,7 @@
       "address": "",
       "district": "Bulgaria",
       "first_seen_at": "2026-09-12T08:54:22.618558+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217926+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117605+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -27097,7 +27060,7 @@
       "address": "",
       "district": "Mărăști",
       "first_seen_at": "2026-09-16T05:54:05.628878+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217965+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117641+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -27203,7 +27166,7 @@
       "district": "Bună Ziua",
       "subdistrict": null,
       "first_seen_at": "2026-09-16T12:53:54.803072+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217726+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117431+00:00",
       "in_sheet": false,
       "alerted": false,
       "flags": [
@@ -27362,7 +27325,7 @@
       "address": "Strada Nirajului",
       "district": "Între Lacuri",
       "first_seen_at": "2026-09-17T09:54:09.391708+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217712+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117418+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -28084,7 +28047,7 @@
       "address": "Strada Decebal",
       "district": "Bulgaria",
       "first_seen_at": "2026-09-22T11:55:04.161579+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217694+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117401+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -28211,7 +28174,7 @@
       "address": "Strada Minerilor",
       "district": "Semicentral",
       "first_seen_at": "2026-09-22T14:54:39.061811+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217646+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117353+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -28229,7 +28192,7 @@
       "address": "Strada Gheorghe Lazar",
       "district": "Turda",
       "first_seen_at": "2026-09-22T14:54:39.061882+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217658+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117365+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -28248,7 +28211,7 @@
       "address": "Strada General Gheorghe Pomut",
       "district": "Plopilor",
       "first_seen_at": "2026-09-22T14:54:39.507735+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217670+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117377+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -28267,7 +28230,7 @@
       "address": "Strada Minerilor",
       "district": "Semicentral",
       "first_seen_at": "2026-09-22T14:54:39.945444+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217682+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117389+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -28639,7 +28602,7 @@
       "address": "Strada Iancu de Hunedoara",
       "district": "Plopilor",
       "first_seen_at": "2026-09-23T14:58:04.918050+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217631+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117338+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -29394,7 +29357,7 @@
       "address": "",
       "district": "Centru",
       "first_seen_at": "2026-09-25T05:54:05.979854+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217947+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117624+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -29432,7 +29395,7 @@
       "address": "Strada Harletului",
       "district": "Semicentral",
       "first_seen_at": "2026-09-25T08:54:20.884531+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217610+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117319+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -29571,7 +29534,7 @@
       "address": "Strada Nicolae Draganu",
       "district": "Andrei Mureșanu",
       "first_seen_at": "2026-09-25T16:54:06.704780+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217594+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117304+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -30143,7 +30106,7 @@
       "address": "Strada Digului",
       "district": "Unknown",
       "first_seen_at": "2026-09-29T05:54:44.436217+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217578+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117288+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -30180,7 +30143,7 @@
       "address": "Piata Avram Iancu",
       "district": "Centrul Vechi",
       "first_seen_at": "2026-09-29T09:54:25.000704+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217563+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117273+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -30368,7 +30331,7 @@
       "address": "Piata Marasti",
       "district": "Mărăști",
       "first_seen_at": "2026-09-29T12:54:31.837972+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217745+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117449+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -30938,7 +30901,7 @@
       "address": "Strada Fagului",
       "district": "Andrei Mureșanu",
       "first_seen_at": "2026-10-01T07:54:46.793763+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217514+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117206+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -30956,7 +30919,7 @@
       "address": "",
       "district": "",
       "first_seen_at": "2026-10-01T07:54:46.793811+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217528+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117219+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -30975,7 +30938,7 @@
       "address": "",
       "district": "Dâmbul Rotund",
       "first_seen_at": "2026-10-01T07:54:47.240876+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217540+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117251+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -31040,7 +31003,7 @@
       "address": "Strada Avram Iancu",
       "district": "Mănăștur",
       "first_seen_at": "2026-10-01T09:54:45.371469+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217499+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117192+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -31059,7 +31022,7 @@
       "address": "",
       "district": "Mănăștur",
       "first_seen_at": "2026-10-01T11:44:53.133430+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217991+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117667+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -31327,7 +31290,7 @@
       "address": "Strada Sapatorilor",
       "district": "Semicentral",
       "first_seen_at": "2026-10-02T12:54:22.920852+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217472+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117167+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -31346,7 +31309,7 @@
       "address": "Strada Sapatorilor",
       "district": "Semicentral",
       "first_seen_at": "2026-10-02T12:54:23.500538+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217484+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117179+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -31397,7 +31360,8 @@
       "flags": [
         "floor=demisol",
         "price=1089"
-      ]
+      ],
+      "compacted": true
     },
     "imobiliare_275893286": {
       "source": "imobiliare.ro",
@@ -31883,7 +31847,7 @@
       "address": "",
       "district": "Iris",
       "first_seen_at": "2026-10-06T12:11:22.185742+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217453+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117151+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -32072,7 +32036,7 @@
       "address": "",
       "district": "Bună Ziua",
       "first_seen_at": "2026-10-08T10:54:37.386772+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217331+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117056+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -32099,53 +32063,16 @@
       "flags": [
         "office:\\bbirouri\\b"
       ],
-      "description": "Grand Imob Expert vă propune spre închiriere un spațiu versatil, cu o suprafață de 100 mp, situat într-una dintre cele mai apreciate zone din Cluj-Napoca – Andrei Mureșanu, în proximitatea Căii Turzii și a Hotelului Confort. Spațiul este amplasat la parterul unei case, oferind acces facil, un ambient liniștit și o compartimentare potrivită pentru desfășurarea mai multor tipuri de activități. 100 mp suprafață utilă 3 încăperi 2 băi 1 bucătărie Centrală termică proprie Acces auto Posibilitate de parcare în zonă Parter – acces facil Datorită poziționării și compartimentării, spațiul este potrivit pentru birouri, firmă de contabilitate, IT, consultanță, cabinet, sediu de firmă, servicii sau alte activități profesionale. Locație premium – Andrei Mureșanu / Calea Turzii, cu acces rapid către principalele zone ale orașului și în imediata apropiere a Hotelului Confort. Un spațiu elegant, practic și versatil, potrivit pentru o companie care își dorește un sediu într-o zonă bine cotată, liniștită și ușor accesibilă. Vizionări disponibile la cerere. Pentru mai multe detalii sau pentru programarea unei vizionări, vă invităm să ne contactați!",
       "geo_lat": 46.764366,
       "geo_lon": 23.59771,
       "geo_source": "detail",
       "refreshed_at": "2026-10-08T11:49:26Z",
       "published_at": "2026-10-08T11:49:15Z",
       "photo_url": "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Im1iMzl5b2xpZnphNDMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.vMHaDn0JOyTiz7SUjzhqIUKyD_umLC1xKLGlIhsZ9kg/image;s=2048x1536;q=80",
-      "photo_urls": [
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Im1iMzl5b2xpZnphNDMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.vMHaDn0JOyTiz7SUjzhqIUKyD_umLC1xKLGlIhsZ9kg/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImRsaGc0b3B0ZDFxazItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.y1ieZ7VhzHfzbmsPHuLnJAkXE9pC3J2LqUU_rt_TOEk/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImN4MjJ6emFjYzltdDMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0._AZYISGLYldeQyDAM8YITKry_Ul2HvqJVugR995rasI/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InN2cmE1djc4ODQwdjItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.HE8EVgWg_yUj-1AGR97_nbWCwKn2uTWtT0Lm-dn3gBU/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImIxc3o4dTZqYWtmbDMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.dbFwNzFzpeCUFWynXDrk5-oPrs5V6i2m9NAVDKN1zTo/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InBsb3JjZWlmY2NmaS1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.t5120GL0ZDudbRIqBY56pIBdWCIKNbowTRIsTtFio-Q/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjV0MW9kc3RrbWRxdzItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.84IgaTYn9qMEzig-yN25gL8ftJs6YJOtKBpetKmc31M/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Img3NzNmazc3NzN3cDMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.lyJcov8WRsMkGA7_8ixLN7ZPaKlpB4_0lfw5pspsg-A/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InJuYXJlYWNyM2Y5YjMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.Dbqz2M9BipgChzaLB6pDWLFq7zjXQr4yqXnboyXIMHQ/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImpweGYycjVheWZoMzEtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.s5moDLXWaM4cZXjbrm58sUDPW79i50fF1hJhiwJZWKs/image;s=655x491;q=80"
-      ],
       "rejected": true,
       "score": 35,
-      "score_data": {
-        "score": 35,
-        "residents_500": 4109,
-        "residents_1000": 19500,
-        "transit_300": 2,
-        "shops_300": 3,
-        "food_400": 4,
-        "offices_500": 27,
-        "edu_500": 9,
-        "competitors_200": 3,
-        "nearest_dodo_km": null,
-        "breakdown": {
-          "catchment": 0.41,
-          "secondary": 0.49,
-          "transit": 0.33,
-          "retail": 0.07,
-          "food": 0.2,
-          "daytime": 1.0,
-          "comp_penalty": 0.38,
-          "cannib_penalty": 0.0
-        },
-        "pop_source": "hybrid",
-        "residents_500_kontur": null,
-        "residents_500_osm_raw": 4109
-      },
-      "scored_at": "2026-10-08T11:55:37.658045+00:00"
+      "scored_at": "2026-10-08T11:55:37.658045+00:00",
+      "compacted": true
     },
     "storia_91068064500067": {
       "source": "storia.ro",
@@ -32165,26 +32092,14 @@
       "flags": [
         "office:\\bbirouri\\b"
       ],
-      "description": "Grand Imob Expert vă propune spre închiriere un spațiu versatil, cu o suprafață de 100 mp, situat într-una dintre cele mai apreciate zone din Cluj-Napoca – Andrei Mureșanu, în proximitatea Căii Turzii și a Hotelului Confort. Spațiul este amplasat la parterul unei case, oferind acces facil, un ambient liniștit și o compartimentare potrivită pentru desfășurarea mai multor tipuri de activități. 100 mp suprafață utilă 3 încăperi 2 băi 1 bucătărie Centrală termică proprie Acces auto Posibilitate de parcare în zonă Parter – acces facil Datorită poziționării și compartimentării, spațiul este potrivit pentru birouri, firmă de contabilitate, IT, consultanță, cabinet, sediu de firmă, servicii sau alte activități profesionale. Locație premium – Andrei Mureșanu / Calea Turzii, cu acces rapid către principalele zone ale orașului și în imediata apropiere a Hotelului Confort. Un spațiu elegant, practic și versatil, potrivit pentru o companie care își dorește un sediu într-o zonă bine cotată, liniștită și ușor accesibilă. Vizionări disponibile la cerere. Pentru mai multe detalii sau pentru programarea unei vizionări, vă invităm să ne contactați!",
       "geo_lat": 46.764366,
       "geo_lon": 23.59771,
       "geo_source": "detail",
       "refreshed_at": "2026-10-08T11:49:26Z",
       "published_at": "2026-10-08T11:49:15Z",
       "photo_url": "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Im1iMzl5b2xpZnphNDMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.vMHaDn0JOyTiz7SUjzhqIUKyD_umLC1xKLGlIhsZ9kg/image;s=2048x1536;q=80",
-      "photo_urls": [
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Im1iMzl5b2xpZnphNDMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.vMHaDn0JOyTiz7SUjzhqIUKyD_umLC1xKLGlIhsZ9kg/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImRsaGc0b3B0ZDFxazItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.y1ieZ7VhzHfzbmsPHuLnJAkXE9pC3J2LqUU_rt_TOEk/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImN4MjJ6emFjYzltdDMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0._AZYISGLYldeQyDAM8YITKry_Ul2HvqJVugR995rasI/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InN2cmE1djc4ODQwdjItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.HE8EVgWg_yUj-1AGR97_nbWCwKn2uTWtT0Lm-dn3gBU/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImIxc3o4dTZqYWtmbDMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.dbFwNzFzpeCUFWynXDrk5-oPrs5V6i2m9NAVDKN1zTo/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InBsb3JjZWlmY2NmaS1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.t5120GL0ZDudbRIqBY56pIBdWCIKNbowTRIsTtFio-Q/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjV0MW9kc3RrbWRxdzItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.84IgaTYn9qMEzig-yN25gL8ftJs6YJOtKBpetKmc31M/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Img3NzNmazc3NzN3cDMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.lyJcov8WRsMkGA7_8ixLN7ZPaKlpB4_0lfw5pspsg-A/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InJuYXJlYWNyM2Y5YjMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.Dbqz2M9BipgChzaLB6pDWLFq7zjXQr4yqXnboyXIMHQ/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImpweGYycjVheWZoMzEtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.s5moDLXWaM4cZXjbrm58sUDPW79i50fF1hJhiwJZWKs/image;s=655x491;q=80"
-      ],
-      "rejected": true
+      "rejected": true,
+      "compacted": true
     },
     "storia_91065476100067": {
       "source": "storia.ro",
@@ -32204,47 +32119,16 @@
       "flags": [
         "office:\\bbirouri\\b"
       ],
-      "description": "Spațiu comercial premium în Zorilor | 218 mp | Parter | Acces direct din stradă Oportunitate excelentă pentru investitori și antreprenori! Vă prezentăm un spațiu comercial cu un potențial remarcabil, amplasat într-una dintre cele mai căutate zone din Cluj-Napoca, cartierul Zorilor. Cu o suprafață utilă de 218 mp, compartimentare open space și o terasă generoasă, proprietatea oferă flexibilitate maximă pentru amenajarea unui showroom, clinică medicală, centru de recuperare, salon premium, birouri, studio sau spațiu de retail. Pret: 3500 euro+TVA Situat la parterul unui imobil mixt cu regim de înălțime P+4, spațiul beneficiază de intrare directă din stradă, asigurând vizibilitate excelentă și acces facil pentru clienți. Avantaje: 218 mp utili, open space Terasă spațioasă Acces direct din stradă Posibilitate de achiziție a locurilor de parcare în garajul subteran (contra cost) Se predă în stadiu de semifinisat, ideal pentru personalizare în funcție de activitate Zonă cu trafic intens și acces rapid către principalele puncte de interes ale orașului In cazul in care doriți să vă dezvoltați propria afacere, această proprietate reprezintă o alegere inspirată. Contactați-ne pentru mai multe informații și pentru programarea unei vizionări! Imaginile sunt cu titlu de prezentare.",
       "geo_lat": 46.752155,
       "geo_lon": 23.576918,
       "geo_source": "detail",
       "refreshed_at": "2026-10-01T10:49:15Z",
       "published_at": "2026-09-29T12:40:15Z",
       "photo_url": "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Inkyb3A1N2hub2p1dzEtQVJPIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.2D8nmaP2kPgf_S7Uuz_Q3UsrjaOPIO-4Pq3n7oXA_84/image;s=2048x1536;q=80",
-      "photo_urls": [
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Inkyb3A1N2hub2p1dzEtQVJPIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.2D8nmaP2kPgf_S7Uuz_Q3UsrjaOPIO-4Pq3n7oXA_84/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InBjZnluYWdwZzk1YTItQVJPIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.e6IK0aTGW2pVDCWQbRa0Bb9yC42rtuzdDqEWzGxmiqs/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImViMnJzN25pMWRlNjMtQVJPIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.XwbCEv93_jzzcQJv0dJpwKyCEePuVPmry_VIO9QECJE/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjFwdjF5MWNwcnkwNi1BUk8iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.JguaBsvUgJpbasjBrk_Xw_t77TD-a1BAsM9Csn0fkdk/image;s=655x491;q=80"
-      ],
       "rejected": true,
       "score": 44,
-      "score_data": {
-        "score": 44,
-        "residents_500": 7789,
-        "residents_1000": 18881,
-        "transit_300": 3,
-        "shops_300": 8,
-        "food_400": 4,
-        "offices_500": 5,
-        "edu_500": 2,
-        "competitors_200": 0,
-        "nearest_dodo_km": null,
-        "breakdown": {
-          "catchment": 0.78,
-          "secondary": 0.47,
-          "transit": 0.5,
-          "retail": 0.2,
-          "food": 0.2,
-          "daytime": 0.33,
-          "comp_penalty": 0.0,
-          "cannib_penalty": 0.0
-        },
-        "pop_source": "hybrid",
-        "residents_500_kontur": null,
-        "residents_500_osm_raw": 7789
-      },
-      "scored_at": "2026-10-08T11:55:06.898711+00:00"
+      "scored_at": "2026-10-08T11:55:06.898711+00:00",
+      "compacted": true
     },
     "olx_310329702": {
       "source": "olx.ro",
@@ -32264,54 +32148,16 @@
       "flags": [
         "uncertain_floor"
       ],
-      "description": "Spatiile destinate activitatii de alimentatie publica disponibile in piata sunt relativ rare. Un spatiu care beneficiaza deja de o configuratie adaptata activitatii de restaurant, destinatie de alimentatie publica in CF si aviz ISU este cu atat mai dificil de gasit. Va propunem un spatiu de 135 mp, amplasat central, cu acces facil atat catre un parking public, cat si catre statiile mijloacelor de transport in comun. Spatiul este pregatit pentru desfasurarea unei activitati de alimentatie publica si beneficiaza de o serie de dotari si caracteristici importante: suprafata utila de 135 mp destinatie \"Spatiu Alimentatie Publica\" inscrisa in CF aviz ISU doua cai de acces configuratie adaptata activitatii de restaurant sala de servire zona pentru preparare si spatii tehnice camera frigorifica si camera de congelare, cu mentiunea ca necesita montarea usii si a agregatului pereti placati cu faianta protectie din tabla de INOX in zona inferioara a peretilor alimentare cu energie electrica trifazica centrala termica proprie si calorifere apa, gaz si energie electrica cu instalatii separate si contorizare individuala grupuri sanitare pentru personal si clienti acces facil pentru curierii care efectueaza livrari posibilitate de amplasare a logo ului firmei pe cladire birou disponibil imediat Amplasarea centrala, infrastructura existenta si configuratia spatiului il fac potrivit pentru restaurant, pizzerie, catering, laborator de productie alimentara sau alte activitati din domeniul alimentatiei publice, in functie de specificul si autorizatiile necesare activitatii desfasurate. Pentru mai multe informatii sau pentru programarea unei vizionari, va stam cu placere la dispozitie.",
       "geo_lat": 46.76633311,
       "geo_lon": 23.60124548,
       "geo_source": "detail_approx",
       "refreshed_at": "2026-10-08T14:54:32+03:00",
       "photo_url": "https://frankfurt.apollo.olxcdn.com:443/v1/files/9wuoxt6yxaz43-RO/image;s=1200x0",
-      "photo_urls": [
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/9wuoxt6yxaz43-RO/image;s=1200x0",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/4c149dksgojb-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/vn4erink83wb-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/75p3apg8bt7i1-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/jxv2qgyhx04f2-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/cjjqlanzldb81-RO/image;s=1280x960",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/fs78bfpkholv2-RO/image;s=1280x960",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/1m1d997vry1x2-RO/image;s=1280x960",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/uiu8bcgytd6c1-RO/image;s=1280x960",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/c9vcj9gvtr341-RO/image;s=1280x960"
-      ],
       "rejected": true,
       "score": 59,
-      "score_data": {
-        "score": 59,
-        "residents_500": 6468,
-        "residents_1000": 21744,
-        "transit_300": 4,
-        "shops_300": 37,
-        "food_400": 12,
-        "offices_500": 40,
-        "edu_500": 10,
-        "competitors_200": 6,
-        "nearest_dodo_km": null,
-        "breakdown": {
-          "catchment": 0.65,
-          "secondary": 0.54,
-          "transit": 0.67,
-          "retail": 0.93,
-          "food": 0.6,
-          "daytime": 1.0,
-          "comp_penalty": 0.75,
-          "cannib_penalty": 0.0
-        },
-        "pop_source": "hybrid",
-        "residents_500_kontur": null,
-        "residents_500_osm_raw": 6468,
-        "geo_source": "detail_approx"
-      },
       "scored_at": "2026-10-08T12:11:27.862049+00:00",
-      "duplicate_of": "storia_91068067300067"
+      "duplicate_of": "storia_91068067300067",
+      "compacted": true
     },
     "olx_310329166": {
       "source": "olx.ro",
@@ -32331,50 +32177,15 @@
       "flags": [
         "office:\\bbirouri\\b"
       ],
-      "description": "Grand Imob Expert vă propune spre închiriere un spațiu versatil, cu o suprafață de 100 mp, situat într-una dintre cele mai apreciate zone din Cluj-Napoca – Andrei Mureșanu, în proximitatea Căii Turzii și a Hotelului Confort. Spațiul este amplasat la parterul unei case, oferind acces facil, un ambient liniștit și o compartimentare potrivită pentru desfășurarea mai multor tipuri de activități. 100 mp suprafață utilă 3 încăperi 2 băi 1 bucătărie Centrală termică proprie Acces auto Posibilitate de parcare în zonă Parter – acces facil Datorită poziționării și compartimentării, spațiul este potrivit pentru birouri, firmă de contabilitate, IT, consultanță, cabinet, sediu de firmă, servicii sau alte activități profesionale. Locație premium – Andrei Mureșanu / Calea Turzii, cu acces rapid către principalele zone ale orașului și în imediata apropiere a Hotelului Confort. Un spațiu elegant, practic și versatil, potrivit pentru o companie care își dorește un sediu într-o zonă bine cotată, liniștită și ușor accesibilă. Vizionări disponibile la cerere. Pentru mai multe detalii sau pentru programarea unei vizionări, vă invităm să ne contactați!",
       "geo_lat": 46.764367,
       "geo_lon": 23.597709,
       "geo_source": "detail_approx",
       "refreshed_at": "2026-10-08T14:49:39+03:00",
       "photo_url": "https://frankfurt.apollo.olxcdn.com:443/v1/files/vvz9aoevz5q81-RO/image;s=1200x0",
-      "photo_urls": [
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/vvz9aoevz5q81-RO/image;s=1200x0",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/v0yvp9b1tgae-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/wyfyrfp049lx1-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/z4ml7a2qiipf1-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/91czvag506y13-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/ptyrf3uwe5tf2-RO/image;s=1280x960",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/clk0zjwzzrqt3-RO/image;s=1280x960",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/94qurhfqqprz1-RO/image;s=1280x960"
-      ],
       "rejected": true,
       "score": 35,
-      "score_data": {
-        "score": 35,
-        "residents_500": 4109,
-        "residents_1000": 19500,
-        "transit_300": 2,
-        "shops_300": 3,
-        "food_400": 4,
-        "offices_500": 27,
-        "edu_500": 9,
-        "competitors_200": 3,
-        "nearest_dodo_km": null,
-        "breakdown": {
-          "catchment": 0.41,
-          "secondary": 0.49,
-          "transit": 0.33,
-          "retail": 0.07,
-          "food": 0.2,
-          "daytime": 1.0,
-          "comp_penalty": 0.38,
-          "cannib_penalty": 0.0
-        },
-        "pop_source": "hybrid",
-        "residents_500_kontur": null,
-        "residents_500_osm_raw": 4109
-      },
-      "scored_at": "2026-10-08T12:12:24.758523+00:00"
+      "scored_at": "2026-10-08T12:12:24.758523+00:00",
+      "compacted": true
     },
     "storia_10680673": {
       "source": "storia.ro",
@@ -32395,27 +32206,15 @@
         "duplicate_of:storia_91068067300067",
         "uncertain_floor"
       ],
-      "description": "Spatiile destinate activitatii de alimentatie publica disponibile in piata sunt relativ rare. Un spatiu care beneficiaza deja de o configuratie adaptata activitatii de restaurant, destinatie de alimentatie publica in CF si aviz ISU este cu atat mai dificil de gasit. Va propunem un spatiu de 135 mp, amplasat central, cu acces facil atat catre un parking public, cat si catre statiile mijloacelor de transport in comun. Spatiul este pregatit pentru desfasurarea unei activitati de alimentatie publica si beneficiaza de o serie de dotari si caracteristici importante: suprafata utila de 135 mp destinatie \"Spatiu Alimentatie Publica\" inscrisa in CF aviz ISU doua cai de acces configuratie adaptata activitatii de restaurant sala de servire zona pentru preparare si spatii tehnice camera frigorifica si camera de congelare, cu mentiunea ca necesita montarea usii si a agregatului pereti placati cu faianta protectie din tabla de INOX in zona inferioara a peretilor alimentare cu energie electrica trifazica centrala termica proprie si calorifere apa, gaz si energie electrica cu instalatii separate si contorizare individuala grupuri sanitare pentru personal si clienti acces facil pentru curierii care efectueaza livrari posibilitate de amplasare a logo ului firmei pe cladire birou disponibil imediat Amplasarea centrala, infrastructura existenta si configuratia spatiului il fac potrivit pentru restaurant, pizzerie, catering, laborator de productie alimentara sau alte activitati din domeniul alimentatiei publice, in functie de specificul si autorizatiile necesare activitatii desfasurate. Pentru mai multe informatii sau pentru programarea unei vizionari, va stam cu placere la dispozitie.",
       "geo_lat": 46.766335,
       "geo_lon": 23.601246,
       "geo_source": "detail",
       "refreshed_at": "2026-10-08T11:54:10Z",
       "published_at": "2026-10-08T11:54:01Z",
       "photo_url": "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InR5eGplM25tMDA4cC1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.0aDdJJCDie4KEGAreddLqMuw1Z4ExX9_V_r90CX1tw4/image;s=2048x1536;q=80",
-      "photo_urls": [
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InR5eGplM25tMDA4cC1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.0aDdJJCDie4KEGAreddLqMuw1Z4ExX9_V_r90CX1tw4/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjN1NDV0ODR6eHVndDMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.GgQ_UEfCoKtqPMMSW3DD8gxoF6SrKENG9FeCqaxFP_s/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImRrbDE2eTlqaGFhZDEtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.jyG0QnjPQcF-LEOJGTux0x_27Dn2o7glhPWcUKoucRs/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Ijh1d2hyZTh2Y3liOS1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.jNxWoJvK-RYktMGoJSXlrEGNtcW3IOb1_A51ye0qz90/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImN3NTZ3MWNld3hqbjItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.4BWRS4L4oLf_9S3ETG3ggc3hjhsdtFtBgTymByOKIBA/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InlpcWpvbHVsZDdpNDEtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.mte8X0LphgHKzCUH1KHiBicNGM70eVZCXayNR-TmbKo/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjNuaGFyeWR0bzl6Yy1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.SIodNpAD0ISH2r-QlEvmYdnJVVZlgY8-XK4XCDZYqxk/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Imp3am1ieHJxbjNzNDItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0._IKPit8lW65OliBCHeUxzuR90eOYsPsClwFmPpjSx-k/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Img3NWY1Y2FrZjV4dDItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.QQjvXSlSOmrSZKn2AaYabjwM7UjtEutrL64xVfubX-g/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImIzaWY5dnRhZWZsaDItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.P_3wu8rnDSWVM5vcqgEoR7v1s1jUOGU2pZqurt1A0oo/image;s=655x491;q=80"
-      ],
       "rejected": true,
-      "duplicate_of": "storia_91068067300067"
+      "duplicate_of": "storia_91068067300067",
+      "compacted": true
     },
     "storia_91068067300067": {
       "source": "storia.ro",
@@ -32509,27 +32308,15 @@
       "flags": [
         "duplicate_of:storia_10601148"
       ],
-      "description": "ID: OFC 3357510 Se oferă spre închiriere spațiu comercial de 205 m2, nou amenajat și complet utilat, gata de funcționare. Locație: Floresti zona VIVO BMW Suprafață: 205 m² Spațiul beneficiază de: Sală de box nou amenajată și complet echipată 2 vestiare cu dușuri și dulăpioare 1 birou 1 sauna 2 băi Recepție Camere de supraveghere 11 locuri de parcare Ideal pentru sală de box, fitness, arte marțiale, personal training sau alte activități sportive. Spațiu complet utilat, la cheie – se poate începe activitatea imediat. ID: OFC 3357510",
       "geo_lat": 46.75055,
       "geo_lon": 23.517908,
       "geo_source": "detail",
       "refreshed_at": "2026-09-23T05:36:17Z",
       "published_at": "2026-09-09T11:57:45Z",
       "photo_url": "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Ijc3eXoyM2NpaXdyaTEtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.OUk-4mvyxLlqg20puarzLmhaRYHkqeVg0wv-0nznDyM/image;s=2048x1536;q=80",
-      "photo_urls": [
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Ijc3eXoyM2NpaXdyaTEtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.OUk-4mvyxLlqg20puarzLmhaRYHkqeVg0wv-0nznDyM/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImsybjQ4NWNrNXVxbi1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.iW3wLgFeDqVMJGDJXMlM0NOytDWYoYN6zdvgyFL79tE/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Incxd210dDQ4MHoxZDItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.lfC1XZNoFAiFg1XapGq3T0gE1AIkWBd1mL3yCgVzvNY/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InFzcWE5czRoOGpudi1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.yB6oz6oWObcFrXa93krKL8VsFSVQcfpjduGC1-BFqaA/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImltMnVvanV4cXRldTItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.JQ-hMI-6t2_Fe7sBvTYLZ8crLZ7FBAzmfXGFJQOQuOI/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjRpYmtpNGtja2d1Ni1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.wNc_S7kn73cD1YKoiGE-6bL-Ra1En2tSwtUgJ9iwUY0/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InRmb3o1NDAwYWxwczMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.z8zAK5uZywMZV6Z2rUNKI_XlPuiEG5PxwxXwcYbxZ7U/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImZ2NjBtdXJncW96ai1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.Vyey27SwzlPcub9LJlOU2shP7CMlK5wU-JDZL-M06x0/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImkxcWdkeHVvOWMwZjMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.nKPYqU45raOA44Omvv0speuUj5TvZuZhN-gMPiUQEts/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImllN2ZoMXN5MjF5NS1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.zPbg7yce4eUku2n9Topi-N0XlsZR8TbO0J5uoCtGi4w/image;s=655x491;q=80"
-      ],
       "rejected": true,
-      "duplicate_of": "storia_10601148"
+      "duplicate_of": "storia_10601148",
+      "compacted": true
     },
     "storia_10681332": {
       "source": "storia.ro",
@@ -32541,7 +32328,7 @@
       "address": "Strada Avram Iancu",
       "district": "Unknown",
       "first_seen_at": "2026-10-08T14:55:14.134222+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217427+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117125+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -32567,7 +32354,8 @@
       "flags": [
         "floor=etaj 1",
         "price=1030"
-      ]
+      ],
+      "compacted": true
     },
     "storia_91063536300067": {
       "source": "storia.ro",
@@ -32586,7 +32374,8 @@
       "flags": [
         "office:\\bbirouri\\b",
         "price=1000"
-      ]
+      ],
+      "compacted": true
     },
     "olx_310350906": {
       "source": "olx.ro",
@@ -32606,49 +32395,16 @@
       "flags": [
         "uncertain_floor"
       ],
-      "description": "Blitz Imobiliare vă oferă spre închiriere un spațiu de 141 mp, situat în cartierul Mănăștur, înscris în CF cu destinația de hală/garaj. Spațiul este compartimentat funcțional, fiind format dintr-o încăpere principală de aproximativ 100 mp, la care se adaugă două camere, un vestiar și un grup sanitar, cu o suprafață totală de 41 mp. Configurația permite utilizarea pentru diverse activități de depozitare, atelier, producție nepoluantă, logistică sau alte activități care nu presupun acces permanent al publicului, în funcție de specificul activității și de reglementările aplicabile. Proprietatea beneficiază de acces la curent trifazic, precum și de contorizare separată, oferind un control facil asupra consumului. Un avantaj suplimentar îl reprezintă accesul la un invertor conectat la panouri fotovoltaice, sistem utilizat în comun cu locuința învecinată. Datorită suprafeței, compartimentării și dotărilor, spațiul poate reprezenta o soluție potrivită pentru o firmă care caută o locație pentru depozitare, activități de producție sau desfășurarea unor activități operaționale cu trafic redus. Cod ofertă / ID BLITZ: P184860",
       "geo_lat": 46.750441,
       "geo_lon": 23.571849,
       "geo_source": "detail_approx",
       "refreshed_at": "2026-10-08T18:31:08+03:00",
       "photo_url": "https://frankfurt.apollo.olxcdn.com:443/v1/files/aj5xdfd9k6bx2-RO/image;s=1200x0",
-      "photo_urls": [
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/aj5xdfd9k6bx2-RO/image;s=1200x0",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/zddor7khefco2-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/b05zbccisapz1-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/ddee5alhhu3f-RO/image",
-        "https://frankfurt.apollo.olxcdn.com:443/v1/files/vqqs03wi7mcn1-RO/image"
-      ],
       "rejected": true,
       "score": 27,
-      "score_data": {
-        "score": 27,
-        "residents_500": 4143,
-        "residents_1000": 23090,
-        "transit_300": 2,
-        "shops_300": 6,
-        "food_400": 0,
-        "offices_500": 2,
-        "edu_500": 1,
-        "competitors_200": 0,
-        "nearest_dodo_km": null,
-        "breakdown": {
-          "catchment": 0.41,
-          "secondary": 0.58,
-          "transit": 0.33,
-          "retail": 0.15,
-          "food": 0.0,
-          "daytime": 0.15,
-          "comp_penalty": 0.0,
-          "cannib_penalty": 0.0
-        },
-        "pop_source": "hybrid",
-        "residents_500_kontur": null,
-        "residents_500_osm_raw": 4143,
-        "geo_source": "detail_approx"
-      },
       "scored_at": "2026-10-08T15:55:14.429595+00:00",
-      "duplicate_of": "storia_91068147900067"
+      "duplicate_of": "storia_91068147900067",
+      "compacted": true
     },
     "storia_10681479": {
       "source": "storia.ro",
@@ -32668,22 +32424,15 @@
       "flags": [
         "duplicate_of:storia_91068147900067"
       ],
-      "description": "Blitz Imobiliare vă oferă spre închiriere un spațiu de 141 mp, situat în cartierul Mănăștur, înscris în CF cu destinația de hală/garaj. Spațiul este compartimentat funcțional, fiind format dintr-o încăpere principală de aproximativ 100 mp, la care se adaugă două camere, un vestiar și un grup sanitar, cu o suprafață totală de 41 mp. Configurația permite utilizarea pentru diverse activități de depozitare, atelier, producție nepoluantă, logistică sau alte activități care nu presupun acces permanent al publicului, în funcție de specificul activității și de reglementările aplicabile. Proprietatea beneficiază de acces la curent trifazic, precum și de contorizare separată, oferind un control facil asupra consumului. Un avantaj suplimentar îl reprezintă accesul la un invertor conectat la panouri fotovoltaice, sistem utilizat în comun cu locuința învecinată. Datorită suprafeței, compartimentării și dotărilor, spațiul poate reprezenta o soluție potrivită pentru o firmă care caută o locație pentru depozitare, activități de producție sau desfășurarea unor activități operaționale cu trafic redus. Cod ofertă / ID BLITZ: P184860",
       "geo_lat": 46.750443,
       "geo_lon": 23.57185,
       "geo_source": "detail",
       "refreshed_at": "2026-10-08T15:33:08Z",
       "published_at": "2026-10-08T15:30:37Z",
       "photo_url": "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InJxdDI4eW1panhkZi1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.yNUGA9fpCQhGOB1tkdLmoi9t9eH70aU3HhSIaAEuNrk/image;s=2048x1536;q=80",
-      "photo_urls": [
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InJxdDI4eW1panhkZi1FQ09TWVNURU0iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.yNUGA9fpCQhGOB1tkdLmoi9t9eH70aU3HhSIaAEuNrk/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Ink0NjN5a3U3cXJtMDEtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.1kamnxrR_7WBubRAp-dOKODvB1vjDe8dBKLEHPcl7IQ/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6InF0c3Q0eDE4dHlndzEtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.7agF19y08oiK-D5lmkQJsmxi97pgLWJaDwV4RiOgvdM/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImNzZGMyaWFreDRraTMtRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.NuYebES2rNBeDpoOmcobdxFRN9Nbsw37-pVGa5G3sjM/image;s=655x491;q=80",
-        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Inh3cndmaHdxeW1sbTItRUNPU1lTVEVNIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.po5MYIMVCJo6ELWaLOC2j1JfSyKeYnUkGK8ReEP7f0s/image;s=655x491;q=80"
-      ],
       "rejected": true,
-      "duplicate_of": "storia_91068147900067"
+      "duplicate_of": "storia_91068147900067",
+      "compacted": true
     },
     "storia_91068147900067": {
       "source": "storia.ro",
@@ -32780,7 +32529,7 @@
       "address": "Strada Lianelor",
       "district": "",
       "first_seen_at": "2026-10-08T16:54:46.691802+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217414+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117112+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -33295,7 +33044,7 @@
       "address": "",
       "district": "Centru",
       "first_seen_at": "2026-10-09T18:28:41.351983+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217280+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117012+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -33314,7 +33063,7 @@
       "address": "Strada Napoca",
       "district": "Centru",
       "first_seen_at": "2026-10-09T18:28:41.714523+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217398+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117097+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -33454,7 +33203,7 @@
       "address": "Strada Clujului",
       "district": "",
       "first_seen_at": "2026-10-10T16:23:17.868328+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217381+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.117081+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
@@ -33491,19 +33240,90 @@
       "address": "",
       "district": "Centru",
       "first_seen_at": "2026-10-11T11:32:28.217081+00:00",
-      "last_seen_at": "2026-10-11T11:32:28.217097+00:00",
+      "last_seen_at": "2026-10-11T17:47:32.116846+00:00",
       "in_sheet": false,
       "alerted": false,
       "rejected": true,
       "flags": [
         "price_per_m2=9.2"
       ]
+    },
+    "olx_310498848": {
+      "source": "olx.ro",
+      "id": "310498848",
+      "url": "https://www.olx.ro/d/oferta/pf-inchiriez-spatiu-comercial-complex-mercur-IDl0OWV.html",
+      "title": "Pf inchiriez spatiu comercial complex Mercur",
+      "area_m2": 120,
+      "price_eur": 2000,
+      "floor": null,
+      "address": "",
+      "district": "Bulgaria",
+      "subdistrict": null,
+      "first_seen_at": "2026-10-11T17:46:20.383597+00:00",
+      "last_seen_at": "2026-10-11T17:46:20.383618+00:00",
+      "in_sheet": false,
+      "alerted": false,
+      "flags": [
+        "uncertain_floor"
+      ],
+      "description": "PF dau in chirie spațiu comercial complex Mercur (fosta agenție Superbet),120mp, , curent trifazic, preț 2000Euro",
+      "geo_lat": 46.78143,
+      "geo_lon": 23.59783,
+      "geo_source": "detail_approx",
+      "refreshed_at": "2026-10-11T18:27:47+03:00",
+      "rejected": false,
+      "score": 42,
+      "score_data": {
+        "score": 42,
+        "residents_500": 6174,
+        "residents_1000": 21746,
+        "transit_300": 3,
+        "shops_300": 2,
+        "food_400": 5,
+        "offices_500": 18,
+        "edu_500": 2,
+        "competitors_200": 1,
+        "nearest_dodo_km": null,
+        "breakdown": {
+          "catchment": 0.62,
+          "secondary": 0.54,
+          "transit": 0.5,
+          "retail": 0.05,
+          "food": 0.25,
+          "daytime": 0.65,
+          "comp_penalty": 0.12,
+          "cannib_penalty": 0.0
+        },
+        "pop_source": "hybrid",
+        "residents_500_kontur": null,
+        "residents_500_osm_raw": 6174,
+        "geo_source": "detail_approx"
+      },
+      "scored_at": "2026-10-11T17:49:19.909574Z"
     }
   },
-  "pending_candidates": [],
+  "pending_candidates": [
+    {
+      "source": "olx.ro",
+      "id": "310498848",
+      "url": "https://www.olx.ro/d/oferta/pf-inchiriez-spatiu-comercial-complex-mercur-IDl0OWV.html",
+      "title": "Pf inchiriez spatiu comercial complex Mercur",
+      "area": 120,
+      "price": 2000,
+      "street": "",
+      "municipality": "Cluj-Napoca",
+      "type": null,
+      "floor": null,
+      "lat": 46.78143,
+      "lon": 23.59783,
+      "geo_approx": true,
+      "date": "2026-10-11T18:27:47+03:00",
+      "_send_retry": 1
+    }
+  ],
   "source_health": {},
   "district_blacklist": [],
-  "last_cycle_at": "2026-10-11T11:32:28.218009+00:00",
+  "last_cycle_at": "2026-10-11T17:47:32.117681+00:00",
   "sent_messages": {
     "971364": {
       "listing_key": "olx_300455326",
@@ -33966,25 +33786,25 @@
       }
     },
     "source": "sheet_col_K",
-    "updated_at": "2026-10-11T11:33:38.917432+00:00"
+    "updated_at": "2026-10-11T17:49:32.636425+00:00"
   },
-  "version": 37,
+  "version": 38,
   "daily_stats": {
     "date": "2026-10-11",
-    "runs": 1,
-    "sweep_last": 612,
-    "new": 0,
-    "checked": 0,
+    "runs": 2,
+    "sweep_last": 613,
+    "new": 1,
+    "checked": 1,
     "rejects": 1,
     "passes": 0,
     "duplicates": 0
   },
   "last_cycle_stats": {
-    "at": "2026-10-11T11:32:28.227581+00:00",
-    "sweep_raw": 612,
-    "new": 0,
+    "at": "2026-10-11T17:47:32.184774+00:00",
+    "sweep_raw": 613,
+    "new": 1,
     "passes": 0,
-    "rejects": 1,
+    "rejects": 0,
     "sources_down": []
   },
   "canary": {
@@ -33999,11 +33819,11 @@
   },
   "daily_digest_sent": "2026-10-10",
   "last_sweep_health": {
-    "at": "2026-10-11T11:32:26.472688+00:00",
+    "at": "2026-10-11T17:46:19.533284+00:00",
     "by_source": {
       "olx": {
-        "cards": 174,
-        "parsed": 174
+        "cards": 175,
+        "parsed": 175
       },
       "storia": {
         "cards": 292,
@@ -34042,6 +33862,7 @@
     "imobiliare_259531375": 1,
     "imobiliare_268319476": 1,
     "storia_10680673": 1,
-    "storia_10681479": 1
+    "storia_10681479": 1,
+    "olx_310498848": 1
   }
 }
