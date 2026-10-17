@@ -84,9 +84,11 @@ jobs:
 
       # Кипрский монитор (17.10.2026) не в списке Apps Script watchdog — его
       # пропущенные cron-слоты добирает этот прогон (порог 50 мин).
-      - name: Dispatch cyprus-monitor if stale
+      - name: Dispatch siblings if stale
         if: always()
-        run: python dispatch_sibling.py cyprus-monitor
+        run: |
+          python dispatch_sibling.py cyprus-monitor
+          python dispatch_sibling.py belgrade-monitor
         env:
           WATCHDOG_PAT: ${{ secrets.WATCHDOG_PAT }}
 
