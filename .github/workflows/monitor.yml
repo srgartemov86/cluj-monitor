@@ -82,6 +82,14 @@ jobs:
           TG_API_ID: ${{ secrets.TG_API_ID }}
           TG_API_HASH: ${{ secrets.TG_API_HASH }}
 
+      # Кипрский монитор (17.10.2026) не в списке Apps Script watchdog — его
+      # пропущенные cron-слоты добирает этот прогон (порог 50 мин).
+      - name: Dispatch cyprus-monitor if stale
+        if: always()
+        run: python dispatch_sibling.py cyprus-monitor
+        env:
+          WATCHDOG_PAT: ${{ secrets.WATCHDOG_PAT }}
+
       - name: Commit state back
         if: always()
         run: |
