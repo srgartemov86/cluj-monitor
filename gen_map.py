@@ -905,6 +905,7 @@ function popupNode(f) {{
         <a class="secondary" href="${{esc(f.gmaps)}}" target="_blank">Maps</a>
         ${{f.yandex ? `<a class="secondary" href="${{esc(f.yandex)}}" target="_blank">Street View</a>` : ''}}
         ${{sheetLink}}
+        <a class="secondary share" href="#share" data-lot="${{esc(f.id)}}" title="Copy a link that opens this listing on the map">Share</a>
       </div>
       <div class="footer">
         ${{f.date_posted ? `📅 posted: <strong>${{esc(f.date_posted)}}</strong>` : ''}}
@@ -1071,8 +1072,36 @@ document.getElementById('t-clear-all').addEventListener('change', (e) => {{
   e.target.checked = false;  // работает как кнопка-сброс, сам остаётся пустым
 }});
 
-// Auto-fit to features
-if (FEATURES.length) {{
+// «Share» в попапе: ссылка lokali.html#lot=<id> открывает карту сразу на этом лоте
+// (Сергей, 26.10). На телефоне — системное меню «поделиться», иначе в буфер обмена.
+function shareLot(id) {{
+  const url = location.origin + location.pathname + '#lot=' + encodeURIComponent(id);
+  if (navigator.share && /Mobi|Android|iPhone|iPad/.test(navigator.userAgent)) {{
+    navigator.share({{url}}).catch(() => {{}});
+    return;
+  }}
+  const fallback = () => window.prompt('Copy the link:', url);
+  if (navigator.clipboard && navigator.clipboard.writeText)
+    navigator.clipboard.writeText(url).then(() => toast('Link copied'), fallback);
+  else fallback();
+}}
+document.addEventListener('click', (e) => {{
+  const a = e.target.closest('.leaflet-popup a.share');
+  if (!a) return;
+  e.preventDefault(); e.stopPropagation();
+  shareLot(a.dataset.lot);
+}}, true);
+
+// #lot=<id> — переход на конкретный лот (ссылка из кнопки Share или из Telegram);
+// id принимается и полный (imobiliare_256317967), и числовой
+const lotId = (location.hash.match(/lot=([^&]+)/) || [])[1];
+const lotKey = lotId ? decodeURIComponent(lotId) : null;
+const lotTarget = lotKey ? FEATURES.find(f => f.id === lotKey || (f.url || '').includes(lotKey)) : null;
+if (lotTarget) {{
+  map.setView([lotTarget.lat, lotTarget.lon], 16);
+  setTimeout(() => lotTarget._marker && lotTarget._marker.openPopup(), 400);
+}} else if (FEATURES.length) {{
+  // Auto-fit to features
   const bounds = L.latLngBounds(FEATURES.map(f => [f.lat, f.lon]));
   map.fitBounds(bounds, {{padding: [40, 40]}});
 }}
