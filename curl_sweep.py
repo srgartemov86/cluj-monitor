@@ -253,6 +253,38 @@ def sweep_storia(pages=4):
                        if isinstance(ads, dict) else None)
         if total_pages and p >= total_pages:
             break
+    return _storia_unique(out)
+
+
+def _storia_unique(items):
+    """Продвигаемые объявления Storia приходят в выдаче дважды: обычной записью со
+    своим id и промо-копией, у которой id ОБЩИЙ на несколько объявлений (16.11.2026:
+    9000062320 сразу у четырёх). Ключ лота строится из id, поэтому общий id
+    перезаписывал запись в state другим объявлением: проверки дублей его не
+    видели, карточка уходила повторно, а в таблицу попадала чужая строка.
+    Правило: id, встретившийся у разных URL, недействителен. Копию с таким id
+    выбрасываем, если у объявления есть запись с нормальным id; иначе даём id
+    из хвоста slug (ID....), он у Storia уникален. Плюс один URL — одна запись."""
+    urls_by_id = {}
+    for c in items:
+        urls_by_id.setdefault(c['id'], set()).add(c['url'])
+    shared = {i for i, u in urls_by_id.items() if len(u) > 1}
+    clean_urls = {c['url'] for c in items if c['id'] not in shared}
+    out, seen = [], set()
+    for c in items:
+        if c['id'] in shared:
+            if c['url'] in clean_urls:
+                continue
+            m = re.search(r'-(ID[0-9A-Za-z]+)$', c['url'])
+            if not m:
+                continue
+            c = dict(c, id=m.group(1))
+        if c['url'] in seen:
+            continue
+        seen.add(c['url'])
+        out.append(c)
+    if shared:
+        _v(f'  storia: dropped promo copies with shared ids {sorted(shared)}')
     return out
 
 

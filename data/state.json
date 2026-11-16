@@ -41720,7 +41720,10 @@
       "description_ru": "Ready food space, 95 sqm, fully renovated with kitchen, staff bathroom, and two customer restrooms.\nStreet storefront with pedestrian access plus rear supply entrance and three-phase power.\nZoned for food service in land registry, ready for immediate central-area hospitality use.",
       "telegram_message_id": 843,
       "sent_at": "2026-11-16T10:07:21.915460+00:00",
-      "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=583392259"
+      "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=583392259",
+      "alt_urls": [
+        "https://www.storia.ro/ro/oferta/spatiu-cu-destinatie-alimentatie-publica-situat-ultracentral-IDJfdx"
+      ]
     },
     "olx_311846780": {
       "source": "olx.ro",
@@ -41773,8 +41776,9 @@
       "first_seen_at": "2026-11-16T09:56:59.708914+00:00",
       "last_seen_at": "2026-11-16T09:56:59.708930+00:00",
       "in_sheet": false,
-      "alerted": false,
+      "alerted": true,
       "flags": [
+        "duplicate_of:olx_312019059",
         "uncertain_floor"
       ],
       "description": "Koncept Imobiliare va ofera spre inchiriere un spatiu comercial cu destinatie alimentatie publica, amplasat in Piata Cipariu. Spatiul are suprafata utila de 95 mp, dispune de vitrina la strada cu acces pietonal plus un acces secundar pentru aprovizionare si curent trifazat. Spatiul este compus din: sala servire, bucatarie, baie personal si inca 2 grupuri sanitare, a fost complet renovat, toate instalatiile schimbate si este cu destinatie de alimentatie publica in cartea funciara. Datorita amplasarii si specificului, poate sustine orice activitati din sfera alimentatiei publice compatibile cu zona centrala. Pentru informatii suplimentare, programarea unei vizionari sau pentru a afla oferta noastra completa va stam la dispozitie telefonic, prin e-mail sau la sediul agentiei noastre, pe str. Aviator Badescu, nr. 19, Cluj-Napoca.",
@@ -41796,7 +41800,10 @@
         "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6Ing0aTg5dGp3dm5nODMtQVJPIiwidyI6W3siZm4iOiIzdzU2NnhnanB5MnAxLUFSTyIsInMiOiIxNiIsImEiOiIwIiwicCI6IjEwLC0xMCJ9XX0.nKwCSEGU9T_gt_hJ6Kslpk-FsdZxZzPQ5y-6sdI1i0E/image;s=655x491;q=80",
         "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6IjAxOTdwMzk3OHpwai1BUk8iLCJ3IjpbeyJmbiI6IjN3NTY2eGdqcHkycDEtQVJPIiwicyI6IjE2IiwiYSI6IjAiLCJwIjoiMTAsLTEwIn1dfQ.yhIdlOpORqZoXIBju4rBiowfVkYIeKAV8X1NUNPQ6hE/image;s=655x491;q=80"
       ],
-      "rejected": false
+      "rejected": true,
+      "duplicate_of": "olx_312019059",
+      "telegram_message_id": 849,
+      "sent_at": "2026-11-16T10:07:36.752974+00:00"
     },
     "storia_10772624": {
       "source": "storia.ro",
@@ -42014,28 +42021,6 @@
       ],
       "rejected": true
     },
-    "storia_9000062320": {
-      "source": "storia.ro",
-      "id": "9000062320",
-      "url": "https://www.storia.ro/ro/oferta/spatiu-birouri-de-inchiriat-i-grigorescu-IDJ5WQ",
-      "area_m2": 100,
-      "price_eur": 800,
-      "address": "Bulevardul 1 Decembrie 1918",
-      "district": "",
-      "first_seen_at": "2026-11-16T10:01:49.504575+00:00",
-      "last_seen_at": "2026-11-16T10:01:49.504576+00:00",
-      "in_sheet": true,
-      "alerted": true,
-      "rejected": true,
-      "flags": [
-        "price_far",
-        "price=800"
-      ],
-      "description_ru": "Office space for rent, good condition, street-level visibility with large windows.\nStandard utilities available, power and HVAC present.\nFlexible terms, available immediately with standard deposit.",
-      "telegram_message_id": 849,
-      "sent_at": "2026-11-16T10:07:36.752974+00:00",
-      "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=1920258183"
-    },
     "olx_311847022": {
       "source": "olx.ro",
       "id": "311847022",
@@ -42212,22 +42197,6 @@
       "lat": null,
       "lon": null,
       "date": "1999-02-29 00:00:01"
-    },
-    {
-      "source": "storia.ro",
-      "id": "10783259",
-      "url": "https://www.storia.ro/ro/oferta/spatiu-cu-destinatie-alimentatie-publica-situat-ultracentral-IDJfdx",
-      "title": "Spatiu cu destinatie alimentatie publica, situat Ultracentral",
-      "area": 95,
-      "price": 3500,
-      "street": "Bulevardul Eroilor",
-      "municipality": "",
-      "type": null,
-      "floor": null,
-      "lat": null,
-      "lon": null,
-      "date": "2026-11-16T09:02:37Z",
-      "_send_retry": 1
     }
   ],
   "source_health": {},
@@ -42791,7 +42760,7 @@
       "sent_at": "2026-11-16T10:07:21.915460+00:00"
     },
     "849": {
-      "listing_key": "storia_9000062320",
+      "listing_key": "storia_10783259",
       "sent_at": "2026-11-16T10:07:36.752974+00:00"
     }
   },
@@ -42894,7 +42863,6 @@
     "imobiliare_275573752": 1,
     "storia_10747009": 1,
     "storia_10759902": 1,
-    "imobiliare_276022092": 1,
-    "storia_10783259": 1
+    "imobiliare_276022092": 1
   }
 }
