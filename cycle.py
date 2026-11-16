@@ -2081,6 +2081,10 @@ def cmd_geocode_hint(listing_key, hint):
 
 
 def main():
+    # Зависший цикл сам печатает стек всех потоков в stderr (он идёт в лог прогона):
+    # обычный прогон длится ~2 мин, таймаут driver 900 с. Повтор каждые 5 мин.
+    import faulthandler
+    faulthandler.dump_traceback_later(300, repeat=True, file=sys.stderr)
     ap = argparse.ArgumentParser()
     ap.add_argument('--mark-sent', nargs=2, metavar=('KEY', 'MSG_ID'),
                     help='Mark a pass as sent + insert to Sheets')
