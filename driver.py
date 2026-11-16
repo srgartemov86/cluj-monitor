@@ -133,9 +133,13 @@ def english_summary(pass_rec):
 
 def run_json(args, timeout):
     """Запуск python-скрипта, JSON — последняя непустая строка stdout."""
-    r = subprocess.run([sys.executable] + args, capture_output=True, text=True,
-                       timeout=timeout, cwd=HERE)
-    sys.stderr.write(r.stderr or '')
+    # stderr не перехватываем: он идёт в лог прогона сразу. При таймауте
+    # перехваченный вывод терялся, и было не видно, на чём цикл завис
+    # (11–16.11.2026: 40+ прогонов упали по таймауту 900 с без единой строки).
+    sys.stderr.flush()
+    r = subprocess.run([sys.executable] + args, stdout=subprocess.PIPE, text=True,
+                       timeout=timeout, cwd=HERE,
+                       env=dict(os.environ, PYTHONUNBUFFERED='1'))
     lines = [l for l in (r.stdout or '').strip().splitlines() if l.strip()]
     for line in reversed(lines):
         if line.lstrip().startswith('{'):
