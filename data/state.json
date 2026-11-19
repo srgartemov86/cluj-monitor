@@ -5669,7 +5669,11 @@
         "residents_500_osm_raw": 15870,
         "geo_source": "nominatim"
       },
-      "scored_at": "2026-07-14T18:50:43.930900Z"
+      "scored_at": "2026-07-14T18:50:43.930900Z",
+      "removed_from_sheet": true,
+      "stale_marked_at": "2026-11-19T07:40:25.510374+00:00",
+      "removed_human": "2026-11-19 08:40",
+      "dead_reason": "manual browser check 2026-11-18: listing URL redirects to search page"
     },
     "olx_302742061": {
       "source": "olx.ro",
@@ -7200,7 +7204,11 @@
         "residents_500_osm_raw": 4353,
         "geo_source": "nominatim"
       },
-      "scored_at": "2026-07-17T06:52:19.833381Z"
+      "scored_at": "2026-07-17T06:52:19.833381Z",
+      "removed_from_sheet": true,
+      "stale_marked_at": "2026-11-19T07:40:25.510374+00:00",
+      "removed_human": "2026-11-19 08:40",
+      "dead_reason": "manual browser check 2026-11-18: listing URL redirects to search page"
     },
     "imobiliare_267393692": {
       "source": "imobiliare.ro",
@@ -7410,7 +7418,11 @@
         "residents_500_osm_raw": 4353,
         "geo_source": "nominatim"
       },
-      "scored_at": "2026-07-17T11:10:08.341486Z"
+      "scored_at": "2026-07-17T11:10:08.341486Z",
+      "removed_from_sheet": true,
+      "stale_marked_at": "2026-11-19T07:40:25.510374+00:00",
+      "removed_human": "2026-11-19 08:40",
+      "dead_reason": "manual browser check 2026-11-18: listing URL redirects to search page"
     },
     "imobiliare_268819211": {
       "source": "imobiliare.ro",
@@ -7790,7 +7802,11 @@
         "residents_500_osm_raw": 4353,
         "geo_source": "nominatim"
       },
-      "scored_at": "2026-07-17T11:11:45.417103Z"
+      "scored_at": "2026-07-17T11:11:45.417103Z",
+      "removed_from_sheet": true,
+      "stale_marked_at": "2026-11-19T07:40:25.510374+00:00",
+      "removed_human": "2026-11-19 08:40",
+      "dead_reason": "manual browser check 2026-11-18: listing URL redirects to search page"
     },
     "olx_291571713": {
       "source": "olx.ro",
@@ -14171,7 +14187,11 @@
           "old": 4500,
           "new": 3700
         }
-      ]
+      ],
+      "removed_from_sheet": true,
+      "stale_marked_at": "2026-11-19T07:40:25.510374+00:00",
+      "removed_human": "2026-11-19 08:40",
+      "dead_reason": "manual browser check 2026-11-18: listing URL redirects to search page"
     },
     "olx_296489447": {
       "source": "olx.ro",
@@ -24768,7 +24788,11 @@
         "residents_500_osm_raw": 5451,
         "geo_source": "nominatim"
       },
-      "scored_at": "2026-09-12T10:55:24.753540Z"
+      "scored_at": "2026-09-12T10:55:24.753540Z",
+      "removed_from_sheet": true,
+      "stale_marked_at": "2026-11-19T07:40:25.510374+00:00",
+      "removed_human": "2026-11-19 08:40",
+      "dead_reason": "manual browser check 2026-11-18: listing URL redirects to search page"
     },
     "olx_301245120": {
       "source": "olx.ro",
@@ -25303,7 +25327,11 @@
         "residents_500_osm_raw": 16004,
         "geo_source": "nominatim"
       },
-      "scored_at": "2026-09-13T16:56:30.800055Z"
+      "scored_at": "2026-09-13T16:56:30.800055Z",
+      "removed_from_sheet": true,
+      "stale_marked_at": "2026-11-19T07:40:25.510374+00:00",
+      "removed_human": "2026-11-19 08:40",
+      "dead_reason": "manual browser check 2026-11-18: listing URL redirects to search page"
     },
     "imobiliare_269086311": {
       "source": "imobiliare.ro",
@@ -25566,7 +25594,11 @@
       "description_ru": "150 sqm usable hall space needing renovation with double-glazed windows, 4m height, 2 access gates, single-phase power only, no utilities on the land.\nAvailable for rent immediately, deposit terms not specified in the listing.",
       "telegram_message_id": 575,
       "sent_at": "2026-09-14T11:54:51.907545+00:00",
-      "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=106947366"
+      "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=106947366",
+      "removed_from_sheet": true,
+      "stale_marked_at": "2026-11-19T07:40:25.510374+00:00",
+      "removed_human": "2026-11-19 08:40",
+      "dead_reason": "manual browser check 2026-11-18: listing URL redirects to search page"
     },
     "imobiliare_256317967": {
       "source": "imobiliare.ro",
@@ -26477,7 +26509,11 @@
       "description_ru": "105 sqm ground floor commercial space in Mănăștur with 4 rooms, 2 bathrooms, kitchenette, and 25 sqm enclosed balcony for branding.\nExcellent street visibility with large display windows, independent gas heating, adaptable layout.\nTerms and deposit not specified in listing; available immediately for viewing.",
       "telegram_message_id": 594,
       "sent_at": "2026-09-17T19:11:23.665830+00:00",
-      "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=239914127"
+      "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=239914127",
+      "removed_from_sheet": true,
+      "stale_marked_at": "2026-11-19T07:40:25.510374+00:00",
+      "removed_human": "2026-11-19 08:40",
+      "dead_reason": "manual browser check 2026-11-18: listing URL redirects to search page"
     },
     "imobiliare_274915565": {
       "source": "imobiliare.ro",
@@ -26589,7 +26625,11 @@
       "description_ru": "96 sqm modern ground-floor commercial space in a 2019 building, flexible layout with two street access points.\nEquipped with private gas central heating, heavy-duty flooring, and 3-meter ceiling height.\nTerms and deposit details available upon phone or email inquiry, including one underground parking space.",
       "telegram_message_id": 600,
       "sent_at": "2026-09-17T19:11:44.924003+00:00",
-      "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=330770850"
+      "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=330770850",
+      "removed_from_sheet": true,
+      "stale_marked_at": "2026-11-19T07:40:25.510374+00:00",
+      "removed_human": "2026-11-19 08:40",
+      "dead_reason": "manual browser check 2026-11-18: listing URL redirects to search page"
     },
     "olx_309530119": {
       "source": "olx.ro",
@@ -28617,7 +28657,11 @@
       "description_ru": "152 sqm finished commercial space with 4 rooms, reception, and 2 restrooms, suitable for restaurant use.\nEquipped with three-phase power, HVAC, and mechanical ventilation; available unfurnished with 3 parking spaces.",
       "telegram_message_id": 644,
       "sent_at": "2026-09-28T06:57:55.936492+00:00",
-      "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=373823348"
+      "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=373823348",
+      "removed_from_sheet": true,
+      "stale_marked_at": "2026-11-19T07:40:25.510374+00:00",
+      "removed_human": "2026-11-19 08:40",
+      "dead_reason": "manual browser check 2026-11-18: listing URL redirects to search page"
     },
     "imobiliare_276033720": {
       "source": "imobiliare.ro",
@@ -31828,7 +31872,11 @@
       "description_ru": "105 sqm ground-floor commercial space in current condition with street frontage and two exterior entrances.\nEquipped with private gas boiler heating; requires tenant fit-out for specific use.\nAvailable immediately with negotiable financial terms.",
       "telegram_message_id": 683,
       "sent_at": "2026-10-10T16:24:05.281770+00:00",
-      "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=2090629634"
+      "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=2090629634",
+      "removed_from_sheet": true,
+      "stale_marked_at": "2026-11-19T07:40:25.510374+00:00",
+      "removed_human": "2026-11-19 08:40",
+      "dead_reason": "manual browser check 2026-11-18: listing URL redirects to search page"
     },
     "storia_10685592": {
       "source": "storia.ro",
@@ -35488,7 +35536,11 @@
       "description_ru": "Modern ground floor commercial space in a new residential complex, delivered turnkey per tenant requirements.\nFeatures excellent street frontage in a dynamic, rapidly expanding real estate and urban area.",
       "telegram_message_id": 735,
       "sent_at": "2026-10-27T11:56:19.268000+00:00",
-      "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=468159551"
+      "sheet_link": "https://docs.google.com/spreadsheets/d/1NZNlx2G24Ea-zGNurKx7fTAmHgLK4tOSjtB7ScYx-7c/edit#gid=498788918&rangeid=468159551",
+      "removed_from_sheet": true,
+      "stale_marked_at": "2026-11-19T07:40:25.510374+00:00",
+      "removed_human": "2026-11-19 08:40",
+      "dead_reason": "manual browser check 2026-11-18: listing URL redirects to search page"
     },
     "olx_311201516": {
       "source": "olx.ro",

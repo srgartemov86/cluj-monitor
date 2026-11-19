@@ -45,6 +45,14 @@ MIN_AGE_HOURS = 6
 UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36'
 
 
+# <title> у OLX и Storia с осени 2026 идёт с атрибутами (<title data-rh="true">,
+# <title data-next-head="">): старый шаблон <title> не совпадал, заголовок был
+# пустым, и ВСЕ лоты этих сайтов получали вердикт unknown — снятые объявления
+# не убирались с карты (найдено 18.11.2026).
+STORIA_DEAD_STATUS = {'removed_by_user', 'removed', 'outdated', 'archived', 'inactive',
+                      'expired', 'deleted', 'removed_by_moderator'}
+
+
 def is_dead(src, http_code, size, title, valid_to=None):
     """Returns one of: 'dead', 'alive', 'rate_limited', 'unknown'."""
     title_l = title.lower()
@@ -111,7 +119,7 @@ def fetch(url, timeout=20):
             if r is None:
                 return 'ERR', 0, 'DataDome block after retries', None
             body = r.text
-            m = re.search(r'<title>([^<]*)</title>', body)
+            m = re.search(r'<title[^>]*>([^<]*)</title>', body)
             title = m.group(1).strip() if m else ''
             if r.status_code != 200:
                 return str(r.status_code), len(body), '', None
@@ -133,9 +141,14 @@ def fetch(url, timeout=20):
             body = body[:idx]
         else:
             http_code = '???'
-        m = re.search(r'<title>([^<]*)</title>', body)
+        m = re.search(r'<title[^>]*>([^<]*)</title>', body)
         title = m.group(1).strip() if m else ''
         valid_to = None
+        if 'storia.ro' in url:
+            # статус объявления из __NEXT_DATA__: снятое остаётся со старым заголовком
+            sm = re.search(r'"status"\s*:\s*"([a-z_]+)"', body)
+            if sm and sm.group(1) in STORIA_DEAD_STATUS:
+                title = 'nu mai este disponibil (status=' + sm.group(1) + ')'
         if 'olx.ro' in url:
             vm = re.search(r'"valid_to_time"\s*:\s*"([^"]+)"', body)
             valid_to = vm.group(1) if vm else None
