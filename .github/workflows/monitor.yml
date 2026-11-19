@@ -38,6 +38,10 @@ jobs:
           key: camoufox-${{ runner.os }}-v1
 
       - name: Install Camoufox (imobiliare.ro via real browser)
+        # Не критично: 19.11.2026 `camoufox fetch` получил 404 на релиз браузера и
+        # ронял весь прогон. Без браузера imobiliare помечается недоступным,
+        # OLX и Storia работают как обычно.
+        continue-on-error: true
         run: |
           pip install camoufox
           python -m playwright install-deps firefox
